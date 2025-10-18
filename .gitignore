@@ -1,0 +1,10 @@
+#Arquivos compilados e executáveis
+output/
+*.out
+
+#Arquivos de editor/IDE
+.vscode/
+
+#Arquivos temporários do sistema
+*.swp
+*~
