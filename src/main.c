@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "../include/personagem.h"
 
 int main(void)
 {
@@ -19,7 +20,10 @@ int main(void)
         BeginDrawing();
 
         ClearBackground(WHITE);
-        DrawCircle(largura / 2, altura / 2, 200, PINK);
+        DrawRectangle(0, 600, largura / 4, 300, PURPLE);
+        DrawRectangle(largura / 4, 600, largura / 4, 300, RED);
+        DrawRectangle(largura / 2, 600, largura / 4, 300, ORANGE);
+        DrawRectangle(largura - (largura / 4), 600, largura / 4, 300, GREEN);
         DrawText("Flower Transport\nthe Will of the Moon", largura / 2, altura / 2, 50, DARKGRAY);
 
         EndDrawing();
