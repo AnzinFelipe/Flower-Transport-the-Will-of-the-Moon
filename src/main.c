@@ -2,25 +2,31 @@
 
 int main(void)
 {
-    // Inicializa a janela com a raylib
-    InitWindow(800, 600, "Hello Raylib!");
+    int largura = 1600, altura = 900;
 
-    // Define a taxa de quadros por segundo
+    InitWindow(largura, altura, "Flower Transport - the Will of the Moon");
+
+    InitAudioDevice();
+    Music pink = LoadMusicStream("assets/music/Pink.mp3");
+    PlayMusicStream(pink);
+
     SetTargetFPS(60);
 
-    // Loop de execução
     while (!WindowShouldClose())
     {
-        // Inicia o desenho
+        UpdateMusicStream(pink);
+
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
-        DrawText("Olá, Raylib!", 10, 10, 20, DARKGRAY);
+        ClearBackground(WHITE);
+        DrawCircle(largura / 2, altura / 2, 200, PINK);
+        DrawText("Flower Transport\nthe Will of the Moon", largura / 2, altura / 2, 50, DARKGRAY);
 
         EndDrawing();
     }
 
-    // Fecha a janela
+    UnloadMusicStream(pink);
+    CloseAudioDevice();
     CloseWindow();
 
     return 0;
