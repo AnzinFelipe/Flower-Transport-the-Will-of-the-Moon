@@ -1,8 +1,9 @@
 // Flores noturnas
 
 typedef struct {
-    char nome[50];
+    char *nome;
     int dano;
     int elemento;
     int energia_gasta;
+    float velocidade;
 } Flor_noite;

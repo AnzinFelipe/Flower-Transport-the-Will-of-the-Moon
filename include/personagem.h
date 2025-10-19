@@ -5,7 +5,7 @@
 #include "flor_noite.h"
 
 typedef struct {
-    char nome[50];
+    char *nome;
     int vida;
     int energia;
     Ataque ataque;
