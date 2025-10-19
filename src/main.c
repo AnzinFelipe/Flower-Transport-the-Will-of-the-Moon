@@ -20,10 +20,10 @@ int main(void)
         BeginDrawing();
 
         ClearBackground(WHITE);
-        DrawRectangle(0, 600, largura / 4, 300, PURPLE);
+        DrawRectangle(0, 600, largura / 4, 300, MAROON);
         DrawRectangle(largura / 4, 600, largura / 4, 300, RED);
         DrawRectangle(largura / 2, 600, largura / 4, 300, ORANGE);
-        DrawRectangle(largura - (largura / 4), 600, largura / 4, 300, GREEN);
+        DrawRectangle(largura - (largura / 4), 600, largura / 4, 300, GOLD);
         DrawText("Flower Transport\nthe Will of the Moon", largura / 2, altura / 2, 50, DARKGRAY);
 
         EndDrawing();
