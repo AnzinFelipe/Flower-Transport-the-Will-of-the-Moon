@@ -20,6 +20,8 @@ int main(void)
     roxo.vida = 100;
     roxo.energia = 100;
     roxo.flor_dia.nome = "Flor Solar";
+    roxo.flor_noite.nome = "Flor Lunar";
+    roxo.ataque.nome = "Chute";
 
     SetTargetFPS(60);
 
@@ -37,6 +39,7 @@ int main(void)
         DrawRectangle(largura / 2, 600, largura / 4, 300, ORANGE);
         DrawRectangle(largura - (largura / 4), 600, largura / 4, 300, GREEN);
 
+        //Vez do inimigo ou vez do jogador
         if (vez_inimigo == 1) {
             DrawText("Vez do Inimigo", largura / 2 - 100, 100, 40, WHITE);
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
@@ -49,7 +52,9 @@ int main(void)
             DrawText("Sua Vez", largura / 2 - 100, 100, 40, WHITE);
         }
 
+        //Escolhas primarias de cada personagem
         if (escolhas == 1 && personagem_num == 0) {
+            //Personagem 0
             if (IsKeyPressed(KEY_DOWN) && pode_apertar >= delay) {
                 escolhido++;
                 pode_apertar = 0.0;
@@ -82,11 +87,18 @@ int main(void)
             }
 
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                if (escolhido == 0) {
+                    escolha_flores_diurnas = 1;    
+                } elif (escolhido == 1) {
+                    escolha_flores_noturnas = 1;
+                } elif (escolhido == 2) {
+                    //Defesa;
+                }
                 escolhas = 0;
-                escolha_flores_diurnas = 1;
                 pode_apertar = 0.0;
             }
         } else if (escolhas == 1 && personagem_num == 1) {
+            //Personagem 1
             if (IsKeyPressed(KEY_DOWN) && pode_apertar >= delay) {
                 escolhido++;
                 pode_apertar = 0.0;
@@ -119,11 +131,18 @@ int main(void)
             }
 
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                if (escolhido == 0) {
+                    escolha_ataques = 1;    
+                } elif (escolhido == 1) {
+                    escolha_flores_diurnas = 1;
+                } elif (escolhido == 2) {
+                    //Defesa;
+                }
                 escolhas = 0;
-                escolha_flores_diurnas = 1;
                 pode_apertar = 0.0;
             }
         } else if (escolhas == 1 && personagem_num == 2) {
+            //Personagem 2
             if (IsKeyPressed(KEY_DOWN) && pode_apertar >= delay) {
                 escolhido++;
                 pode_apertar = 0.0;
@@ -156,11 +175,18 @@ int main(void)
             }
 
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                if (escolhido == 0) {
+                    escolha_ataques = 1;    
+                } elif (escolhido == 1) {
+                    escolha_flores_noturnas = 1;
+                } elif (escolhido == 2) {
+                    //Defesa;
+                }
                 escolhas = 0;
-                escolha_flores_diurnas = 1;
                 pode_apertar = 0.0;
             }
         } else if (escolhas == 1 && personagem_num == 3) {
+            //Personagem 3
             if (IsKeyPressed(KEY_DOWN) && pode_apertar >= delay) {
                 escolhido++;
                 pode_apertar = 0.0;
@@ -188,23 +214,63 @@ int main(void)
             }
 
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                if (escolhido == 0) {
+                    escolha_ataques = 1;    
+                } elif (escolhido == 1) {
+                    //Defesa;
+                }
                 escolhas = 0;
-                escolha_flores_diurnas = 1;
                 pode_apertar = 0.0;
             }
         }
+
+        //Escolhas secundarias
+        if (escolha_ataques == 1) {
+            //Escolha de ataques
+            DrawText(roxo.ataque.nome, largura / 2 - 750, altura / 2, 30, WHITE);
+            if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                if (personagem_num == 3) {
+                    escolha_ataques = 0;
+                    vez_inimigo = 1;
+                    pode_apertar = 0.0;
+                } else {
+                    escolha_ataques = 0;
+                    escolhas = 1;
+                    personagem_num++;
+                    pode_apertar = 0.0;
+                }
+            }
+        }
         if (escolha_flores_diurnas == 1) {
+            //Escolha de flores diurnas
             DrawText(roxo.flor_dia.nome, largura / 2 - 750, altura / 2, 30, WHITE);
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (personagem_num == 3) {
                     escolha_flores_diurnas = 0;
                     vez_inimigo = 1;
                     pode_apertar = 0.0;
+                } else {
+                    escolha_flores_diurnas = 0;
+                    escolhas = 1;
+                    personagem_num++;
+                    pode_apertar = 0.0;
                 }
-                escolha_flores_diurnas = 0;
-                escolhas = 1;
-                personagem_num++;
-                pode_apertar = 0.0;
+            }
+        }
+        if (escolha_flores_noturnas == 1) {
+            //Escolha de flores noturnas
+            DrawText(roxo.flor_noite.nome, largura / 2 - 750, altura / 2, 30, WHITE);
+            if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                if (personagem_num == 3) {
+                    escolha_flores_noturnas = 0;
+                    vez_inimigo = 1;
+                    pode_apertar = 0.0;
+                } else {
+                    escolha_flores_noturnas = 0;
+                    escolhas = 1;
+                    personagem_num++;
+                    pode_apertar = 0.0;
+                }
             }
         }
 
