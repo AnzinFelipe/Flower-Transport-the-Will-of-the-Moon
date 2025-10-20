@@ -1,6 +1,11 @@
 #include "raylib.h"
-#include "../include/personagem.h"
-#include "../include/escolhas_primarias.h"
+#include "personagem.h"
+#include "ataque.h"
+#include "flor_dia.h"
+#include "flor_noite.h"
+#include "escolhas_primarias.h"
+
+#include <stdlib.h>
 
 int main(void)
 {
@@ -17,12 +22,11 @@ int main(void)
     int personagem_num = 0;
     int vez_inimigo = 0;
     float pode_apertar = 0.0, delay = 0.2;
-    Personagem roxo;
-    roxo.vida = 100;
-    roxo.energia = 100;
-    roxo.flor_dia.nome = "Flor Solar";
-    roxo.flor_noite.nome = "Flor Lunar";
-    roxo.ataque.nome = "Chute";
+
+    Personagem *head = NULL;
+    head = (Personagem *)malloc(sizeof(Personagem));
+    
+    adicionar_personagem(&head, "Roxo", 100, 100, ataque, flor_dia, flor_noite);
 
     SetTargetFPS(60);
 
@@ -129,7 +133,7 @@ int main(void)
         //Escolhas secundarias
         if (escolha_ataques == 1) {
             //Escolha de ataques
-            DrawText(roxo.ataque.nome, largura / 2 - 750, altura / 2, 30, WHITE);
+            DrawText(head->ataque.nome, largura / 2 - 750, altura / 2, 30, WHITE);
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (personagem_num == 3) {
                     escolha_ataques = 0;
@@ -145,7 +149,7 @@ int main(void)
         }
         if (escolha_flores_diurnas == 1) {
             //Escolha de flores diurnas
-            DrawText(roxo.flor_dia.nome, largura / 2 - 750, altura / 2, 30, WHITE);
+            DrawText(head->flor_dia.nome, largura / 2 - 750, altura / 2, 30, WHITE);
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (personagem_num == 3) {
                     escolha_flores_diurnas = 0;
@@ -161,7 +165,7 @@ int main(void)
         }
         if (escolha_flores_noturnas == 1) {
             //Escolha de flores noturnas
-            DrawText(roxo.flor_noite.nome, largura / 2 - 750, altura / 2, 30, WHITE);
+            DrawText(head->flor_noite.nome, largura / 2 - 750, altura / 2, 30, WHITE);
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (personagem_num == 3) {
                     escolha_flores_noturnas = 0;
