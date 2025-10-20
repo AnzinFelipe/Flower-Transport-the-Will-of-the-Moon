@@ -1,6 +1,8 @@
 #include "raylib.h"
 #include "../include/personagem.h"
 
+int * selecionar_escolha(int *escolhido, int max_escolhido);
+
 int main(void)
 {
     int largura = 1600, altura = 900;
@@ -55,20 +57,7 @@ int main(void)
         //Escolhas primarias de cada personagem
         if (escolhas == 1 && personagem_num == 0) {
             //Personagem 0
-            if (IsKeyPressed(KEY_DOWN) && pode_apertar >= delay) {
-                escolhido++;
-                pode_apertar = 0.0;
-                if(escolhido > 2) {
-                    escolhido = 0;
-                }
-            }
-            if (IsKeyPressed(KEY_UP) && pode_apertar >= delay) {
-                escolhido--;
-                pode_apertar = 0.0;
-                if(escolhido < 0) {
-                    escolhido = 2;
-                }
-            }
+            escolhido = selecionar_escolha(&escolhido, 2);
             
             if (escolhido == 0) {
                 DrawText("Flores Diurnas", largura / 2 - 750, altura / 2, 30, WHITE);
@@ -99,20 +88,7 @@ int main(void)
             }
         } else if (escolhas == 1 && personagem_num == 1) {
             //Personagem 1
-            if (IsKeyPressed(KEY_DOWN) && pode_apertar >= delay) {
-                escolhido++;
-                pode_apertar = 0.0;
-                if(escolhido > 2) {
-                    escolhido = 0;
-                }
-            }
-            if (IsKeyPressed(KEY_UP) && pode_apertar >= delay) {
-                escolhido--;
-                pode_apertar = 0.0;
-                if(escolhido < 0) {
-                    escolhido = 2;
-                }
-            }
+            escolhido = selecionar_escolha(&escolhido, 2);
 
             if (escolhido == 0) {
                 DrawText("Ataques", largura / 2 - 350, altura / 2, 30, WHITE);
@@ -143,20 +119,7 @@ int main(void)
             }
         } else if (escolhas == 1 && personagem_num == 2) {
             //Personagem 2
-            if (IsKeyPressed(KEY_DOWN) && pode_apertar >= delay) {
-                escolhido++;
-                pode_apertar = 0.0;
-                if(escolhido > 2) {
-                    escolhido = 0;
-                }
-            }
-            if (IsKeyPressed(KEY_UP) && pode_apertar >= delay) {
-                escolhido--;
-                pode_apertar = 0.0;
-                if(escolhido < 0) {
-                    escolhido = 2;
-                }
-            }
+            escolhido = selecionar_escolha(&escolhido, 2);
 
             if (escolhido == 0) {
                 DrawText("Ataques", largura / 2 + 50, altura / 2, 30, WHITE);
@@ -187,20 +150,7 @@ int main(void)
             }
         } else if (escolhas == 1 && personagem_num == 3) {
             //Personagem 3
-            if (IsKeyPressed(KEY_DOWN) && pode_apertar >= delay) {
-                escolhido++;
-                pode_apertar = 0.0;
-                if(escolhido > 1) {
-                    escolhido = 0;
-                }
-            }
-            if (IsKeyPressed(KEY_UP) && pode_apertar >= delay) {
-                escolhido--;
-                pode_apertar = 0.0;
-                if(escolhido < 0) {
-                    escolhido = 1;
-                }
-            }
+            escolhido = selecionar_escolha(&escolhido, 1);
 
             if (escolhido == 0) {
                 DrawText("Ataques", largura / 2 + 450, altura / 2 + 25, 30, WHITE);
@@ -282,4 +232,22 @@ int main(void)
     CloseWindow();
 
     return 0;
+}
+
+int * selecionar_escolha(int *escolhido, int max_escolhido) {
+    if (IsKeyPressed(KEY_DOWN) && pode_apertar >= delay) {
+        *escolhido++;
+        pode_apertar = 0.0;
+        if(*escolhido > max_escolhido) {
+            *escolhido = 0;
+        }
+    }
+    if (IsKeyPressed(KEY_UP) && pode_apertar >= delay) {
+        *escolhido--;
+        pode_apertar = 0.0;
+        if(*escolhido < max_escolhido) {
+            *escolhido = 2;
+        }
+    }
+    return *escolhido;
 }
