@@ -11,9 +11,11 @@ int main(void)
     Music pink = LoadMusicStream("assets/music/Pink.mp3");
     PlayMusicStream(pink);
 
-    int escolhas = 1, escolhas_flores = 0;
+    int escolhas = 1, escolha_flores_diurnas = 0, escolha_flores_noturnas = 0, escolha_ataques = 0;
+    int escolhido = 0;
+    int personagem_num = 0;
     int vez_inimigo = 0;
-    float pode_apertar = 0.0, delay = 0.3;
+    float pode_apertar = 0.0, delay = 0.2;
     Personagem roxo;
     roxo.vida = 100;
     roxo.energia = 100;
@@ -29,36 +31,179 @@ int main(void)
 
         BeginDrawing();
 
-        ClearBackground(WHITE);
+        ClearBackground(BLACK);
         DrawRectangle(0, 600, largura / 4, 300, PURPLE);
         DrawRectangle(largura / 4, 600, largura / 4, 300, RED);
         DrawRectangle(largura / 2, 600, largura / 4, 300, ORANGE);
         DrawRectangle(largura - (largura / 4), 600, largura / 4, 300, GREEN);
 
         if (vez_inimigo == 1) {
-            DrawText("Vez do Inimigo", largura / 2 - 100, 100, 40, BLACK);
+            DrawText("Vez do Inimigo", largura / 2 - 100, 100, 40, WHITE);
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 vez_inimigo = 0;
+                personagem_num = 0;
                 escolhas = 1;
                 pode_apertar = 0.0;
             }
         } else {
-            DrawText("Sua Vez", largura / 2 - 100, 100, 40, BLACK);
+            DrawText("Sua Vez", largura / 2 - 100, 100, 40, WHITE);
         }
 
-        if (escolhas == 1) {
-            DrawText("Flores Diurnas", largura / 2 - 100, altura / 2, 40, BLACK);
+        if (escolhas == 1 && personagem_num == 0) {
+            if (IsKeyPressed(KEY_DOWN) && pode_apertar >= delay) {
+                escolhido++;
+                pode_apertar = 0.0;
+                if(escolhido > 2) {
+                    escolhido = 0;
+                }
+            }
+            if (IsKeyPressed(KEY_UP) && pode_apertar >= delay) {
+                escolhido--;
+                pode_apertar = 0.0;
+                if(escolhido < 0) {
+                    escolhido = 2;
+                }
+            }
+            
+            if (escolhido == 0) {
+                DrawText("Flores Diurnas", largura / 2 - 750, altura / 2, 30, WHITE);
+            } else {
+                DrawText("Flores Diurnas", largura / 2 - 750, altura / 2, 30, GRAY);
+            }
+            if (escolhido == 1) {
+                DrawText("Flores Noturnas", largura / 2 - 750, altura / 2 + 50, 30, WHITE);
+            } else {
+                DrawText("Flores Noturnas", largura / 2 - 750, altura / 2 + 50, 30, GRAY);
+            }
+            if (escolhido == 2){
+                DrawText("Defender", largura / 2 - 750, altura / 2 + 100, 30, WHITE);
+            } else {
+                DrawText("Defender", largura / 2 - 750, altura / 2 + 100, 30, GRAY);
+            }
+
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 escolhas = 0;
-                escolhas_flores = 1;
+                escolha_flores_diurnas = 1;
+                pode_apertar = 0.0;
+            }
+        } else if (escolhas == 1 && personagem_num == 1) {
+            if (IsKeyPressed(KEY_DOWN) && pode_apertar >= delay) {
+                escolhido++;
+                pode_apertar = 0.0;
+                if(escolhido > 2) {
+                    escolhido = 0;
+                }
+            }
+            if (IsKeyPressed(KEY_UP) && pode_apertar >= delay) {
+                escolhido--;
+                pode_apertar = 0.0;
+                if(escolhido < 0) {
+                    escolhido = 2;
+                }
+            }
+
+            if (escolhido == 0) {
+                DrawText("Ataques", largura / 2 - 350, altura / 2, 30, WHITE);
+            } else {
+                DrawText("Ataques", largura / 2 - 350, altura / 2, 30, GRAY);
+            }
+            if (escolhido == 1) {
+                DrawText("Flores Diurnas", largura / 2 - 350, altura / 2 + 50, 30, WHITE);
+            } else {
+                DrawText("Flores Diurnas", largura / 2 - 350, altura / 2 + 50, 30, GRAY);
+            }
+            if (escolhido == 2){
+                DrawText("Defender", largura / 2 - 350, altura / 2 + 100, 30, WHITE);
+            } else {
+                DrawText("Defender", largura / 2 - 350, altura / 2 + 100, 30, GRAY);
+            }
+
+            if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                escolhas = 0;
+                escolha_flores_diurnas = 1;
+                pode_apertar = 0.0;
+            }
+        } else if (escolhas == 1 && personagem_num == 2) {
+            if (IsKeyPressed(KEY_DOWN) && pode_apertar >= delay) {
+                escolhido++;
+                pode_apertar = 0.0;
+                if(escolhido > 2) {
+                    escolhido = 0;
+                }
+            }
+            if (IsKeyPressed(KEY_UP) && pode_apertar >= delay) {
+                escolhido--;
+                pode_apertar = 0.0;
+                if(escolhido < 0) {
+                    escolhido = 2;
+                }
+            }
+
+            if (escolhido == 0) {
+                DrawText("Ataques", largura / 2 + 50, altura / 2, 30, WHITE);
+            } else {
+                DrawText("Ataques", largura / 2 + 50, altura / 2, 30, GRAY);
+            }
+            if (escolhido == 1) {
+                DrawText("Flores Noturnas", largura / 2 + 50, altura / 2 + 50, 30, WHITE);
+            } else {
+                DrawText("Flores Noturnas", largura / 2 + 50, altura / 2 + 50, 30, GRAY);
+            }
+            if (escolhido == 2){
+                DrawText("Defender", largura / 2 + 50, altura / 2 + 100, 30, WHITE);
+            } else {
+                DrawText("Defender", largura / 2 + 50, altura / 2 + 100, 30, GRAY);
+            }
+
+            if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                escolhas = 0;
+                escolha_flores_diurnas = 1;
+                pode_apertar = 0.0;
+            }
+        } else if (escolhas == 1 && personagem_num == 3) {
+            if (IsKeyPressed(KEY_DOWN) && pode_apertar >= delay) {
+                escolhido++;
+                pode_apertar = 0.0;
+                if(escolhido > 1) {
+                    escolhido = 0;
+                }
+            }
+            if (IsKeyPressed(KEY_UP) && pode_apertar >= delay) {
+                escolhido--;
+                pode_apertar = 0.0;
+                if(escolhido < 0) {
+                    escolhido = 1;
+                }
+            }
+
+            if (escolhido == 0) {
+                DrawText("Ataques", largura / 2 + 450, altura / 2 + 25, 30, WHITE);
+            } else {
+                DrawText("Ataques", largura / 2 + 450, altura / 2 + 25, 30, GRAY);
+            }
+            if (escolhido == 1){
+                DrawText("Defender", largura / 2 + 450, altura / 2 + 75, 30, WHITE);
+            } else {
+                DrawText("Defender", largura / 2 + 450, altura / 2 + 75, 30, GRAY);
+            }
+
+            if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                escolhas = 0;
+                escolha_flores_diurnas = 1;
                 pode_apertar = 0.0;
             }
         }
-        if (escolhas_flores == 1) {
-            DrawText(roxo.flor_dia.nome, largura / 2 - 100, altura / 2, 40, BLACK);
+        if (escolha_flores_diurnas == 1) {
+            DrawText(roxo.flor_dia.nome, largura / 2 - 750, altura / 2, 30, WHITE);
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                escolhas_flores = 0;
-                vez_inimigo = 1;
+                if (personagem_num == 3) {
+                    escolha_flores_diurnas = 0;
+                    vez_inimigo = 1;
+                    pode_apertar = 0.0;
+                }
+                escolha_flores_diurnas = 0;
+                escolhas = 1;
+                personagem_num++;
                 pode_apertar = 0.0;
             }
         }
