@@ -1,3 +1,4 @@
+#include "escolhas_secundarias.h"
 #include "raylib.h"
 
 void mudar_escolha_secundaria(int *escolhido, int *personagem_num, float *pode_apertar, float *delay) {
@@ -22,4 +23,16 @@ void mudar_escolha_secundaria(int *escolhido, int *personagem_num, float *pode_a
             *escolhido = max_escolhido;
         }
     }
+}
+
+void desenhar_escolhas_ataques(int *escolhido, int *personagem_num, int largura, int altura) {
+    
+}
+
+void desenhar_escolhas_flores_dia(int *escolhido, int *personagem_num, int largura, int altura) {
+    
+}
+
+void desenhar_escolhas_flores_noite(int *escolhido, int *personagem_num, int largura, int altura) {
+    
 }

@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "personagem.h"
 #include "escolhas_primarias.h"
+#include "escolhas_secundarias.h"
 
 #include <stdlib.h>
 

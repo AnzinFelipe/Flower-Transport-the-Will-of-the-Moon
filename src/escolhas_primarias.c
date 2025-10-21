@@ -1,3 +1,4 @@
+#include "escolhas_primarias.h"
 #include "raylib.h"
 
 void mudar_escolha_primaria(int *escolhido, int *personagem_num, float *pode_apertar, float *delay) {
