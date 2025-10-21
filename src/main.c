@@ -21,15 +21,19 @@ int main(void)
     float pode_apertar = 0.0, delay = 0.2;
 
     Ataque *ataque_head = NULL;
+    // Head, nome, dano, elemento, energia gasta, velocidade
     adicionar_ataque(&ataque_head, "Investida Floral", 30, "Corte", 20, 1.5);
 
     Flor_dia *flor_dia_head = NULL;
+    // Head, nome, dano, elemento, energia gasta, velocidade
     adicionar_flor_dia(&flor_dia_head, "Raio Solar", 25, "Fogo", 15, 2.0);
 
     Flor_noite *flor_noite_head = NULL;
+    // Head, nome, dano, elemento, energia gasta, velocidade
     adicionar_flor_noite(&flor_noite_head, "Sombra Lunar", 20, "Trevas", 10, 2.5);
 
     Personagem *personagem_head = NULL;
+    // Head, nome, vida, energia, ataque, flor_dia, flor_noite
     adicionar_personagem(&personagem_head, "Roxo", 100, 100, ataque_head, flor_dia_head, flor_noite_head);
 
     SetTargetFPS(60);
