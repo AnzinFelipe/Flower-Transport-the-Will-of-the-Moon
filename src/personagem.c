@@ -25,3 +25,12 @@ void adicionar_personagem(Personagem **head, char *nome, int vida, int energia, 
         n->prox = novo_personagem;
     }
 }
+
+void liberar_personagem(Personagem *head) {
+    Personagem *n;
+    while (head != NULL) {
+        n = head;
+        head = head->prox;
+        free(n);
+    }
+}

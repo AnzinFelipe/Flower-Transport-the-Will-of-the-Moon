@@ -1,8 +1,5 @@
 #include "raylib.h"
 #include "personagem.h"
-#include "ataque.h"
-#include "flor_dia.h"
-#include "flor_noite.h"
 #include "escolhas_primarias.h"
 
 #include <stdlib.h>
@@ -23,10 +20,17 @@ int main(void)
     int vez_inimigo = 0;
     float pode_apertar = 0.0, delay = 0.2;
 
-    Personagem *head = NULL;
-    head = (Personagem *)malloc(sizeof(Personagem));
-    
-    adicionar_personagem(&head, "Roxo", 100, 100, ataque, flor_dia, flor_noite);
+    Ataque *ataque_head = NULL;
+    adicionar_ataque(&ataque_head, "Investida Floral", 30, "Corte", 20, 1.5);
+
+    Flor_dia *flor_dia_head = NULL;
+    adicionar_flor_dia(&flor_dia_head, "Raio Solar", 25, "Fogo", 15, 2.0);
+
+    Flor_noite *flor_noite_head = NULL;
+    adicionar_flor_noite(&flor_noite_head, "Sombra Lunar", 20, "Trevas", 10, 2.5);
+
+    Personagem *personagem_head = NULL;
+    adicionar_personagem(&personagem_head, "Roxo", 100, 100, ataque_head, flor_dia_head, flor_noite_head);
 
     SetTargetFPS(60);
 
@@ -133,7 +137,7 @@ int main(void)
         //Escolhas secundarias
         if (escolha_ataques == 1) {
             //Escolha de ataques
-            DrawText(head->ataque.nome, largura / 2 - 750, altura / 2, 30, WHITE);
+            DrawText(personagem_head->ataque->nome, largura / 2 - 750, altura / 2, 30, WHITE);
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (personagem_num == 3) {
                     escolha_ataques = 0;
@@ -149,7 +153,7 @@ int main(void)
         }
         if (escolha_flores_diurnas == 1) {
             //Escolha de flores diurnas
-            DrawText(head->flor_dia.nome, largura / 2 - 750, altura / 2, 30, WHITE);
+            DrawText(personagem_head->flor_dia->nome, largura / 2 - 750, altura / 2, 30, WHITE);
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (personagem_num == 3) {
                     escolha_flores_diurnas = 0;
@@ -165,7 +169,7 @@ int main(void)
         }
         if (escolha_flores_noturnas == 1) {
             //Escolha de flores noturnas
-            DrawText(head->flor_noite.nome, largura / 2 - 750, altura / 2, 30, WHITE);
+            DrawText(personagem_head->flor_noite->nome, largura / 2 - 750, altura / 2, 30, WHITE);
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (personagem_num == 3) {
                     escolha_flores_noturnas = 0;
@@ -182,6 +186,11 @@ int main(void)
 
         EndDrawing();
     }
+
+    liberar_ataque(ataque_head);
+    liberar_flor_dia(flor_dia_head);
+    liberar_flor_noite(flor_noite_head);
+    liberar_personagem(personagem_head);
 
     UnloadMusicStream(pink);
     CloseAudioDevice();
