@@ -21,4 +21,6 @@ void adicionar_personagem(Personagem **head, char *nome, int vida, int energia, 
 
 void liberar_personagem(Personagem *head);
 
+Personagem * pegar_personagem(int personagem_num, Personagem *personagem_atual, Personagem *head);
+
 #endif

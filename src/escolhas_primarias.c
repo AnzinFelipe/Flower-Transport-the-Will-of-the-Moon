@@ -1,11 +1,11 @@
 #include "escolhas_primarias.h"
 #include "raylib.h"
 
-void mudar_escolha_primaria(int *escolhido, int *personagem_num, float *pode_apertar, float *delay) {
+void mudar_escolha_primaria(int *escolhido, int personagem_num, float *pode_apertar, float *delay) {
     int max_escolhido = 0;
-    if (*personagem_num == 0 || *personagem_num == 1 || *personagem_num == 2) {
+    if (personagem_num == 0 || personagem_num == 1 || personagem_num == 2) {
         max_escolhido = 2;
-    } else if (*personagem_num == 3) {
+    } else if (personagem_num == 3) {
         max_escolhido = 1;
     }
     

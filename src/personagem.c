@@ -34,3 +34,13 @@ void liberar_personagem(Personagem *head) {
         free(n);
     }
 }
+
+Personagem * pegar_personagem(int personagem_num, Personagem *personagem_atual, Personagem *head) {
+    personagem_atual = head;
+    for (int i = 0; i < personagem_num; i++) {
+        if (personagem_atual->prox != NULL) {
+            personagem_atual = personagem_atual->prox;
+        }
+    }
+    return personagem_atual;
+}   
