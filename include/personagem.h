@@ -14,6 +14,7 @@ typedef struct Personagem{
     Ataque *ataque;
     Flor_dia *flor_dia;
     Flor_noite *flor_noite;
+    int defesa;
     struct Personagem *prox;
 } Personagem;
 

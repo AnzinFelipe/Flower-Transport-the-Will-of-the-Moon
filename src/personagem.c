@@ -13,6 +13,7 @@ void adicionar_personagem(Personagem **head, char *nome, int vida, int energia, 
     novo_personagem->ataque = ataque;
     novo_personagem->flor_dia = flor_dia;
     novo_personagem->flor_noite = flor_noite;
+    novo_personagem->defesa = 0;
 
     if (*head == NULL) {
         *head = novo_personagem;

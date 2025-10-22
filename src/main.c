@@ -14,11 +14,9 @@ int main(void)
     Music pink = LoadMusicStream("assets/music/Pink.mp3");
     PlayMusicStream(pink);
 
-    int escolhas = 1, escolha_flores_diurnas = 0, escolha_flores_noturnas = 0, escolha_ataques = 0;
-    int escolhido = 0;
-    int personagem_num = 0;
+    int escolhas = 1, escolha_flores_diurnas = 0, escolha_flores_noturnas = 0, escolha_ataques = 0, defender = 0;
+    int escolhido = 0, personagem_num = 0, vez_inimigo = 0;
     Personagem *personagem_atual = NULL;
-    int vez_inimigo = 0;
     float pode_apertar = 0.0, delay = 0.2;
 
     Ataque *ataque_head = NULL;
@@ -85,6 +83,8 @@ int main(void)
             //Personagem 0
             personagem_atual = pegar_personagem(personagem_num, personagem_atual, personagem_head);
 
+            personagem_atual->defesa = 0;
+
             mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
             
             desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura);
@@ -95,7 +95,7 @@ int main(void)
                 } else if (escolhido == 1) {
                     escolha_flores_noturnas = 1;
                 } else if (escolhido == 2) {
-                    //Defesa;
+                    defender = 1;
                 }
                 escolhas = 0;
                 escolhido = 0;
@@ -105,6 +105,8 @@ int main(void)
         } else if (escolhas == 1 && personagem_num == 1) {
             //Personagem 1
             personagem_atual = pegar_personagem(personagem_num, personagem_atual, personagem_head);
+
+            personagem_atual->defesa = 0;
 
             mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
             
@@ -116,7 +118,7 @@ int main(void)
                 } else if (escolhido == 1) {
                     escolha_flores_diurnas = 1;
                 } else if (escolhido == 2) {
-                    //Defesa;
+                    defender = 1;
                 }
                 escolhas = 0;
                 escolhido = 0;
@@ -125,6 +127,8 @@ int main(void)
         } else if (escolhas == 1 && personagem_num == 2) {
             //Personagem 2
             personagem_atual = pegar_personagem(personagem_num, personagem_atual, personagem_head);
+
+            personagem_atual->defesa = 0;
 
             mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
 
@@ -136,7 +140,7 @@ int main(void)
                 } else if (escolhido == 1) {
                     escolha_flores_noturnas = 1;
                 } else if (escolhido == 2) {
-                    //Defesa;
+                    defender = 1;
                 }
                 escolhas = 0;
                 escolhido = 0;
@@ -146,6 +150,8 @@ int main(void)
             //Personagem 3
             personagem_atual = pegar_personagem(personagem_num, personagem_atual, personagem_head);
 
+            personagem_atual->defesa = 0;
+
             mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
 
             desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura);
@@ -154,7 +160,7 @@ int main(void)
                 if (escolhido == 0) {
                     escolha_ataques = 1;    
                 } else if (escolhido == 1) {
-                    //Defesa;
+                    defender = 1;
                 }
                 escolhas = 0;
                 escolhido = 0;
@@ -169,17 +175,14 @@ int main(void)
             desenhar_escolhas_ataques(&escolhido, personagem_atual, personagem_num, largura, altura);
 
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                escolha_ataques = 0;
+                escolhido = 0;
+                pode_apertar = 0.0;
                 if (personagem_num == 3) {
-                    escolha_ataques = 0;
-                    escolhido = 0;
                     vez_inimigo = 1;
-                    pode_apertar = 0.0;
                 } else {
-                    escolha_ataques = 0;
                     escolhas = 1;
-                    escolhido = 0;
                     personagem_num++;
-                    pode_apertar = 0.0;
                 }
             }
             if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
@@ -195,17 +198,14 @@ int main(void)
             desenhar_escolhas_flores_dia(&escolhido, personagem_atual, personagem_num, largura, altura);
 
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                escolha_flores_diurnas = 0;
+                escolhido = 0;
+                pode_apertar = 0.0;
                 if (personagem_num == 3) {
-                    escolha_flores_diurnas = 0;
-                    escolhido = 0;
                     vez_inimigo = 1;
-                    pode_apertar = 0.0;
                 } else {
-                    escolha_flores_diurnas = 0;
                     escolhas = 1;
-                    escolhido = 0;
                     personagem_num++;
-                    pode_apertar = 0.0;
                 }
             }
             if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
@@ -221,17 +221,14 @@ int main(void)
             desenhar_escolhas_flores_noite(&escolhido, personagem_atual, personagem_num, largura, altura);
 
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                escolha_flores_noturnas = 0;
+                pode_apertar = 0.0;
+                escolhido = 0;
                 if (personagem_num == 3) {
-                    escolha_flores_noturnas = 0;
-                    escolhido = 0;
                     vez_inimigo = 1;
-                    pode_apertar = 0.0;
                 } else {
-                    escolha_flores_noturnas = 0;
                     escolhas = 1;
-                    escolhido = 0;
                     personagem_num++;
-                    pode_apertar = 0.0;
                 }
             }
             if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
@@ -239,6 +236,17 @@ int main(void)
                 escolhas = 1;
                 escolhido = 0;
                 pode_apertar = 0.0;
+            }
+        }
+        if (defender == 1) {
+            personagem_atual->defesa = 1;
+            defender = 0;
+            pode_apertar = 0.0;
+            if (personagem_num == 3) {
+                vez_inimigo = 1;
+            } else {
+                escolhas = 1;
+                personagem_num++;
             }
         }
 
@@ -249,6 +257,7 @@ int main(void)
     liberar_flor_dia(flor_dia_head);
     liberar_flor_noite(flor_noite_head);
     liberar_personagem(personagem_head);
+    liberar_personagem(personagem_atual);
 
     UnloadMusicStream(pink);
     CloseAudioDevice();
