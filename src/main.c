@@ -14,8 +14,10 @@ int main(void)
     Music pink = LoadMusicStream("assets/music/Pink.mp3");
     PlayMusicStream(pink);
 
+    Texture2D fundo = LoadTexture("assets/images/Teste.png");
+
     int escolhas = 1, escolha_flores_diurnas = 0, escolha_flores_noturnas = 0, escolha_ataques = 0, defender = 0;
-    int escolhido = 0, personagem_num = 0, vez_inimigo = 0;
+    int escolhido = 0, personagem_num = 0, vez_inimigo = 0, horario = 0;
     Personagem *personagem_atual = NULL;
     float pode_apertar = 0.0, delay = 0.2;
 
@@ -60,6 +62,7 @@ int main(void)
         BeginDrawing();
 
         ClearBackground(BLACK);
+        DrawTextureEx(fundo, (Vector2){0, 0}, 0.0, 0.85, WHITE);
         DrawRectangle(0,  altura - (altura / 3), largura / 4, altura / 3, PURPLE);
         DrawRectangle(largura / 4, altura - (altura / 3), largura / 4, altura / 3, RED);
         DrawRectangle(largura / 2, altura - (altura / 3), largura / 4, altura / 3, ORANGE);
@@ -73,6 +76,12 @@ int main(void)
                 personagem_num = 0;
                 escolhas = 1;
                 pode_apertar = 0.0;
+                // 0 - dia, 1 - noite
+                if (horario == 0) {
+                    horario  = 1;
+                } else if (horario == 1) {
+                    horario = 0;
+                }
             }
         } else {
             DrawText("Sua Vez", largura / 2 - 100, 100, 40, WHITE);
@@ -257,8 +266,8 @@ int main(void)
     liberar_flor_dia(flor_dia_head);
     liberar_flor_noite(flor_noite_head);
     liberar_personagem(personagem_head);
-    liberar_personagem(personagem_atual);
 
+    UnloadTexture(fundo);
     UnloadMusicStream(pink);
     CloseAudioDevice();
     CloseWindow();
