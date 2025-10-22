@@ -21,35 +21,64 @@ int main(void)
     Personagem *personagem_atual = NULL;
     float pode_apertar = 0.0, delay = 0.2;
 
-    Ataque *ataque_head = NULL;
+    Ataque *ataque_head2 = NULL;
     // Head, nome, dano, elemento, energia gasta, velocidade
-    adicionar_ataque(&ataque_head, "Investida Floral", 30, "Corte", 20, 1.5);
-    adicionar_ataque(&ataque_head, "A", 30, "Corte", 20, 1.5);
-    adicionar_ataque(&ataque_head, "PI", 30, "Corte", 20, 1.5);
-    adicionar_ataque(&ataque_head, "PO", 30, "Corte", 20, 1.5);
-    adicionar_ataque(&ataque_head, "PE", 30, "Corte", 20, 1.5);
+    adicionar_ataque(&ataque_head2, "Soco", 20, "Impacto", 5, 1.5);
+    adicionar_ataque(&ataque_head2, "Chute", 15, "Impacto", 5, 1.5);
+    adicionar_ataque(&ataque_head2, "Pa de jardinagem", 30, "Impacto", 10, 1.5);
+    adicionar_ataque(&ataque_head2, "Tesoura de poda", 25, "Corte", 10, 1.5);
 
-    Flor_dia *flor_dia_head = NULL;
-    // Head, nome, dano, elemento, energia gasta, velocidade
-    adicionar_flor_dia(&flor_dia_head, "Raio Solar", 25, "Fogo", 15, 2.0);
-    adicionar_flor_dia(&flor_dia_head, "Raio bibi", 25, "Fogo", 15, 2.0);
-    adicionar_flor_dia(&flor_dia_head, "Raio bebe", 25, "Fogo", 15, 2.0);
-    adicionar_flor_dia(&flor_dia_head, "Raio bobo", 25, "Fogo", 15, 2.0);
-    adicionar_flor_dia(&flor_dia_head, "Raio bubu", 25, "Fogo", 15, 2.0);
-    adicionar_flor_dia(&flor_dia_head, "Raio meme", 25, "Fogo", 15, 2.0);
+    Ataque *ataque_head3 = NULL;
+    adicionar_ataque(&ataque_head3, "Soco", 15, "Impacto", 5, 1.5);
+    adicionar_ataque(&ataque_head3, "Unhada", 10, "Corte", 3, 1.5);
+    adicionar_ataque(&ataque_head3, "Chute espiral", 25, "Perfuracao", 15, 1.5);
+    adicionar_ataque(&ataque_head3, "Chifrada", 30, "Perfuracao", 20, 1.5);
 
-    Flor_noite *flor_noite_head = NULL;
+    Ataque *ataque_head4 = NULL;
+    adicionar_ataque(&ataque_head4, "Soco solar", 35, "Impacto", 0, 1.5);
+    adicionar_ataque(&ataque_head4, "Chute solar", 35, "Impacto", 0, 1.5);
+    adicionar_ataque(&ataque_head4, "Lanca solar", 30, "Perfuracao", 0, 1.5);
+    adicionar_ataque(&ataque_head4, "Espada solar", 30, "Corte", 0, 1.5);
+    adicionar_ataque(&ataque_head4, "Fumaca venenosa", 10, "Veneno", 0, 1.5);
+    
+    Flor_dia *flor_dia_head1 = NULL;
     // Head, nome, dano, elemento, energia gasta, velocidade
-    adicionar_flor_noite(&flor_noite_head, "Sombra Lunar", 20, "Trevas", 10, 2.5);
-    adicionar_flor_noite(&flor_noite_head, "A", 20, "Trevas", 10, 2.5);
-    adicionar_flor_noite(&flor_noite_head, "B", 20, "Trevas", 10, 2.5);
-    adicionar_flor_noite(&flor_noite_head, "C", 20, "Trevas", 10, 2.5);
-    adicionar_flor_noite(&flor_noite_head, "D", 20, "Trevas", 10, 2.5);
-    adicionar_flor_noite(&flor_noite_head, "E", 20, "Trevas", 10, 2.5);
+    adicionar_flor_dia(&flor_dia_head1, "Flamigera-do-dia", 25, "Fogo", 15, 2.0);
+    adicionar_flor_dia(&flor_dia_head1, "Tulipa afiada", 10, "Corte", 15, 2.0);
+    adicionar_flor_dia(&flor_dia_head1, "Orquidea voltaica", 20, "Eletricidade", 15, 2.0);
+    adicionar_flor_dia(&flor_dia_head1, "Nenufar real", 15, "Agua", 15, 2.0);
+    adicionar_flor_dia(&flor_dia_head1, "Girassol", 20, "Solar", 15, 2.0);
+    adicionar_flor_dia(&flor_dia_head1, "Ventanilia", 15, "Ar", 15, 2.0);
+
+    Flor_dia *flor_dia_head2 = NULL;
+    adicionar_flor_dia(&flor_dia_head2, "Rosa gelida", 15, "Gelo", 15, 2.0);
+    adicionar_flor_dia(&flor_dia_head2, "Helicopdea", 10, "Ar", 15, 2.0);
+    adicionar_flor_dia(&flor_dia_head2, "Girassol", 20, "Solar", 15, 2.0);
+    adicionar_flor_dia(&flor_dia_head2, "Gravitiana", 20, "Impacto", 15, 2.0);
+    adicionar_flor_dia(&flor_dia_head2, "Lotus", 15, "Agua", 15, 2.0);
+
+    Flor_noite *flor_noite_head1 = NULL;
+    // Head, nome, dano, elemento, energia gasta, velocidade
+    adicionar_flor_noite(&flor_noite_head1, "Rosa cromada", 20, "Impacto", 10, 2.5);
+    adicionar_flor_noite(&flor_noite_head1, "Rainha-da-noite", 20, "Fogo", 10, 2.5);
+    adicionar_flor_noite(&flor_noite_head1, "Realeza espinhenta", 15, "Perfuracao", 10, 2.5);
+    adicionar_flor_noite(&flor_noite_head1, "Flor de Mandacaru", 20, "Agua", 10, 2.5);
+    adicionar_flor_noite(&flor_noite_head1, "Trombeta-de-anjo", 15, "Veneno", 10, 2.5);
+    adicionar_flor_noite(&flor_noite_head1, "Gloria-da-friagem", 20, "Gelo", 10, 2.5);
+
+    Flor_noite *flor_noite_head3 = NULL;
+    adicionar_flor_noite(&flor_noite_head3, "Dama-da-noite", 20, "Lunar", 10, 2.5);
+    adicionar_flor_noite(&flor_noite_head3, "Flamigera-da-noite", 25, "Fogo", 10, 2.5);
+    adicionar_flor_noite(&flor_noite_head3, "Realeza espinhenta", 15, "Perfuracao", 10, 2.5);
+    adicionar_flor_noite(&flor_noite_head3, "Gloria-da-friagem", 20, "Gelo", 10, 2.5);
+    adicionar_flor_noite(&flor_noite_head3, "Energialida", 15, "Eletricidade", 10, 2.5);
 
     Personagem *personagem_head = NULL;
     // Head, nome, vida, energia, ataque, flor_dia, flor_noite
-    adicionar_personagem(&personagem_head, "Roxo", 100, 100, ataque_head, flor_dia_head, flor_noite_head);
+    adicionar_personagem(&personagem_head, "Roxo", 100, 60, NULL, flor_dia_head1, flor_noite_head1);
+    adicionar_personagem(&personagem_head, "Vermelho", 150, 40, ataque_head2, flor_dia_head2, NULL);
+    adicionar_personagem(&personagem_head, "Laranja", 80, 80, ataque_head3, NULL, flor_noite_head3);
+    adicionar_personagem(&personagem_head, "Verde", 100, 0, ataque_head4, NULL, NULL);
 
     SetTargetFPS(60);
 
@@ -62,7 +91,7 @@ int main(void)
         BeginDrawing();
 
         ClearBackground(BLACK);
-        DrawTextureEx(fundo, (Vector2){0, 0}, 0.0, 0.85, WHITE);
+        DrawTextureEx(fundo, (Vector2){0, 0}, 0.0, 0.85, BLACK);
         DrawRectangle(0,  altura - (altura / 3), largura / 4, altura / 3, PURPLE);
         DrawRectangle(largura / 4, altura - (altura / 3), largura / 4, altura / 3, RED);
         DrawRectangle(largura / 2, altura - (altura / 3), largura / 4, altura / 3, ORANGE);
@@ -262,9 +291,13 @@ int main(void)
         EndDrawing();
     }
 
-    liberar_ataque(ataque_head);
-    liberar_flor_dia(flor_dia_head);
-    liberar_flor_noite(flor_noite_head);
+    liberar_ataque(ataque_head2);
+    liberar_ataque(ataque_head3);
+    liberar_ataque(ataque_head4);
+    liberar_flor_dia(flor_dia_head1);
+    liberar_flor_dia(flor_dia_head2);
+    liberar_flor_noite(flor_noite_head1);
+    liberar_flor_noite(flor_noite_head3);
     liberar_personagem(personagem_head);
 
     UnloadTexture(fundo);
