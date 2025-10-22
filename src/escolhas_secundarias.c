@@ -26,7 +26,6 @@ void mudar_escolha_secundaria(int *escolhido, Personagem *personagem_atual, int 
     }
     
     if (IsKeyPressed(KEY_DOWN) && *pode_apertar >= *delay) {
-        printf("escolhido: %d / max: %d\n", *escolhido, max_escolhido);
         (*escolhido)++;
         *pode_apertar = 0.0;
         if(*escolhido >= max_escolhido) {
@@ -34,8 +33,6 @@ void mudar_escolha_secundaria(int *escolhido, Personagem *personagem_atual, int 
         }
     }
     if (IsKeyPressed(KEY_UP) && *pode_apertar >= *delay) {
-        printf("escolhido: %d / max: %d\n", *escolhido, max_escolhido);
-
         (*escolhido)--;
         *pode_apertar = 0.0;
         if(*escolhido < 0) {

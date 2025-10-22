@@ -171,14 +171,22 @@ int main(void)
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (personagem_num == 3) {
                     escolha_ataques = 0;
+                    escolhido = 0;
                     vez_inimigo = 1;
                     pode_apertar = 0.0;
                 } else {
                     escolha_ataques = 0;
                     escolhas = 1;
+                    escolhido = 0;
                     personagem_num++;
                     pode_apertar = 0.0;
                 }
+            }
+            if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
+                escolha_ataques = 0;
+                escolhas = 1;
+                escolhido = 0;
+                pode_apertar = 0.0;
             }
         }
         if (escolha_flores_diurnas == 1) {
@@ -189,14 +197,22 @@ int main(void)
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (personagem_num == 3) {
                     escolha_flores_diurnas = 0;
+                    escolhido = 0;
                     vez_inimigo = 1;
                     pode_apertar = 0.0;
                 } else {
                     escolha_flores_diurnas = 0;
                     escolhas = 1;
+                    escolhido = 0;
                     personagem_num++;
                     pode_apertar = 0.0;
                 }
+            }
+            if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
+                escolha_flores_diurnas = 0;
+                escolhas = 1;
+                escolhido = 0;
+                pode_apertar = 0.0;
             }
         }
         if (escolha_flores_noturnas == 1) {
@@ -207,14 +223,22 @@ int main(void)
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (personagem_num == 3) {
                     escolha_flores_noturnas = 0;
+                    escolhido = 0;
                     vez_inimigo = 1;
                     pode_apertar = 0.0;
                 } else {
                     escolha_flores_noturnas = 0;
                     escolhas = 1;
+                    escolhido = 0;
                     personagem_num++;
                     pode_apertar = 0.0;
                 }
+            }
+            if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
+                escolha_flores_noturnas = 0;
+                escolhas = 1;
+                escolhido = 0;
+                pode_apertar = 0.0;
             }
         }
 
