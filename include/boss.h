@@ -1,0 +1,19 @@
+// Boss
+
+#ifndef BOSS_H
+#define BOSS_H
+#include "ataque.h"
+#include <stdlib.h>
+
+typedef struct Boss {
+    char *nome;
+    int vida;
+    Ataque *ataque;
+    char *vantagens_desvantagens[4][3];
+} Boss;
+
+void adicionar_vantagens_desvantagens_boss(Boss *boss);
+
+void adicionar_boss (Boss *boss, Ataque *ataque);
+
+#endif

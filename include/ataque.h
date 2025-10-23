@@ -1,4 +1,5 @@
 // Ataques
+
 #ifndef ATAQUE_H
 #define ATAQUE_H
 

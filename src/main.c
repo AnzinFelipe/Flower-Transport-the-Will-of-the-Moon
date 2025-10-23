@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "escolhas_primarias.h"
 #include "escolhas_secundarias.h"
+#include "boss.h"
 
 #include <stdlib.h>
 
@@ -19,8 +20,9 @@ int main(void)
     int escolhas = 1, escolha_flores_diurnas = 0, escolha_flores_noturnas = 0, escolha_ataques = 0, defender = 0;
     int escolhido = 0, personagem_num = 0, vez_inimigo = 0, horario = 0;
     Personagem *personagem_atual = NULL;
-    float pode_apertar = 0.0, delay = 0.2;
+    float pode_apertar = 0.0, delay = 0.1;
 
+    
     Ataque *ataque_head2 = NULL;
     // Head, nome, dano, elemento, energia gasta, velocidade
     adicionar_ataque(&ataque_head2, "Soco", 20, "Impacto", 5, 1.5);
@@ -40,6 +42,12 @@ int main(void)
     adicionar_ataque(&ataque_head4, "Lanca solar", 30, "Perfuracao", 0, 1.5);
     adicionar_ataque(&ataque_head4, "Espada solar", 30, "Corte", 0, 1.5);
     adicionar_ataque(&ataque_head4, "Fumaca venenosa", 10, "Veneno", 0, 1.5);
+
+    Ataque *ataque_head_boss = NULL;
+    adicionar_ataque(&ataque_head_boss, "Bafo lunar", 25, "Fogo", 0, 1.5);
+    adicionar_ataque(&ataque_head_boss, "Chute dilacerante", 25, "Corte", 0, 1.5);
+    adicionar_ataque(&ataque_head_boss, "Espectro lunatico", 30, "Lunar", 0, 1.5);
+    adicionar_ataque(&ataque_head_boss, "Olhar sombrio", 20, "Lunar", 0, 1.5);
     
     Flor_dia *flor_dia_head1 = NULL;
     // Head, nome, dano, elemento, energia gasta, velocidade
@@ -80,6 +88,14 @@ int main(void)
     adicionar_personagem(&personagem_head, "Laranja", 80, 80, ataque_head3, NULL, flor_noite_head3);
     adicionar_personagem(&personagem_head, "Verde", 100, 0, ataque_head4, NULL, NULL);
 
+    adicionar_vantagens_desvantagens_personagem(&personagem_head, 0);
+    adicionar_vantagens_desvantagens_personagem(&personagem_head, 1);
+    adicionar_vantagens_desvantagens_personagem(&personagem_head, 2);
+    adicionar_vantagens_desvantagens_personagem(&personagem_head, 3);
+
+    Boss *boss = (Boss *)malloc(sizeof(Boss));
+    adicionar_boss(boss, ataque_head_boss);
+
     SetTargetFPS(60);
 
     while (!WindowShouldClose())
@@ -119,7 +135,7 @@ int main(void)
         //Escolhas primarias de cada personagem
         if (escolhas == 1 && personagem_num == 0) {
             //Personagem 0
-            personagem_atual = pegar_personagem(personagem_num, personagem_atual, personagem_head);
+            pegar_personagem(personagem_num, &personagem_atual, personagem_head);
 
             personagem_atual->defesa = 0;
 
@@ -142,7 +158,7 @@ int main(void)
 
         } else if (escolhas == 1 && personagem_num == 1) {
             //Personagem 1
-            personagem_atual = pegar_personagem(personagem_num, personagem_atual, personagem_head);
+            pegar_personagem(personagem_num, &personagem_atual, personagem_head);
 
             personagem_atual->defesa = 0;
 
@@ -164,7 +180,7 @@ int main(void)
             }
         } else if (escolhas == 1 && personagem_num == 2) {
             //Personagem 2
-            personagem_atual = pegar_personagem(personagem_num, personagem_atual, personagem_head);
+            pegar_personagem(personagem_num, &personagem_atual, personagem_head);
 
             personagem_atual->defesa = 0;
 
@@ -186,7 +202,7 @@ int main(void)
             }
         } else if (escolhas == 1 && personagem_num == 3) {
             //Personagem 3
-            personagem_atual = pegar_personagem(personagem_num, personagem_atual, personagem_head);
+            pegar_personagem(personagem_num, &personagem_atual, personagem_head);
 
             personagem_atual->defesa = 0;
 
@@ -294,11 +310,13 @@ int main(void)
     liberar_ataque(ataque_head2);
     liberar_ataque(ataque_head3);
     liberar_ataque(ataque_head4);
+    liberar_ataque(ataque_head_boss);
     liberar_flor_dia(flor_dia_head1);
     liberar_flor_dia(flor_dia_head2);
     liberar_flor_noite(flor_noite_head1);
     liberar_flor_noite(flor_noite_head3);
     liberar_personagem(personagem_head);
+    free(boss);
 
     UnloadTexture(fundo);
     UnloadMusicStream(pink);
