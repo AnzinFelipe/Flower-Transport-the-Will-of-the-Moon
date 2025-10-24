@@ -24,3 +24,10 @@ void adicionar_boss (Boss *boss, Ataque *ataque) {
     boss->ataque = ataque;
     adicionar_vantagens_desvantagens_boss(boss);
 }
+
+void subtrair_vida_boss(Boss *boss, int dano, float mult) {
+    boss->vida -= dano * mult;
+    if (boss->vida < 0) {
+        boss->vida = 0;
+    }
+}

@@ -2,6 +2,7 @@
 #include "escolhas_primarias.h"
 #include "escolhas_secundarias.h"
 #include "boss.h"
+#include "acao.h"
 
 #include <stdlib.h>
 
@@ -21,7 +22,7 @@ int main(void)
     int escolhido = 0, personagem_num = 0, vez_inimigo = 0, horario = 0;
     Personagem *personagem_atual = NULL;
     float pode_apertar = 0.0, delay = 0.1;
-
+    Color noite = {18, 18, 100, 100};
     
     Ataque *ataque_head2 = NULL;
     // Head, nome, dano, elemento, energia gasta, velocidade
@@ -112,6 +113,9 @@ int main(void)
         DrawRectangle(largura / 4, altura - (altura / 3), largura / 4, altura / 3, RED);
         DrawRectangle(largura / 2, altura - (altura / 3), largura / 4, altura / 3, ORANGE);
         DrawRectangle(largura - (largura / 4), altura - (altura / 3), largura / 4, altura / 3, GREEN);
+        if (horario == 1) {
+            DrawRectangle(0, 0, largura, altura, noite);
+        }
 
         //Vez do inimigo ou vez do jogador
         if (vez_inimigo == 1) {
@@ -229,6 +233,7 @@ int main(void)
             desenhar_escolhas_ataques(&escolhido, personagem_atual, personagem_num, largura, altura);
 
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                acao(&escolhido, personagem_atual, boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
                 escolha_ataques = 0;
                 escolhido = 0;
                 pode_apertar = 0.0;
@@ -252,6 +257,7 @@ int main(void)
             desenhar_escolhas_flores_dia(&escolhido, personagem_atual, personagem_num, largura, altura);
 
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                acao(&escolhido, personagem_atual, boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
                 escolha_flores_diurnas = 0;
                 escolhido = 0;
                 pode_apertar = 0.0;
@@ -275,6 +281,7 @@ int main(void)
             desenhar_escolhas_flores_noite(&escolhido, personagem_atual, personagem_num, largura, altura);
 
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                acao(&escolhido, personagem_atual, boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
                 escolha_flores_noturnas = 0;
                 pode_apertar = 0.0;
                 escolhido = 0;

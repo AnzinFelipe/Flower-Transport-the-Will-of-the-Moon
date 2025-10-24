@@ -1,7 +1,7 @@
 // Personagens
 
+#ifndef PERSONAGEM_H
 #define PERSONAGEM_H
-#ifdef PERSONAGEM_H
 
 #include "ataque.h"
 #include "flor_dia.h"
@@ -26,5 +26,7 @@ void liberar_personagem(Personagem *head);
 void pegar_personagem(int personagem_num, Personagem **personagem_atual, Personagem *head);
 
 void adicionar_vantagens_desvantagens_personagem(Personagem **head, int num);
+
+void subtrair_energia_personagem(Personagem *personagem_atual, int energia_gasta);
 
 #endif

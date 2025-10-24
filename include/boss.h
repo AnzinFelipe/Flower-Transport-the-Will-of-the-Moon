@@ -2,6 +2,7 @@
 
 #ifndef BOSS_H
 #define BOSS_H
+
 #include "ataque.h"
 #include <stdlib.h>
 
@@ -15,5 +16,7 @@ typedef struct Boss {
 void adicionar_vantagens_desvantagens_boss(Boss *boss);
 
 void adicionar_boss (Boss *boss, Ataque *ataque);
+
+void subtrair_vida_boss(Boss *boss, int dano, float mult);
 
 #endif

@@ -115,3 +115,10 @@ void adicionar_vantagens_desvantagens_personagem(Personagem **head, int num) {
         }
     }
 }
+
+void subtrair_energia_personagem(Personagem *personagem_atual, int energia_gasta) {
+    personagem_atual->energia -= energia_gasta;
+    if (personagem_atual->energia < 0) {
+        personagem_atual->energia = 0;
+    }
+}
