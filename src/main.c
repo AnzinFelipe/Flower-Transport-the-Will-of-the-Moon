@@ -5,24 +5,32 @@
 #include "acao.h"
 
 #include <stdlib.h>
+#include <math.h>
 
-int main(void)
-{
+int main(void) {
     int largura = 1600, altura = 900;
 
+    SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_MAXIMIZED);
     InitWindow(largura, altura, "Flower Transport - the Will of the Moon");
-
+    RenderTexture2D janela = LoadRenderTexture(largura, altura);
+    SetTextureFilter(janela.texture, TEXTURE_FILTER_TRILINEAR);
+    
     InitAudioDevice();
     Music pink = LoadMusicStream("assets/music/Pink.mp3");
     PlayMusicStream(pink);
 
     Texture2D fundo = LoadTexture("assets/images/Teste.png");
+    Texture2D quadro_roxo = LoadTexture("assets/images/Roxo.png");
+    GenTextureMipmaps(&quadro_roxo);
+    SetTextureFilter(quadro_roxo, TEXTURE_FILTER_TRILINEAR);
 
     int escolhas = 1, escolha_flores_diurnas = 0, escolha_flores_noturnas = 0, escolha_ataques = 0, defender = 0;
     int escolhido = 0, personagem_num = 0, vez_inimigo = 0, horario = 0;
     Personagem *personagem_atual = NULL;
     float pode_apertar = 0.0, delay = 0.1;
-    Color noite = {18, 18, 100, 100};
+    Color noite_cor = {18, 18, 100, 100};
+    Color vida_cor = {180, 18, 18, 255};
+    Color energia_cor = {18, 180, 80, 255};
     
     Ataque *ataque_head2 = NULL;
     // Head, nome, dano, elemento, energia gasta, velocidade
@@ -88,35 +96,48 @@ int main(void)
     adicionar_personagem(&personagem_head, "Vermelho", 150, 40, ataque_head2, flor_dia_head2, NULL);
     adicionar_personagem(&personagem_head, "Laranja", 80, 80, ataque_head3, NULL, flor_noite_head3);
     adicionar_personagem(&personagem_head, "Verde", 100, 0, ataque_head4, NULL, NULL);
-
+    
     adicionar_vantagens_desvantagens_personagem(&personagem_head, 0);
     adicionar_vantagens_desvantagens_personagem(&personagem_head, 1);
     adicionar_vantagens_desvantagens_personagem(&personagem_head, 2);
     adicionar_vantagens_desvantagens_personagem(&personagem_head, 3);
-
+    
     Boss *boss = (Boss *)malloc(sizeof(Boss));
     adicionar_boss(boss, ataque_head_boss);
-
+    
     SetTargetFPS(60);
-
+    
     while (!WindowShouldClose())
     {
         UpdateMusicStream(pink);
-
+        
         pode_apertar += GetFrameTime();
+        
+        if (IsKeyPressed(KEY_F11)) {
+            ToggleFullscreen();
+        }
 
-        BeginDrawing();
-
+        BeginTextureMode(janela);
+        
         ClearBackground(BLACK);
         DrawTextureEx(fundo, (Vector2){0, 0}, 0.0, 0.85, BLACK);
         DrawRectangle(0,  altura - (altura / 3), largura / 4, altura / 3, PURPLE);
         DrawRectangle(largura / 4, altura - (altura / 3), largura / 4, altura / 3, RED);
         DrawRectangle(largura / 2, altura - (altura / 3), largura / 4, altura / 3, ORANGE);
         DrawRectangle(largura - (largura / 4), altura - (altura / 3), largura / 4, altura / 3, GREEN);
+        DrawTextureEx(quadro_roxo, (Vector2){15, 650}, 0.0, 0.35, WHITE);
+        DrawRectangle(15, 615, 370, 35, vida_cor);
+        DrawRectangle(350, 650, 35, 250, energia_cor);
+        DrawRectangle(415, 615, 370, 35, vida_cor);
+        DrawRectangle(750, 650, 35, 250, energia_cor);
+        DrawRectangle(815, 615, 370, 35, vida_cor);
+        DrawRectangle(1150, 650, 35, 250, energia_cor);
+        DrawRectangle(1215, 615, 370, 35, vida_cor);
+        DrawRectangle(1550, 650, 35, 250, BLACK);
         if (horario == 1) {
-            DrawRectangle(0, 0, largura, altura, noite);
+            DrawRectangle(0, 0, largura, altura, noite_cor);
         }
-
+        
         //Vez do inimigo ou vez do jogador
         if (vez_inimigo == 1) {
             DrawText("Vez do Inimigo", largura / 2 - 100, 100, 40, WHITE);
@@ -135,14 +156,14 @@ int main(void)
         } else {
             DrawText("Sua Vez", largura / 2 - 100, 100, 40, WHITE);
         }
-
+    
         //Escolhas primarias de cada personagem
         if (escolhas == 1 && personagem_num == 0) {
             //Personagem 0
             pegar_personagem(personagem_num, &personagem_atual, personagem_head);
-
+    
             personagem_atual->defesa = 0;
-
+    
             mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
             
             desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura);
@@ -159,13 +180,13 @@ int main(void)
                 escolhido = 0;
                 pode_apertar = 0.0;
             }
-
+    
         } else if (escolhas == 1 && personagem_num == 1) {
             //Personagem 1
             pegar_personagem(personagem_num, &personagem_atual, personagem_head);
-
+    
             personagem_atual->defesa = 0;
-
+    
             mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
             
             desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura);
@@ -185,13 +206,13 @@ int main(void)
         } else if (escolhas == 1 && personagem_num == 2) {
             //Personagem 2
             pegar_personagem(personagem_num, &personagem_atual, personagem_head);
-
+    
             personagem_atual->defesa = 0;
-
+    
             mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
-
+    
             desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura);
-
+    
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (escolhido == 0) {
                     escolha_ataques = 1;    
@@ -207,13 +228,13 @@ int main(void)
         } else if (escolhas == 1 && personagem_num == 3) {
             //Personagem 3
             pegar_personagem(personagem_num, &personagem_atual, personagem_head);
-
+    
             personagem_atual->defesa = 0;
-
+    
             mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
-
+    
             desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura);
-
+    
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (escolhido == 0) {
                     escolha_ataques = 1;    
@@ -231,7 +252,7 @@ int main(void)
             //Escolha de ataques
             mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
             desenhar_escolhas_ataques(&escolhido, personagem_atual, personagem_num, largura, altura);
-
+    
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 acao(&escolhido, personagem_atual, boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
                 escolha_ataques = 0;
@@ -255,7 +276,7 @@ int main(void)
             //Escolha de flores diurnas
             mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
             desenhar_escolhas_flores_dia(&escolhido, personagem_atual, personagem_num, largura, altura);
-
+    
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 acao(&escolhido, personagem_atual, boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
                 escolha_flores_diurnas = 0;
@@ -279,7 +300,7 @@ int main(void)
             //Escolha de flores noturnas
             mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
             desenhar_escolhas_flores_noite(&escolhido, personagem_atual, personagem_num, largura, altura);
-
+    
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 acao(&escolhido, personagem_atual, boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
                 escolha_flores_noturnas = 0;
@@ -311,6 +332,26 @@ int main(void)
             }
         }
 
+        EndTextureMode();
+        
+        BeginDrawing();
+
+        int largura_nova = GetScreenWidth();
+        int altura_nova = GetScreenHeight();
+
+        float escala = fminf((float)largura_nova/largura, (float)altura_nova/altura);
+        float largura_escala = largura * escala;
+        float altura_escala = altura * escala;
+        float offsetX = (largura_nova - largura_escala) / 2.0f;
+        float offsetY = (altura_nova - altura_escala) / 2.0f;
+
+        DrawTexturePro(janela.texture,
+                (Rectangle){ 0, 0, largura, -altura },
+                (Rectangle){ offsetX, offsetY, largura_escala, altura_escala },
+                (Vector2){ 0, 0 },
+                0.0,
+                WHITE);
+
         EndDrawing();
     }
 
@@ -325,6 +366,8 @@ int main(void)
     liberar_personagem(personagem_head);
     free(boss);
 
+    UnloadRenderTexture(janela);
+    UnloadTexture(quadro_roxo);
     UnloadTexture(fundo);
     UnloadMusicStream(pink);
     CloseAudioDevice();
