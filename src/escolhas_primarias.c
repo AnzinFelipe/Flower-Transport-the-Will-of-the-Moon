@@ -25,7 +25,9 @@ void mudar_escolha_primaria(int *escolhido, int personagem_num, float *pode_aper
     }
 }
 
-void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura, int altura) {
+void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura, int altura, int horario) {
+    Color nao_pode = {100, 50, 50, 255};
+    Color nao_pode_escolhido = {200, 50, 50, 255};
     int largura1 = largura - (largura - 50);
     int altura_geral = altura / 2;
     int largura2 = largura1 + largura / 4;
@@ -33,15 +35,28 @@ void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura,
     int largura4 = largura3 + largura / 4;
     
     if (personagem_num == 0) {
-        if (escolhido == 0) {
-            DrawText("Flores Diurnas", largura1, altura_geral, 30, WHITE);
-        } else {
-            DrawText("Flores Diurnas", largura1, altura_geral, 30, GRAY);
-        }
-        if (escolhido == 1) {
-            DrawText("Flores Noturnas", largura1, altura_geral + 50, 30, WHITE);
-        } else {
-            DrawText("Flores Noturnas", largura1, altura_geral + 50, 30, GRAY);
+        if (horario == 0) {
+            if (escolhido == 0) {
+                DrawText("Flores Diurnas", largura1, altura_geral, 30, WHITE);
+            } else {
+                DrawText("Flores Diurnas", largura1, altura_geral, 30, GRAY);
+            }
+            if (escolhido == 1) {
+                DrawText("Flores Noturnas", largura1, altura_geral + 50, 30, nao_pode_escolhido);
+            } else {
+                DrawText("Flores Noturnas", largura1, altura_geral + 50, 30, nao_pode);
+            }
+        } else if (horario == 1) {
+            if (escolhido == 0) {
+                DrawText("Flores Diurnas", largura1, altura_geral, 30, nao_pode_escolhido);
+            } else {
+                DrawText("Flores Diurnas", largura1, altura_geral, 30, nao_pode);
+            }
+            if (escolhido == 1) {
+                DrawText("Flores Noturnas", largura1, altura_geral + 50, 30, WHITE);
+            } else {
+                DrawText("Flores Noturnas", largura1, altura_geral + 50, 30, GRAY);
+            }
         }
         if (escolhido == 2){
             DrawText("Defender", largura1, altura_geral + 100, 30, WHITE);
@@ -54,10 +69,18 @@ void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura,
         } else {
             DrawText("Ataques", largura2, altura_geral, 30, GRAY);
         }
-        if (escolhido == 1) {
-            DrawText("Flores Diurnas", largura2, altura_geral + 50, 30, WHITE);
-        } else {
-            DrawText("Flores Diurnas", largura2, altura_geral + 50, 30, GRAY);
+        if (horario == 0) {
+            if (escolhido == 1) {
+                DrawText("Flores Diurnas", largura2, altura_geral + 50, 30, WHITE);
+            } else {
+                DrawText("Flores Diurnas", largura2, altura_geral + 50, 30, GRAY);
+            }
+        } else if (horario == 1) { 
+            if (escolhido == 1) {
+                DrawText("Flores Diurnas", largura2, altura_geral + 50, 30, nao_pode_escolhido);
+            } else {
+                DrawText("Flores Diurnas", largura2, altura_geral + 50, 30, nao_pode);
+            }
         }
         if (escolhido == 2){
             DrawText("Defender", largura2, altura_geral + 100, 30, WHITE);
@@ -70,10 +93,18 @@ void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura,
         } else {
             DrawText("Ataques", largura3, altura_geral, 30, GRAY);
         }
-        if (escolhido == 1) {
-            DrawText("Flores Noturnas", largura3, altura_geral + 50, 30, WHITE);
-        } else {
-            DrawText("Flores Noturnas", largura3, altura_geral + 50, 30, GRAY);
+        if (horario == 0) {
+            if (escolhido == 1) {
+                DrawText("Flores Noturnas", largura3, altura_geral + 50, 30, nao_pode_escolhido);
+            } else {
+                DrawText("Flores Noturnas", largura3, altura_geral + 50, 30, nao_pode);
+            }
+        } else if (horario == 1) {
+            if (escolhido == 1) {
+                DrawText("Flores Noturnas", largura3, altura_geral + 50, 30, WHITE);
+            } else {
+                DrawText("Flores Noturnas", largura3, altura_geral + 50, 30, GRAY);
+            }
         }
         if (escolhido == 2){
             DrawText("Defender", largura3, altura_geral + 100, 30, WHITE);

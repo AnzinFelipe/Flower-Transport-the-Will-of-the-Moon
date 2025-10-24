@@ -113,8 +113,9 @@ int main(void) {
         
         pode_apertar += GetFrameTime();
         
-        if (IsKeyPressed(KEY_F11)) {
+        if (IsKeyPressed(KEY_F11) && pode_apertar >= delay) {
             ToggleFullscreen();
+            pode_apertar = 0.0;
         }
 
         BeginTextureMode(janela);
@@ -166,18 +167,26 @@ int main(void) {
     
             mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
             
-            desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura);
+            desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura, horario);
             
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (escolhido == 0) {
-                    escolha_flores_diurnas = 1;    
+                    if (horario == 0) {
+                        escolha_flores_diurnas = 1;    
+                        escolhas = 0;
+                        escolhido = 0;
+                    }
                 } else if (escolhido == 1) {
-                    escolha_flores_noturnas = 1;
+                    if (horario == 1) {
+                        escolha_flores_noturnas = 1;    
+                        escolhas = 0;
+                        escolhido = 0;
+                    }
                 } else if (escolhido == 2) {
                     defender = 1;
+                    escolhas = 0;
+                    escolhido = 0;
                 }
-                escolhas = 0;
-                escolhido = 0;
                 pode_apertar = 0.0;
             }
     
@@ -189,18 +198,24 @@ int main(void) {
     
             mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
             
-            desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura);
+            desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura, horario);
             
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (escolhido == 0) {
-                    escolha_ataques = 1;    
+                    escolha_ataques = 1;
+                    escolhas = 0;
+                    escolhido = 0;    
                 } else if (escolhido == 1) {
-                    escolha_flores_diurnas = 1;
+                    if (horario == 0) {
+                        escolha_flores_diurnas = 1;
+                        escolhas = 0;
+                        escolhido = 0;
+                    }
                 } else if (escolhido == 2) {
                     defender = 1;
+                    escolhas = 0;
+                    escolhido = 0;
                 }
-                escolhas = 0;
-                escolhido = 0;
                 pode_apertar = 0.0;
             }
         } else if (escolhas == 1 && personagem_num == 2) {
@@ -211,18 +226,24 @@ int main(void) {
     
             mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
     
-            desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura);
+            desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura, horario);
     
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (escolhido == 0) {
-                    escolha_ataques = 1;    
+                    escolha_ataques = 1;
+                    escolhas = 0;
+                    escolhido = 0;   
                 } else if (escolhido == 1) {
-                    escolha_flores_noturnas = 1;
+                    if (horario == 1) {
+                        escolha_flores_noturnas = 1;
+                        escolhas = 0;
+                        escolhido = 0;
+                    }
                 } else if (escolhido == 2) {
                     defender = 1;
+                    escolhas = 0;
+                    escolhido = 0;
                 }
-                escolhas = 0;
-                escolhido = 0;
                 pode_apertar = 0.0;
             }
         } else if (escolhas == 1 && personagem_num == 3) {
@@ -233,7 +254,7 @@ int main(void) {
     
             mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
     
-            desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura);
+            desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura, horario);
     
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 if (escolhido == 0) {
