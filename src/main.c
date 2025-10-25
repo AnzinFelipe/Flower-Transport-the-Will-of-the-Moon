@@ -146,10 +146,10 @@ int main(void) {
         DrawRectangle(1215, 615, 370, 35, vida_cor);
         DrawRectangle(1550, 650, 35, 250, BLACK);
         if (horario == 1) {
-            DrawTextureEX(noite, (Vector2){0, 0}, 0.0, 1, WHITE)
+            DrawTextureEx(noite, (Vector2){0, 0}, 0.0, 1, WHITE);
             DrawTextureEx(quadro_roxo_noite, (Vector2){15, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_vermelho_noite, (Vector2){415, 650}, 0.0, 0.35, WHITE);
-        } else (horario == 0) {
+        } else if (horario == 0) {
             DrawTextureEx(quadro_roxo, (Vector2){15, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_vermelho, (Vector2){415, 650}, 0.0, 0.35, WHITE);
         }
