@@ -23,9 +23,12 @@ int main(void) {
     Texture2D quadro_roxo = LoadTexture("assets/images/Roxo.png");
     GenTextureMipmaps(&quadro_roxo);
     SetTextureFilter(quadro_roxo, TEXTURE_FILTER_TRILINEAR);
+    Texture2D quadro_vermelho = LoadTexture("assets/images/Vermelho1.png");
+    GenTextureMipmaps(&quadro_vermelho);
+    SetTextureFilter(quadro_vermelho, TEXTURE_FILTER_TRILINEAR);
 
     int escolhas = 1, escolha_flores_diurnas = 0, escolha_flores_noturnas = 0, escolha_ataques = 0, defender = 0;
-    int escolhido = 0, personagem_num = 0, vez_inimigo = 0, horario = 0;
+    int escolhido = 0, inicio_escolhas_secundarios = 0, personagem_num = 0, vez_inimigo = 0, horario = 0;
     Personagem *personagem_atual = NULL;
     float pode_apertar = 0.0, delay = 0.1;
     Color noite_cor = {18, 18, 100, 100};
@@ -127,6 +130,7 @@ int main(void) {
         DrawRectangle(largura / 2, altura - (altura / 3), largura / 4, altura / 3, ORANGE);
         DrawRectangle(largura - (largura / 4), altura - (altura / 3), largura / 4, altura / 3, GREEN);
         DrawTextureEx(quadro_roxo, (Vector2){15, 650}, 0.0, 0.35, WHITE);
+        DrawTextureEx(quadro_vermelho, (Vector2){415, 650}, 0.0, 0.35, WHITE);
         DrawRectangle(15, 615, 370, 35, vida_cor);
         DrawRectangle(350, 650, 35, 250, energia_cor);
         DrawRectangle(415, 615, 370, 35, vida_cor);
@@ -271,8 +275,9 @@ int main(void) {
         //Escolhas secundarias
         if (escolha_ataques == 1) {
             //Escolha de ataques
+            inicio_escolhas_secundarios = 0;
             mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-            desenhar_escolhas_ataques(&escolhido, personagem_atual, personagem_num, largura, altura);
+            desenhar_escolhas_ataques(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura);
     
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 acao(&escolhido, personagem_atual, boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
@@ -295,8 +300,9 @@ int main(void) {
         }
         if (escolha_flores_diurnas == 1) {
             //Escolha de flores diurnas
+            inicio_escolhas_secundarios = 0;
             mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-            desenhar_escolhas_flores_dia(&escolhido, personagem_atual, personagem_num, largura, altura);
+            desenhar_escolhas_flores_dia(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura);
     
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 acao(&escolhido, personagem_atual, boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
@@ -319,8 +325,9 @@ int main(void) {
         }
         if (escolha_flores_noturnas == 1) {
             //Escolha de flores noturnas
+            inicio_escolhas_secundarios = 0;
             mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-            desenhar_escolhas_flores_noite(&escolhido, personagem_atual, personagem_num, largura, altura);
+            desenhar_escolhas_flores_noite(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura);
     
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                 acao(&escolhido, personagem_atual, boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
@@ -389,6 +396,7 @@ int main(void) {
 
     UnloadRenderTexture(janela);
     UnloadTexture(quadro_roxo);
+    UnloadTexture(quadro_vermelho);
     UnloadTexture(fundo);
     UnloadMusicStream(pink);
     CloseAudioDevice();
