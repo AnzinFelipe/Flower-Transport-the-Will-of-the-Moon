@@ -20,18 +20,26 @@ int main(void) {
     PlayMusicStream(pink);
 
     Texture2D fundo = LoadTexture("assets/images/Teste.png");
-    Texture2D quadro_roxo = LoadTexture("assets/images/Roxo.png");
+    Texture2D noite = LoadTexture("assets/images/Noite.png");
+    GenTextureMipmaps(&noite);
+    SetTextureFilter(noite, TEXTURE_FILTER_TRILINEAR);
+    Texture2D quadro_roxo = LoadTexture("assets/images/Roxo1.png");
     GenTextureMipmaps(&quadro_roxo);
     SetTextureFilter(quadro_roxo, TEXTURE_FILTER_TRILINEAR);
+    Texture2D quadro_roxo_noite = LoadTexture("assets/images/Roxo1_noite.png");
+    GenTextureMipmaps(&quadro_roxo_noite);
+    SetTextureFilter(quadro_roxo_noite, TEXTURE_FILTER_TRILINEAR);
     Texture2D quadro_vermelho = LoadTexture("assets/images/Vermelho1.png");
     GenTextureMipmaps(&quadro_vermelho);
     SetTextureFilter(quadro_vermelho, TEXTURE_FILTER_TRILINEAR);
+    Texture2D quadro_vermelho_noite = LoadTexture("assets/images/Vermelho1_noite.png");
+    GenTextureMipmaps(&quadro_vermelho_noite);
+    SetTextureFilter(quadro_vermelho_noite, TEXTURE_FILTER_TRILINEAR);
 
     int escolhas = 1, escolha_flores_diurnas = 0, escolha_flores_noturnas = 0, escolha_ataques = 0, defender = 0;
     int escolhido = 0, inicio_escolhas_secundarios = 0, personagem_num = 0, vez_inimigo = 0, horario = 0;
     Personagem *personagem_atual = NULL;
     float pode_apertar = 0.0, delay = 0.1;
-    Color noite_cor = {18, 18, 100, 100};
     Color vida_cor = {180, 18, 18, 255};
     Color energia_cor = {18, 180, 80, 255};
     
@@ -129,8 +137,6 @@ int main(void) {
         DrawRectangle(largura / 4, altura - (altura / 3), largura / 4, altura / 3, RED);
         DrawRectangle(largura / 2, altura - (altura / 3), largura / 4, altura / 3, ORANGE);
         DrawRectangle(largura - (largura / 4), altura - (altura / 3), largura / 4, altura / 3, GREEN);
-        DrawTextureEx(quadro_roxo, (Vector2){15, 650}, 0.0, 0.35, WHITE);
-        DrawTextureEx(quadro_vermelho, (Vector2){415, 650}, 0.0, 0.35, WHITE);
         DrawRectangle(15, 615, 370, 35, vida_cor);
         DrawRectangle(350, 650, 35, 250, energia_cor);
         DrawRectangle(415, 615, 370, 35, vida_cor);
@@ -140,7 +146,12 @@ int main(void) {
         DrawRectangle(1215, 615, 370, 35, vida_cor);
         DrawRectangle(1550, 650, 35, 250, BLACK);
         if (horario == 1) {
-            DrawRectangle(0, 0, largura, altura, noite_cor);
+            DrawTextureEX(noite, (Vector2){0, 0}, 0.0, 1, WHITE)
+            DrawTextureEx(quadro_roxo_noite, (Vector2){15, 650}, 0.0, 0.35, WHITE);
+            DrawTextureEx(quadro_vermelho_noite, (Vector2){415, 650}, 0.0, 0.35, WHITE);
+        } else (horario == 0) {
+            DrawTextureEx(quadro_roxo, (Vector2){15, 650}, 0.0, 0.35, WHITE);
+            DrawTextureEx(quadro_vermelho, (Vector2){415, 650}, 0.0, 0.35, WHITE);
         }
         
         //Vez do inimigo ou vez do jogador
@@ -397,6 +408,9 @@ int main(void) {
     UnloadRenderTexture(janela);
     UnloadTexture(quadro_roxo);
     UnloadTexture(quadro_vermelho);
+    UnloadTexture(quadro_roxo_noite);
+    UnloadTexture(quadro_vermelho_noite);
+    UnloadTexture(noite);
     UnloadTexture(fundo);
     UnloadMusicStream(pink);
     CloseAudioDevice();
