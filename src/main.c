@@ -150,10 +150,6 @@ int main(void) {
         
         ClearBackground(BLACK);
         DrawTextureEx(fundo, (Vector2){0, 0}, 0.0, 0.85, BLACK);
-        DrawRectangle(0,  altura - (altura / 3), largura / 4, altura / 3, PURPLE);
-        DrawRectangle(largura / 4, altura - (altura / 3), largura / 4, altura / 3, RED);
-        DrawRectangle(largura / 2, altura - (altura / 3), largura / 4, altura / 3, ORANGE);
-        DrawRectangle(largura - (largura / 4), altura - (altura / 3), largura / 4, altura / 3, GREEN);
         DrawRectangle(15, 615, 370, 35, vida_cor);
         DrawRectangle(350, 650, 35, 250, energia_cor);
         DrawRectangle(415, 615, 370, 35, vida_cor);
@@ -172,10 +168,19 @@ int main(void) {
             DrawTextureEx(quadro_vermelho, (Vector2){415, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_laranja, (Vector2){815, 650}, 0.0, 0.35, WHITE);
         }           
-        DrawTextureEx(borda, (Vector2){0, 650}, 0.0, 0.5, WHITE);
-        DrawTextureEx(borda, (Vector2){400, 650}, 0.0, 0.5, WHITE);
-        DrawTextureEx(borda, (Vector2){800, 650}, 0.0, 0.5, WHITE);
-        DrawTextureEx(borda, (Vector2){1200, 650}, 0.0, 0.5, WHITE);
+        DrawTextureEx(borda, (Vector2){0, 600}, 0.0, 0.5, GRAY);
+        DrawTextureEx(borda, (Vector2){400, 600}, 0.0, 0.5, GRAY);
+        DrawTextureEx(borda, (Vector2){800, 600}, 0.0, 0.5, GRAY);
+        DrawTextureEx(borda, (Vector2){1200, 600}, 0.0, 0.5, GRAY);
+        if (personagem_num == 0) {
+            DrawTextureEx(borda_escolhido, (Vector2){0, 600}, 0.0, 0.5, WHITE);
+        } else if (personagem_num == 1) {
+            DrawTextureEx(borda_escolhido, (Vector2){400, 600}, 0.0, 0.5, WHITE);
+        } else if (personagem_num == 2) {
+            DrawTextureEx(borda_escolhido, (Vector2){800, 600}, 0.0, 0.5, WHITE);
+        } else if (personagem_num == 3) {
+            DrawTextureEx(borda_escolhido, (Vector2){1200, 600}, 0.0, 0.5, WHITE);
+        }
         
         //Vez do inimigo ou vez do jogador
         if (vez_inimigo == 1) {
@@ -199,8 +204,6 @@ int main(void) {
         //Escolhas primarias de cada personagem
         if (escolhas == 1 && personagem_num == 0) {
             //Personagem 0
-            DrawTextureEx(borda_escolhido, (Vector2){0, 650}, 0.0, 0.5, WHITE);
-
             pegar_personagem(personagem_num, &personagem_atual, personagem_head);
     
             personagem_atual->defesa = 0;
@@ -232,8 +235,6 @@ int main(void) {
     
         } else if (escolhas == 1 && personagem_num == 1) {
             //Personagem 1
-             DrawTextureEx(borda_escolhido, (Vector2){400, 650}, 0.0, 0.5, WHITE);
-
             pegar_personagem(personagem_num, &personagem_atual, personagem_head);
     
             personagem_atual->defesa = 0;
@@ -262,8 +263,6 @@ int main(void) {
             }
         } else if (escolhas == 1 && personagem_num == 2) {
             //Personagem 2
-            DrawTextureEx(borda_escolhido, (Vector2){800, 650}, 0.0, 0.5, WHITE);
-
             pegar_personagem(personagem_num, &personagem_atual, personagem_head);
     
             personagem_atual->defesa = 0;
@@ -292,8 +291,6 @@ int main(void) {
             }
         } else if (escolhas == 1 && personagem_num == 3) {
             //Personagem 3
-            DrawTextureEx(borda_escolhido, (Vector2){1200, 650}, 0.0, 0.5, WHITE);
-            
             pegar_personagem(personagem_num, &personagem_atual, personagem_head);
     
             personagem_atual->defesa = 0;
