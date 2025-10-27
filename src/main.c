@@ -20,21 +20,31 @@ int main(void) {
     PlayMusicStream(pink);
 
     Texture2D fundo = LoadTexture("assets/images/Teste.png");
+
     Texture2D noite = LoadTexture("assets/images/Noite.png");
     GenTextureMipmaps(&noite);
     SetTextureFilter(noite, TEXTURE_FILTER_TRILINEAR);
+
     Texture2D quadro_roxo = LoadTexture("assets/images/Roxo1.png");
     GenTextureMipmaps(&quadro_roxo);
     SetTextureFilter(quadro_roxo, TEXTURE_FILTER_TRILINEAR);
     Texture2D quadro_roxo_noite = LoadTexture("assets/images/Roxo1_noite.png");
     GenTextureMipmaps(&quadro_roxo_noite);
     SetTextureFilter(quadro_roxo_noite, TEXTURE_FILTER_TRILINEAR);
+
     Texture2D quadro_vermelho = LoadTexture("assets/images/Vermelho1.png");
     GenTextureMipmaps(&quadro_vermelho);
     SetTextureFilter(quadro_vermelho, TEXTURE_FILTER_TRILINEAR);
     Texture2D quadro_vermelho_noite = LoadTexture("assets/images/Vermelho1_noite.png");
     GenTextureMipmaps(&quadro_vermelho_noite);
     SetTextureFilter(quadro_vermelho_noite, TEXTURE_FILTER_TRILINEAR);
+
+    Texture2D quadro_laranja = LoadTexture("assets/images/Laranja1.png");
+    GenTextureMipmaps(&quadro_laranja);
+    SetTextureFilter(quadro_laranja, TEXTURE_FILTER_TRILINEAR);
+    Texture2D quadro_laranja_noite = LoadTexture("assets/images/Laranja1_noite.png");
+    GenTextureMipmaps(&quadro_laranja_noite);
+    SetTextureFilter(quadro_laranja_noite, TEXTURE_FILTER_TRILINEAR);
 
     int escolhas = 1, escolha_flores_diurnas = 0, escolha_flores_noturnas = 0, escolha_ataques = 0, defender = 0;
     int escolhido = 0, inicio_escolhas_secundarios = 0, personagem_num = 0, vez_inimigo = 0, horario = 0;
@@ -149,9 +159,11 @@ int main(void) {
             DrawTextureEX(noite, (Vector2){0, 0}, 0.0, 1, WHITE)
             DrawTextureEx(quadro_roxo_noite, (Vector2){15, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_vermelho_noite, (Vector2){415, 650}, 0.0, 0.35, WHITE);
+            DrawTextureEx(quadro_laranja_noite, (Vector2){815, 650}, 0.0, 0.35, WHITE);
         } else (horario == 0) {
             DrawTextureEx(quadro_roxo, (Vector2){15, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_vermelho, (Vector2){415, 650}, 0.0, 0.35, WHITE);
+            DrawTextureEx(quadro_laranja, (Vector2){815, 650}, 0.0, 0.35, WHITE);
         }
         
         //Vez do inimigo ou vez do jogador
@@ -408,8 +420,10 @@ int main(void) {
     UnloadRenderTexture(janela);
     UnloadTexture(quadro_roxo);
     UnloadTexture(quadro_vermelho);
+    UnloadTexture(quadro_laranja);
     UnloadTexture(quadro_roxo_noite);
     UnloadTexture(quadro_vermelho_noite);
+    UnloadTexture(quadro_laranja_noite);
     UnloadTexture(noite);
     UnloadTexture(fundo);
     UnloadMusicStream(pink);
