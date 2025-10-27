@@ -25,6 +25,13 @@ int main(void) {
     GenTextureMipmaps(&noite);
     SetTextureFilter(noite, TEXTURE_FILTER_TRILINEAR);
 
+    Texture2D borda_escolhido = LoadTexture("assets/images/Borda.png");
+    GenTextureMipmaps(&borda_escolhido);
+    SetTextureFilter(borda_escolhido, TEXTURE_FILTER_TRILINEAR);
+    Texture2D borda = LoadTexture("assets/images/Borda2.png");
+    GenTextureMipmaps(&borda);
+    SetTextureFilter(borda, TEXTURE_FILTER_TRILINEAR);
+
     Texture2D quadro_roxo = LoadTexture("assets/images/Roxo1.png");
     GenTextureMipmaps(&quadro_roxo);
     SetTextureFilter(quadro_roxo, TEXTURE_FILTER_TRILINEAR);
@@ -164,7 +171,11 @@ int main(void) {
             DrawTextureEx(quadro_roxo, (Vector2){15, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_vermelho, (Vector2){415, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_laranja, (Vector2){815, 650}, 0.0, 0.35, WHITE);
-        }
+        }           
+        DrawTextureEx(borda, (Vector2){0, 650}, 0.0, 0.5, WHITE);
+        DrawTextureEx(borda, (Vector2){400, 650}, 0.0, 0.5, WHITE);
+        DrawTextureEx(borda, (Vector2){800, 650}, 0.0, 0.5, WHITE);
+        DrawTextureEx(borda, (Vector2){1200, 650}, 0.0, 0.5, WHITE);
         
         //Vez do inimigo ou vez do jogador
         if (vez_inimigo == 1) {
@@ -188,6 +199,8 @@ int main(void) {
         //Escolhas primarias de cada personagem
         if (escolhas == 1 && personagem_num == 0) {
             //Personagem 0
+            DrawTextureEx(borda_escolhido, (Vector2){0, 650}, 0.0, 0.5, WHITE);
+
             pegar_personagem(personagem_num, &personagem_atual, personagem_head);
     
             personagem_atual->defesa = 0;
@@ -219,6 +232,8 @@ int main(void) {
     
         } else if (escolhas == 1 && personagem_num == 1) {
             //Personagem 1
+             DrawTextureEx(borda_escolhido, (Vector2){400, 650}, 0.0, 0.5, WHITE);
+
             pegar_personagem(personagem_num, &personagem_atual, personagem_head);
     
             personagem_atual->defesa = 0;
@@ -247,6 +262,8 @@ int main(void) {
             }
         } else if (escolhas == 1 && personagem_num == 2) {
             //Personagem 2
+            DrawTextureEx(borda_escolhido, (Vector2){800, 650}, 0.0, 0.5, WHITE);
+
             pegar_personagem(personagem_num, &personagem_atual, personagem_head);
     
             personagem_atual->defesa = 0;
@@ -275,6 +292,8 @@ int main(void) {
             }
         } else if (escolhas == 1 && personagem_num == 3) {
             //Personagem 3
+            DrawTextureEx(borda_escolhido, (Vector2){1200, 650}, 0.0, 0.5, WHITE);
+            
             pegar_personagem(personagem_num, &personagem_atual, personagem_head);
     
             personagem_atual->defesa = 0;
@@ -424,6 +443,8 @@ int main(void) {
     UnloadTexture(quadro_roxo_noite);
     UnloadTexture(quadro_vermelho_noite);
     UnloadTexture(quadro_laranja_noite);
+    UnloadTexture(borda);
+    UnloadTexture(borda_escolhido);
     UnloadTexture(noite);
     UnloadTexture(fundo);
     UnloadMusicStream(pink);
