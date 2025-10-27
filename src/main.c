@@ -160,7 +160,7 @@ int main(void) {
             DrawTextureEx(quadro_roxo_noite, (Vector2){15, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_vermelho_noite, (Vector2){415, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_laranja_noite, (Vector2){815, 650}, 0.0, 0.35, WHITE);
-        } else (horario == 0) {
+        } else if (horario == 0) {
             DrawTextureEx(quadro_roxo, (Vector2){15, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_vermelho, (Vector2){415, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_laranja, (Vector2){815, 650}, 0.0, 0.35, WHITE);

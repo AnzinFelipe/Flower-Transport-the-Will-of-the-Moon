@@ -52,7 +52,7 @@ void desenhar_escolhas_ataques(int *escolhido, int *inicio, Personagem *personag
         a = a->prox;
     }
 
-    // Faz com que ele va ate a ultima opcao e fique nela descendo e se subir, sobe ate a primeira opcao e vai subindo
+    // Faz com que ele va ate a ultima opcao e fique nela descendo
     if (total_ataques <= 3) {
     *inicio = 0;
     } else {
