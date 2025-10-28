@@ -1,13 +1,14 @@
 #include "flor_dia.h"
 #include <stdlib.h>
 
-void adicionar_flor_dia(Flor_dia **head, char *nome, int dano, char *elemento, int energia_gasta, float velocidade) {
+void adicionar_flor_dia(Flor_dia **head, char *nome, int dano, char *elemento, int energia_gasta, float velocidade, char *descricao) {
     Flor_dia *novo_flor_dia = (Flor_dia *)malloc(sizeof(Flor_dia));
     novo_flor_dia->prox = NULL;
     novo_flor_dia->nome = nome;
     novo_flor_dia->dano = dano;
     novo_flor_dia->elemento = elemento;
     novo_flor_dia->energia_gasta = energia_gasta;
+    novo_flor_dia->descricao = descricao;
     novo_flor_dia->velocidade = velocidade;
 
     if (*head == NULL) {

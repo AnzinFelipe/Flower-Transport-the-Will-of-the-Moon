@@ -1,13 +1,14 @@
 #include "ataque.h"
 #include <stdlib.h>
 
-void adicionar_ataque(Ataque **head, char *nome, int dano, char *elemento, int energia_gasta, float velocidade) {
+void adicionar_ataque(Ataque **head, char *nome, int dano, char *elemento, int energia_gasta, float velocidade, char *descricao) {
     Ataque *novo_ataque = (Ataque *)malloc(sizeof(Ataque));
     novo_ataque->prox = NULL;
     novo_ataque->nome = nome;
     novo_ataque->dano = dano;
     novo_ataque->elemento = elemento;
     novo_ataque->energia_gasta = energia_gasta;
+    novo_ataque->descricao = descricao;
     novo_ataque->velocidade = velocidade;
 
     if (*head == NULL) {

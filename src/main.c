@@ -63,28 +63,28 @@ int main(void) {
     Ataque *ataque_head2 = NULL;
     // Head, nome, dano, elemento, energia gasta, velocidade
     adicionar_ataque(&ataque_head2, "Soco", 20, "Impacto", 5, 1.5);
-    adicionar_ataque(&ataque_head2, "Chute", 15, "Impacto", 5, 1.5);
+    adicionar_ataque(&ataque_head2, "Chute", 15, "Impacto", 5, 1);
     adicionar_ataque(&ataque_head2, "Pa de jardinagem", 30, "Impacto", 10, 1.5);
     adicionar_ataque(&ataque_head2, "Tesoura de poda", 25, "Corte", 10, 1.5);
 
     Ataque *ataque_head3 = NULL;
     adicionar_ataque(&ataque_head3, "Soco", 15, "Impacto", 5, 1.5);
-    adicionar_ataque(&ataque_head3, "Unhada", 10, "Corte", 3, 1.5);
-    adicionar_ataque(&ataque_head3, "Chute espiral", 25, "Perfuracao", 15, 1.5);
-    adicionar_ataque(&ataque_head3, "Chifrada", 30, "Perfuracao", 20, 1.5);
+    adicionar_ataque(&ataque_head3, "Unhada", 10, "Corte", 3, 2);
+    adicionar_ataque(&ataque_head3, "Chute espiral", 25, "Perfuracao", 15, 2);
+    adicionar_ataque(&ataque_head3, "Chifrada", 30, "Perfuracao", 20, 1);
 
     Ataque *ataque_head4 = NULL;
     adicionar_ataque(&ataque_head4, "Soco solar", 35, "Impacto", 0, 1.5);
     adicionar_ataque(&ataque_head4, "Chute solar", 35, "Impacto", 0, 1.5);
-    adicionar_ataque(&ataque_head4, "Lanca solar", 30, "Perfuracao", 0, 1.5);
+    adicionar_ataque(&ataque_head4, "Lanca solar", 30, "Perfuracao", 0, 2);
     adicionar_ataque(&ataque_head4, "Espada solar", 30, "Corte", 0, 1.5);
-    adicionar_ataque(&ataque_head4, "Fumaca venenosa", 10, "Veneno", 0, 1.5);
+    adicionar_ataque(&ataque_head4, "Fumaca venenosa", 10, "Veneno", 0, 1);
 
     Ataque *ataque_head_boss = NULL;
-    adicionar_ataque(&ataque_head_boss, "Bafo lunar", 25, "Fogo", 0, 1.5);
-    adicionar_ataque(&ataque_head_boss, "Chute dilacerante", 25, "Corte", 0, 1.5);
-    adicionar_ataque(&ataque_head_boss, "Espectro lunatico", 30, "Lunar", 0, 1.5);
-    adicionar_ataque(&ataque_head_boss, "Olhar sombrio", 20, "Lunar", 0, 1.5);
+    adicionar_ataque(&ataque_head_boss, "Bafo lunar", 25, "Fogo", 0, 0);
+    adicionar_ataque(&ataque_head_boss, "Chute dilacerante", 25, "Corte", 0, 0);
+    adicionar_ataque(&ataque_head_boss, "Espectro lunatico", 30, "Lunar", 0, 0);
+    adicionar_ataque(&ataque_head_boss, "Olhar sombrio", 20, "Lunar", 0, 0);
     
     Flor_dia *flor_dia_head1 = NULL;
     // Head, nome, dano, elemento, energia gasta, velocidade
@@ -131,7 +131,7 @@ int main(void) {
     adicionar_vantagens_desvantagens_personagem(&personagem_head, 3);
     
     Boss *boss = (Boss *)malloc(sizeof(Boss));
-    adicionar_boss(boss, ataque_head_boss);
+    adicionar_boss(&boss, ataque_head_boss);
     
     SetTargetFPS(60);
     
@@ -181,6 +181,7 @@ int main(void) {
         } else if (personagem_num == 3) {
             DrawTextureEx(borda_escolhido, (Vector2){1200, 600}, 0.0, 0.5, WHITE);
         }
+        desenhar_vida_boss(boss, largura, altura, vida_cor);
         
         //Vez do inimigo ou vez do jogador
         if (vez_inimigo == 1) {
@@ -319,7 +320,7 @@ int main(void) {
             desenhar_escolhas_ataques(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura);
     
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                acao(&escolhido, personagem_atual, boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
+                acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
                 escolha_ataques = 0;
                 escolhido = 0;
                 pode_apertar = 0.0;
@@ -344,7 +345,7 @@ int main(void) {
             desenhar_escolhas_flores_dia(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura);
     
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                acao(&escolhido, personagem_atual, boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
+                acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
                 escolha_flores_diurnas = 0;
                 escolhido = 0;
                 pode_apertar = 0.0;
@@ -369,7 +370,7 @@ int main(void) {
             desenhar_escolhas_flores_noite(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura);
     
             if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                acao(&escolhido, personagem_atual, boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
+                acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
                 escolha_flores_noturnas = 0;
                 pode_apertar = 0.0;
                 escolhido = 0;

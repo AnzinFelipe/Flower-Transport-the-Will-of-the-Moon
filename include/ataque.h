@@ -9,6 +9,7 @@ typedef struct Ataque{
     char *elemento;
     int energia_gasta;
     float velocidade;
+    char *descricao;
     struct Ataque *prox;
 } Ataque;
 

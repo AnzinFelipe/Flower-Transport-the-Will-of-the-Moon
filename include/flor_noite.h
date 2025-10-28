@@ -9,6 +9,7 @@ typedef struct Flor_noite{
     char *elemento;
     int energia_gasta;
     float velocidade;
+    char *descricao;
     struct Flor_noite *prox;
 } Flor_noite;
 

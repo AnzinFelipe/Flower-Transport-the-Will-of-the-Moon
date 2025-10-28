@@ -1,6 +1,6 @@
 #include "boss.h"
 
-void adicionar_vantagens_desvantagens_boss(Boss *boss) {
+void adicionar_vantagens_desvantagens_boss(Boss **boss) {
     int i, j;
 
     // j = 0 Fraquezas | j = 1 Neutro | j = 2 Resistencias
@@ -13,21 +13,26 @@ void adicionar_vantagens_desvantagens_boss(Boss *boss) {
 
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 3; j++) {
-            boss->vantagens_desvantagens[i][j] = elementos[i][j];
+            (*boss)->vantagens_desvantagens[i][j] = elementos[i][j];
         }
     }
 }
 
-void adicionar_boss (Boss *boss, Ataque *ataque) {
-    boss->nome = "Morticia, a vontade da lua";
-    boss->vida = 600;
-    boss->ataque = ataque;
-    adicionar_vantagens_desvantagens_boss(boss);
+void adicionar_boss (Boss **boss, Ataque *ataque) {
+    (*boss)->nome = "Morticia, a vontade da lua";
+    (*boss)->vida = 600;
+    (*boss)->ataque = ataque;
+    adicionar_vantagens_desvantagens_boss(&boss);
 }
 
-void subtrair_vida_boss(Boss *boss, int dano, float mult) {
-    boss->vida -= dano * mult;
-    if (boss->vida < 0) {
-        boss->vida = 0;
+void desenhar_vida_boss(Boss *boss, int largura, int altura, Color vida) {
+    DrawRectangle(largura/2 - 150, 50, 300, 25, BLACK);
+    DrawRectangle(largura/2 - 150, 50, boss->vida/2, 25, vida);
+}
+
+void subtrair_vida_boss(Boss **boss, int dano, float mult) {
+    (*boss)->vida -= dano * mult;
+    if ((*boss)->vida < 0) {
+        (*boss)->vida = 0;
     }
 }

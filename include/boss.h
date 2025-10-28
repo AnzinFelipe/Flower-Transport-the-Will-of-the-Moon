@@ -13,10 +13,12 @@ typedef struct Boss {
     char *vantagens_desvantagens[4][3];
 } Boss;
 
-void adicionar_vantagens_desvantagens_boss(Boss *boss);
+void adicionar_vantagens_desvantagens_boss(Boss **boss);
 
-void adicionar_boss (Boss *boss, Ataque *ataque);
+void adicionar_boss (Boss **boss, Ataque *ataque);
 
-void subtrair_vida_boss(Boss *boss, int dano, float mult);
+void desenhar_vida_boss(Boss *boss, int largura, int altura, Color vida);
+
+void subtrair_vida_boss(Boss **boss, int dano, float mult);
 
 #endif
