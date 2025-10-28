@@ -1,4 +1,5 @@
 #include "boss.h"
+#include "raylib.h"
 
 void adicionar_vantagens_desvantagens_boss(Boss **boss) {
     int i, j;
@@ -20,14 +21,14 @@ void adicionar_vantagens_desvantagens_boss(Boss **boss) {
 
 void adicionar_boss (Boss **boss, Ataque *ataque) {
     (*boss)->nome = "Morticia, a vontade da lua";
-    (*boss)->vida = 600;
+    (*boss)->vida = 1200;
     (*boss)->ataque = ataque;
-    adicionar_vantagens_desvantagens_boss(&boss);
+    adicionar_vantagens_desvantagens_boss(boss);
 }
 
-void desenhar_vida_boss(Boss *boss, int largura, int altura, Color vida) {
-    DrawRectangle(largura/2 - 150, 50, 300, 25, BLACK);
-    DrawRectangle(largura/2 - 150, 50, boss->vida/2, 25, vida);
+void desenhar_vida_boss(Boss *boss, int largura, Color vida) {
+    DrawRectangle(largura/2 - 300, 50, 600, 25, DARKGRAY);
+    DrawRectangle(largura/2 - 300, 50, boss->vida / 2, 25, vida);
 }
 
 void subtrair_vida_boss(Boss **boss, int dano, float mult) {

@@ -13,7 +13,7 @@ typedef struct Ataque{
     struct Ataque *prox;
 } Ataque;
 
-void adicionar_ataque(Ataque **head, char *nome, int dano, char *elemento, int energia_gasta, float velocidade);
+void adicionar_ataque(Ataque **head, char *nome, int dano, char *elemento, int energia_gasta, float velocidade, char *descricao);
 
 void liberar_ataque(Ataque *head);
 

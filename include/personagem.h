@@ -27,6 +27,6 @@ void pegar_personagem(int personagem_num, Personagem **personagem_atual, Persona
 
 void adicionar_vantagens_desvantagens_personagem(Personagem **head, int num);
 
-void subtrair_energia_personagem(Personagem *personagem_atual, int energia_gasta);
+void subtrair_energia_personagem(Personagem **personagem_atual, int energia_gasta);
 
 #endif

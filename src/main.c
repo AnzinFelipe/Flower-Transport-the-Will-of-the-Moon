@@ -64,66 +64,66 @@ int main(void) {
     int escolhido = 0, inicio_escolhas_secundarios = 0, personagem_num = 0, vez_inimigo = 0, horario = 0;
     Personagem *personagem_atual = NULL;
     float pode_apertar = 0.0, delay = 0.1;
-    Color vida_cor = {180, 18, 18, 255};
-    Color energia_cor = {18, 180, 80, 255};
+    Color vida_cor = {120, 18, 18, 255};
+    Color energia_cor = {18, 120, 80, 255};
     
     Ataque *ataque_head2 = NULL;
     // Head, nome, dano, elemento, energia gasta, velocidade
-    adicionar_ataque(&ataque_head2, "Soco", 20, "Impacto", 5, 1.5);
-    adicionar_ataque(&ataque_head2, "Chute", 15, "Impacto", 5, 1);
-    adicionar_ataque(&ataque_head2, "Pa de jardinagem", 30, "Impacto", 10, 1.5);
-    adicionar_ataque(&ataque_head2, "Tesoura de poda", 25, "Corte", 10, 1.5);
+    adicionar_ataque(&ataque_head2, "Soco", 20, "Impacto", 5, 1.5, "");
+    adicionar_ataque(&ataque_head2, "Chute", 15, "Impacto", 5, 1, "");
+    adicionar_ataque(&ataque_head2, "Pa de jardinagem", 30, "Impacto", 10, 1.5, "");
+    adicionar_ataque(&ataque_head2, "Tesoura de poda", 25, "Corte", 10, 1.5, "");
 
     Ataque *ataque_head3 = NULL;
-    adicionar_ataque(&ataque_head3, "Soco", 15, "Impacto", 5, 1.5);
-    adicionar_ataque(&ataque_head3, "Unhada", 10, "Corte", 3, 2);
-    adicionar_ataque(&ataque_head3, "Chute espiral", 25, "Perfuracao", 15, 2);
-    adicionar_ataque(&ataque_head3, "Chifrada", 30, "Perfuracao", 20, 1);
+    adicionar_ataque(&ataque_head3, "Soco", 15, "Impacto", 5, 1.5, "");
+    adicionar_ataque(&ataque_head3, "Unhada", 10, "Corte", 3, 2, "");
+    adicionar_ataque(&ataque_head3, "Chute espiral", 25, "Perfuracao", 15, 2, "");
+    adicionar_ataque(&ataque_head3, "Chifrada", 30, "Perfuracao", 20, 1, "");
 
     Ataque *ataque_head4 = NULL;
-    adicionar_ataque(&ataque_head4, "Soco solar", 35, "Impacto", 0, 1.5);
-    adicionar_ataque(&ataque_head4, "Chute solar", 35, "Impacto", 0, 1.5);
-    adicionar_ataque(&ataque_head4, "Lanca solar", 30, "Perfuracao", 0, 2);
-    adicionar_ataque(&ataque_head4, "Espada solar", 30, "Corte", 0, 1.5);
-    adicionar_ataque(&ataque_head4, "Fumaca venenosa", 10, "Veneno", 0, 1);
+    adicionar_ataque(&ataque_head4, "Soco solar", 35, "Impacto", 0, 1.5, "");
+    adicionar_ataque(&ataque_head4, "Chute solar", 35, "Impacto", 0, 1.5, "");
+    adicionar_ataque(&ataque_head4, "Lanca solar", 30, "Perfuracao", 0, 2, "");
+    adicionar_ataque(&ataque_head4, "Espada solar", 30, "Corte", 0, 1.5, "");
+    adicionar_ataque(&ataque_head4, "Fumaca venenosa", 10, "Veneno", 0, 1, "");
 
     Ataque *ataque_head_boss = NULL;
-    adicionar_ataque(&ataque_head_boss, "Bafo lunar", 25, "Fogo", 0, 0);
-    adicionar_ataque(&ataque_head_boss, "Chute dilacerante", 25, "Corte", 0, 0);
-    adicionar_ataque(&ataque_head_boss, "Espectro lunatico", 30, "Lunar", 0, 0);
-    adicionar_ataque(&ataque_head_boss, "Olhar sombrio", 20, "Lunar", 0, 0);
+    adicionar_ataque(&ataque_head_boss, "Bafo lunar", 25, "Fogo", 0, 0, "");
+    adicionar_ataque(&ataque_head_boss, "Chute dilacerante", 25, "Corte", 0, 0, "");
+    adicionar_ataque(&ataque_head_boss, "Espectro lunatico", 30, "Lunar", 0, 0, "");
+    adicionar_ataque(&ataque_head_boss, "Olhar sombrio", 20, "Lunar", 0, 0, "");
     
     Flor_dia *flor_dia_head1 = NULL;
     // Head, nome, dano, elemento, energia gasta, velocidade
-    adicionar_flor_dia(&flor_dia_head1, "Flamigera-do-dia", 25, "Fogo", 15, 2.0);
-    adicionar_flor_dia(&flor_dia_head1, "Tulipa afiada", 10, "Corte", 15, 2.0);
-    adicionar_flor_dia(&flor_dia_head1, "Orquidea voltaica", 20, "Eletricidade", 15, 2.0);
-    adicionar_flor_dia(&flor_dia_head1, "Nenufar real", 15, "Agua", 15, 2.0);
-    adicionar_flor_dia(&flor_dia_head1, "Girassol", 20, "Solar", 15, 2.0);
-    adicionar_flor_dia(&flor_dia_head1, "Ventanilia", 15, "Ar", 15, 2.0);
+    adicionar_flor_dia(&flor_dia_head1, "Flamigera-do-dia", 25, "Fogo", 15, 2.0, "");
+    adicionar_flor_dia(&flor_dia_head1, "Tulipa afiada", 10, "Corte", 15, 2.0, "");
+    adicionar_flor_dia(&flor_dia_head1, "Orquidea voltaica", 20, "Eletricidade", 15, 2.0, "");
+    adicionar_flor_dia(&flor_dia_head1, "Nenufar real", 15, "Agua", 15, 2.0, "");
+    adicionar_flor_dia(&flor_dia_head1, "Girassol", 20, "Solar", 15, 2.0, "");
+    adicionar_flor_dia(&flor_dia_head1, "Ventanilia", 15, "Ar", 15, 2.0, "");
 
     Flor_dia *flor_dia_head2 = NULL;
-    adicionar_flor_dia(&flor_dia_head2, "Rosa gelida", 15, "Gelo", 15, 2.0);
-    adicionar_flor_dia(&flor_dia_head2, "Helicopdea", 10, "Ar", 15, 2.0);
-    adicionar_flor_dia(&flor_dia_head2, "Girassol", 20, "Solar", 15, 2.0);
-    adicionar_flor_dia(&flor_dia_head2, "Gravitiana", 20, "Impacto", 15, 2.0);
-    adicionar_flor_dia(&flor_dia_head2, "Lotus", 15, "Agua", 15, 2.0);
+    adicionar_flor_dia(&flor_dia_head2, "Rosa gelida", 15, "Gelo", 15, 2.0, "");
+    adicionar_flor_dia(&flor_dia_head2, "Helicopdea", 10, "Ar", 15, 2.0, "");
+    adicionar_flor_dia(&flor_dia_head2, "Girassol", 20, "Solar", 15, 2.0, "");
+    adicionar_flor_dia(&flor_dia_head2, "Gravitiana", 20, "Impacto", 15, 2.0, "");
+    adicionar_flor_dia(&flor_dia_head2, "Lotus", 15, "Agua", 15, 2.0, "");
 
     Flor_noite *flor_noite_head1 = NULL;
     // Head, nome, dano, elemento, energia gasta, velocidade
-    adicionar_flor_noite(&flor_noite_head1, "Rosa cromada", 20, "Impacto", 10, 2.5);
-    adicionar_flor_noite(&flor_noite_head1, "Rainha-da-noite", 20, "Fogo", 10, 2.5);
-    adicionar_flor_noite(&flor_noite_head1, "Realeza espinhenta", 15, "Perfuracao", 10, 2.5);
-    adicionar_flor_noite(&flor_noite_head1, "Flor de Mandacaru", 20, "Agua", 10, 2.5);
-    adicionar_flor_noite(&flor_noite_head1, "Trombeta-de-anjo", 15, "Veneno", 10, 2.5);
-    adicionar_flor_noite(&flor_noite_head1, "Gloria-da-friagem", 20, "Gelo", 10, 2.5);
+    adicionar_flor_noite(&flor_noite_head1, "Rosa cromada", 20, "Impacto", 10, 2.5, "");
+    adicionar_flor_noite(&flor_noite_head1, "Rainha-da-noite", 20, "Fogo", 10, 2.5, "");
+    adicionar_flor_noite(&flor_noite_head1, "Realeza espinhenta", 15, "Perfuracao", 10, 2.5, "");
+    adicionar_flor_noite(&flor_noite_head1, "Flor de Mandacaru", 20, "Agua", 10, 2.5, "");
+    adicionar_flor_noite(&flor_noite_head1, "Trombeta-de-anjo", 15, "Veneno", 10, 2.5, "");
+    adicionar_flor_noite(&flor_noite_head1, "Gloria-da-friagem", 20, "Gelo", 10, 2.5, "");
 
     Flor_noite *flor_noite_head3 = NULL;
-    adicionar_flor_noite(&flor_noite_head3, "Dama-da-noite", 20, "Lunar", 10, 2.5);
-    adicionar_flor_noite(&flor_noite_head3, "Flamigera-da-noite", 25, "Fogo", 10, 2.5);
-    adicionar_flor_noite(&flor_noite_head3, "Realeza espinhenta", 15, "Perfuracao", 10, 2.5);
-    adicionar_flor_noite(&flor_noite_head3, "Gloria-da-friagem", 20, "Gelo", 10, 2.5);
-    adicionar_flor_noite(&flor_noite_head3, "Energialida", 15, "Eletricidade", 10, 2.5);
+    adicionar_flor_noite(&flor_noite_head3, "Dama-da-noite", 20, "Lunar", 10, 2.5, "");
+    adicionar_flor_noite(&flor_noite_head3, "Flamigera-da-noite", 25, "Fogo", 10, 2.5, "");
+    adicionar_flor_noite(&flor_noite_head3, "Realeza espinhenta", 15, "Perfuracao", 10, 2.5, "");
+    adicionar_flor_noite(&flor_noite_head3, "Gloria-da-friagem", 20, "Gelo", 10, 2.5, "");
+    adicionar_flor_noite(&flor_noite_head3, "Energialida", 15, "Eletricidade", 10, 2.5, "");
 
     Personagem *personagem_head = NULL;
     // Head, nome, vida, energia, ataque, flor_dia, flor_noite
@@ -157,14 +157,6 @@ int main(void) {
         
         ClearBackground(BLACK);
         DrawTextureEx(fundo, (Vector2){0, 0}, 0.0, 0.85, BLACK);
-        DrawRectangle(15, 615, 370, 35, vida_cor);
-        DrawRectangle(350, 650, 35, 250, energia_cor);
-        DrawRectangle(415, 615, 370, 35, vida_cor);
-        DrawRectangle(750, 650, 35, 250, energia_cor);
-        DrawRectangle(815, 615, 370, 35, vida_cor);
-        DrawRectangle(1150, 650, 35, 250, energia_cor);
-        DrawRectangle(1215, 615, 370, 35, vida_cor);
-        DrawRectangle(1550, 650, 35, 250, BLACK);
         if (horario == 1) {
             DrawTextureEx(noite, (Vector2){0, 0}, 0.0, 1, WHITE);
             DrawTextureEx(quadro_roxo_noite, (Vector2){15, 650}, 0.0, 0.35, WHITE);
@@ -177,6 +169,15 @@ int main(void) {
             DrawTextureEx(quadro_laranja, (Vector2){815, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_vinho, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
         }           
+        DrawRectangle(15, 615, 370, 35, vida_cor);
+        DrawRectangle(350, 650, 35, 250, energia_cor);
+        DrawRectangle(415, 615, 370, 35, vida_cor);
+        DrawRectangle(750, 650, 35, 250, energia_cor);
+        DrawRectangle(815, 615, 370, 35, vida_cor);
+        DrawRectangle(1150, 650, 35, 250, energia_cor);
+        DrawRectangle(1215, 615, 370, 35, vida_cor);
+        desenhar_vida_boss(boss, largura, vida_cor);
+        DrawRectangle(1550, 650, 35, 250, BLACK);
         DrawTextureEx(borda, (Vector2){0, 600}, 0.0, 0.5, GRAY);
         DrawTextureEx(borda, (Vector2){400, 600}, 0.0, 0.5, GRAY);
         DrawTextureEx(borda, (Vector2){800, 600}, 0.0, 0.5, GRAY);
@@ -190,7 +191,6 @@ int main(void) {
         } else if (personagem_num == 3) {
             DrawTextureEx(borda_escolhido, (Vector2){1200, 600}, 0.0, 0.5, WHITE);
         }
-        desenhar_vida_boss(boss, largura, altura, vida_cor);
         
         //Vez do inimigo ou vez do jogador
         if (vez_inimigo == 1) {

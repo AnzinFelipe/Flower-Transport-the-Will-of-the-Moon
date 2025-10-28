@@ -5,6 +5,7 @@
 
 #include "ataque.h"
 #include <stdlib.h>
+#include "raylib.h"
 
 typedef struct Boss {
     char *nome;
@@ -17,7 +18,7 @@ void adicionar_vantagens_desvantagens_boss(Boss **boss);
 
 void adicionar_boss (Boss **boss, Ataque *ataque);
 
-void desenhar_vida_boss(Boss *boss, int largura, int altura, Color vida);
+void desenhar_vida_boss(Boss *boss, int largura, Color vida);
 
 void subtrair_vida_boss(Boss **boss, int dano, float mult);
 

@@ -80,8 +80,8 @@ void acao(int *escolhido, Personagem **personagem_atual, Boss **boss, int ataque
         }
     }
 
-    subtrair_vida_boss(&boss, dano, mult);
+    subtrair_vida_boss(boss, dano, mult);
     printf("vida do boss: %d\n", (*boss)->vida);
-    subtrair_energia_personagem(&personagem_atual, energia);
+    subtrair_energia_personagem(personagem_atual, energia);
     printf("energia do personagem %s: %d\n", p->nome, p->energia);
 }

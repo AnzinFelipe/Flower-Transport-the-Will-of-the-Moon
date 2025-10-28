@@ -13,7 +13,7 @@ typedef struct Flor_noite{
     struct Flor_noite *prox;
 } Flor_noite;
 
-void adicionar_flor_noite(Flor_noite **head, char *nome, int dano, char *elemento, int energia_gasta, float velocidade);
+void adicionar_flor_noite(Flor_noite **head, char *nome, int dano, char *elemento, int energia_gasta, float velocidade, char *descricao);
 
 void liberar_flor_noite(Flor_noite *head);
 
