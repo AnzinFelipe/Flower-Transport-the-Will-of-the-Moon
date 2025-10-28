@@ -53,6 +53,13 @@ int main(void) {
     GenTextureMipmaps(&quadro_laranja_noite);
     SetTextureFilter(quadro_laranja_noite, TEXTURE_FILTER_TRILINEAR);
 
+    Texture2D quadro_vinho = LoadTexture("assets/images/Vinho1.png");
+    GenTextureMipmaps(&quadro_vinho);
+    SetTextureFilter(quadro_vinho, TEXTURE_FILTER_TRILINEAR);
+    Texture2D quadro_vinho_noite = LoadTexture("assets/images/Vinho1_noite.png");
+    GenTextureMipmaps(&quadro_vinho_noite);
+    SetTextureFilter(quadro_vinho_noite, TEXTURE_FILTER_TRILINEAR);
+
     int escolhas = 1, escolha_flores_diurnas = 0, escolha_flores_noturnas = 0, escolha_ataques = 0, defender = 0;
     int escolhido = 0, inicio_escolhas_secundarios = 0, personagem_num = 0, vez_inimigo = 0, horario = 0;
     Personagem *personagem_atual = NULL;
@@ -163,10 +170,12 @@ int main(void) {
             DrawTextureEx(quadro_roxo_noite, (Vector2){15, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_vermelho_noite, (Vector2){415, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_laranja_noite, (Vector2){815, 650}, 0.0, 0.35, WHITE);
+            DrawTextureEx(quadro_vinho_noite, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
         } else if (horario == 0) {
             DrawTextureEx(quadro_roxo, (Vector2){15, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_vermelho, (Vector2){415, 650}, 0.0, 0.35, WHITE);
             DrawTextureEx(quadro_laranja, (Vector2){815, 650}, 0.0, 0.35, WHITE);
+            DrawTextureEx(quadro_vinho, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
         }           
         DrawTextureEx(borda, (Vector2){0, 600}, 0.0, 0.5, GRAY);
         DrawTextureEx(borda, (Vector2){400, 600}, 0.0, 0.5, GRAY);
@@ -438,9 +447,11 @@ int main(void) {
     UnloadTexture(quadro_roxo);
     UnloadTexture(quadro_vermelho);
     UnloadTexture(quadro_laranja);
+    UnloadTexture(quadro_vinho);
     UnloadTexture(quadro_roxo_noite);
     UnloadTexture(quadro_vermelho_noite);
     UnloadTexture(quadro_laranja_noite);
+    UnloadTexture(quadro_vinho_noite);
     UnloadTexture(borda);
     UnloadTexture(borda_escolhido);
     UnloadTexture(noite);
