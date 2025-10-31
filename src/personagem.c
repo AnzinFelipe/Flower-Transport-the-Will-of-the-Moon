@@ -2,6 +2,7 @@
 #include "ataque.h"
 #include "flor_dia.h"
 #include "flor_noite.h"
+#include "raylib.h"
 #include <stdlib.h>
 
 void adicionar_personagem(Personagem **head, char *nome, int vida, int energia, Ataque *ataque, Flor_dia *flor_dia, Flor_noite *flor_noite) {
@@ -113,6 +114,45 @@ void adicionar_vantagens_desvantagens_personagem(Personagem **head, int num) {
                 n->vantagens_desvantagens[i][j] = elementos[i][j];
             }
         }
+    }
+}
+
+void desenhar_vida_personagens(Personagem *personagem, int num, Color vida) {
+    Personagem *p = personagem;
+    for (int i = 0; i < num; i++) {
+        p = p->prox;
+    }
+    if (num == 0) {
+        DrawRectangle(15, 615, 370, 35, DARKGRAY);
+        DrawRectangle(15, 615, p->vida * 3.7, 35, vida);
+    } else if (num == 1) {
+        DrawRectangle(415, 615, 370, 35, DARKGRAY);
+        DrawRectangle(415, 615, p->vida * 2.47, 35, vida);
+    } else if (num == 2) {
+        DrawRectangle(815, 615, 370, 35, DARKGRAY);
+        DrawRectangle(815, 615, p->vida * 4.625, 35, vida);
+    } else if (num == 3) {
+        DrawRectangle(1215, 615, 370, 35, DARKGRAY);
+        DrawRectangle(1215, 615, p->vida * 3.7, 35, vida);
+    }
+}
+
+void desenhar_energia_personagens(Personagem *personagem, int num, Color energia) {
+    Personagem *p = personagem;
+    for (int i = 0; i < num; i++) {
+        p = p->prox;
+    }
+    if (num == 0) {
+        DrawRectangle(350, 650, 35, 250, DARKGRAY);
+        DrawRectangle(350, 650, 35, p->energia * 3.8, energia);
+    } else if (num == 1) {
+        DrawRectangle(750, 650, 35, 250, DARKGRAY);
+        DrawRectangle(750, 650, 35, p->energia * 6, energia);
+    } else if (num == 2) {
+        DrawRectangle(1150, 650, 35, 250, DARKGRAY);
+        DrawRectangle(1150, 650, 35, p->energia * 3, energia);
+    } else if (num == 3) {
+        DrawRectangle(1550, 650, 35, 250, BLACK);
     }
 }
 

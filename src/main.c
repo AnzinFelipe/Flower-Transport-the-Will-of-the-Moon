@@ -221,15 +221,15 @@ int main(void) {
                     DrawTextureEx(quadro_laranja, (Vector2){815, 650}, 0.0, 0.35, WHITE);
                     DrawTextureEx(quadro_vinho, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
                 }           
-                DrawRectangle(15, 615, 370, 35, vida_cor);
-                DrawRectangle(350, 650, 35, 250, energia_cor);
-                DrawRectangle(415, 615, 370, 35, vida_cor);
-                DrawRectangle(750, 650, 35, 250, energia_cor);
-                DrawRectangle(815, 615, 370, 35, vida_cor);
-                DrawRectangle(1150, 650, 35, 250, energia_cor);
-                DrawRectangle(1215, 615, 370, 35, vida_cor);
+                desenhar_vida_personagens(personagem_head, 0, vida_cor);
+                desenhar_energia_personagens(personagem_head, 0, energia_cor);
+                desenhar_vida_personagens(personagem_head, 1, vida_cor);
+                desenhar_energia_personagens(personagem_head, 1, energia_cor);
+                desenhar_vida_personagens(personagem_head, 2, vida_cor);
+                desenhar_energia_personagens(personagem_head, 2, energia_cor);
+                desenhar_vida_personagens(personagem_head, 3, vida_cor);
+                desenhar_energia_personagens(personagem_head, 3, energia_cor);
                 desenhar_vida_boss(boss, largura, vida_cor);
-                DrawRectangle(1550, 650, 35, 250, BLACK);
                 DrawTextureEx(borda, (Vector2){0, 600}, 0.0, 0.5, GRAY);
                 DrawTextureEx(borda, (Vector2){400, 600}, 0.0, 0.5, GRAY);
                 DrawTextureEx(borda, (Vector2){800, 600}, 0.0, 0.5, GRAY);
