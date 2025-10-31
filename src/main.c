@@ -20,6 +20,7 @@ int main(void) {
     Texture2D fundo, noite, borda_escolhido, borda;
     Texture2D quadro_roxo, quadro_roxo_noite, quadro_vermelho, quadro_vermelho_noite;
     Texture2D quadro_laranja, quadro_laranja_noite, quadro_vinho, quadro_vinho_noite;
+    Texture2D boss_ataque_dia, boss_ataque_noite;
     int escolhas, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, defender;
     int escolhido, inicio_escolhas_secundarios, personagem_num, vez_inimigo, horario;
     Personagem *personagem_atual = NULL;
@@ -98,6 +99,13 @@ int main(void) {
                     quadro_vinho_noite = LoadTexture("assets/images/Vinho1_noite.png");
                     GenTextureMipmaps(&quadro_vinho_noite);
                     SetTextureFilter(quadro_vinho_noite, TEXTURE_FILTER_TRILINEAR);
+
+                    boss_ataque_dia = LoadTexture("assets/images/Boss_ataque_dia.png");
+                    GenTextureMipmaps(&boss_ataque_dia);
+                    SetTextureFilter(boss_ataque_dia, TEXTURE_FILTER_TRILINEAR);
+                    boss_ataque_noite = LoadTexture("assets/images/Boss_ataque_noite.png");
+                    GenTextureMipmaps(&boss_ataque_noite);
+                    SetTextureFilter(boss_ataque_noite, TEXTURE_FILTER_TRILINEAR);
 
                     escolhas = 1; escolha_flores_diurnas = 0; escolha_flores_noturnas = 0; escolha_ataques = 0; defender = 0;
                     escolhido = 0; inicio_escolhas_secundarios = 0; personagem_num = 0; vez_inimigo = 0; horario = 0;
@@ -486,10 +494,12 @@ int main(void) {
         UnloadTexture(quadro_vermelho);
         UnloadTexture(quadro_laranja);
         UnloadTexture(quadro_vinho);
+        UnloadTexture(boss_ataque_dia);   
         UnloadTexture(quadro_roxo_noite);
         UnloadTexture(quadro_vermelho_noite);
         UnloadTexture(quadro_laranja_noite);
         UnloadTexture(quadro_vinho_noite);
+        UnloadTexture(boss_ataque_noite);
         UnloadTexture(relogio_dia);
         UnloadTexture(relogio_noite);
         UnloadTexture(borda);
