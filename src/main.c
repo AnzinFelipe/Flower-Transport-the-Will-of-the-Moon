@@ -25,6 +25,7 @@ int main(void) {
     int escolhido, inicio_escolhas_secundarios, personagem_num, vez_inimigo, horario;
     Personagem *personagem_atual = NULL;
     float pode_apertar, delay;
+    float ataque_boss_tempo, delay_ataque_boss;
     Color vida_cor, energia_cor;
     Ataque *ataque_head2 = NULL, *ataque_head3 = NULL, *ataque_head4 = NULL, *ataque_head_boss = NULL;
     Flor_dia *flor_dia_head1 = NULL, *flor_dia_head2 = NULL;
@@ -111,6 +112,7 @@ int main(void) {
                     escolhido = 0; inicio_escolhas_secundarios = 0; personagem_num = 0; vez_inimigo = 0; horario = 0;
                     personagem_atual = NULL;
                     pode_apertar = 0.0; delay = 0.1;
+                    ataque_boss_tempo = 0.0; delay_ataque_boss = 2;
                     vida_cor = (Color){120, 18, 18, 255};
                     energia_cor = (Color){18, 120, 80, 255};
                     
@@ -188,6 +190,7 @@ int main(void) {
                 UpdateMusicStream(pink);
                 
                 pode_apertar += GetFrameTime();
+                ataque_boss_tempo += GetFrameTime();
                 
                 if (IsKeyPressed(KEY_F11) && pode_apertar >= delay) {
                     ToggleFullscreen();
@@ -200,17 +203,23 @@ int main(void) {
                 DrawTextureEx(fundo, (Vector2){0, 0}, 0.0, 0.85, BLACK);
                 if (horario == 1) {
                     DrawTextureEx(noite, (Vector2){0, 0}, 0.0, 1, WHITE);
+                    DrawTextureEx(relogio_noite, (Vector2){0, 0}, 0.0, 0.5, WHITE);
+                    if (vez_inimigo == 1) {
+                        DrawTextureEx(boss_ataque_noite, (Vector2){0, 0}, 0.0, 1, WHITE);
+                    }
                     DrawTextureEx(quadro_roxo_noite, (Vector2){15, 650}, 0.0, 0.35, WHITE);
                     DrawTextureEx(quadro_vermelho_noite, (Vector2){415, 650}, 0.0, 0.35, WHITE);
                     DrawTextureEx(quadro_laranja_noite, (Vector2){815, 650}, 0.0, 0.35, WHITE);
                     DrawTextureEx(quadro_vinho_noite, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
-                    DrawTextureEx(relogio_noite, (Vector2){0, 0}, 0.0, 0.5, WHITE);
                 } else if (horario == 0) {
+                    DrawTextureEx(relogio_dia, (Vector2){0, 0}, 0.0, 0.5, WHITE);
+                    if (vez_inimigo == 1) {
+                        DrawTextureEx(boss_ataque_dia, (Vector2){0, 0}, 0.0, 1, WHITE);
+                    }
                     DrawTextureEx(quadro_roxo, (Vector2){15, 650}, 0.0, 0.35, WHITE);
                     DrawTextureEx(quadro_vermelho, (Vector2){415, 650}, 0.0, 0.35, WHITE);
                     DrawTextureEx(quadro_laranja, (Vector2){815, 650}, 0.0, 0.35, WHITE);
                     DrawTextureEx(quadro_vinho, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
-                    DrawTextureEx(relogio_dia, (Vector2){0, 0}, 0.0, 0.5, WHITE);
                 }           
                 DrawRectangle(15, 615, 370, 35, vida_cor);
                 DrawRectangle(350, 650, 35, 250, energia_cor);
@@ -237,8 +246,8 @@ int main(void) {
                 
                 //Vez do inimigo ou vez do jogador
                 if (vez_inimigo == 1) {
-                    DrawText("Vez do Inimigo", largura / 2 - 100, 100, 40, WHITE);
-                    if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                    if (ataque_boss_tempo >= delay_ataque_boss) {
+                        ataque_boss(boss, &personagem_head);
                         vez_inimigo = 0;
                         personagem_num = 0;
                         escolhas = 1;
@@ -377,6 +386,7 @@ int main(void) {
                         escolhido = 0;
                         pode_apertar = 0.0;
                         if (personagem_num == 3) {
+                            ataque_boss_tempo = 0.0;
                             vez_inimigo = 1;
                         } else {
                             escolhas = 1;
@@ -402,6 +412,7 @@ int main(void) {
                         escolhido = 0;
                         pode_apertar = 0.0;
                         if (personagem_num == 3) {
+                            ataque_boss_tempo = 0.0;
                             vez_inimigo = 1;
                         } else {
                             escolhas = 1;
@@ -427,6 +438,7 @@ int main(void) {
                         pode_apertar = 0.0;
                         escolhido = 0;
                         if (personagem_num == 3) {
+                            ataque_boss_tempo = 0.0;
                             vez_inimigo = 1;
                         } else {
                             escolhas = 1;
@@ -445,6 +457,7 @@ int main(void) {
                     defender = 0;
                     pode_apertar = 0.0;
                     if (personagem_num == 3) {
+                        ataque_boss_tempo = 0.0;
                         vez_inimigo = 1;
                     } else {
                         escolhas = 1;

@@ -1,5 +1,8 @@
 #include "boss.h"
+#include "personagem.h"
 #include "raylib.h"
+#include <string.h>
+#include <stdio.h>
 
 void adicionar_vantagens_desvantagens_boss(Boss **boss) {
     int i, j;
@@ -36,4 +39,50 @@ void subtrair_vida_boss(Boss **boss, int dano, float mult) {
     if ((*boss)->vida < 0) {
         (*boss)->vida = 0;
     }
+}
+
+void ataque_boss(Boss *boss, Personagem **personagem) {
+    int i, j, dano = 0;
+    float mult = 1;
+    int personagem_num;
+    int ataque_num = GetRandomValue(0, 3);
+    
+    Ataque *a = boss->ataque;
+    for (i = 0; i < ataque_num && a != NULL; i++) {
+        a = a->prox;
+    }
+    dano = a->dano;
+    
+    Personagem *p;
+
+    while (1) {
+        p = *personagem;
+        personagem_num = GetRandomValue(0, 3);
+        for (i = 0; i < personagem_num && p != NULL; i++) {
+            p = p->prox;
+        }
+        if (p->vida != 0) {
+            break;
+        }
+    }
+
+    for (i = 0; i < 6; i++) {
+        for (j = 0; j < 3; j++) {
+            if (p->vantagens_desvantagens[i][j] != NULL) {
+                if (j == 0 && strcmp(a->elemento, p->vantagens_desvantagens[i][j]) == 0) {
+                    mult = 1.5;
+                    break;
+                } else if (j == 1 && strcmp(a->elemento, p->vantagens_desvantagens[i][j]) == 0) {
+                    break;
+                } else if (j == 2 && strcmp(a->elemento, p->vantagens_desvantagens[i][j]) == 0) {
+                    mult = 0.75;
+                    break;                       
+                }   
+            }
+        }
+    }
+
+    subtrair_vida_personagem(personagem, personagem_num, dano, mult);
+    printf("Boss usou %s no personagem %s causando %d de dano com multiplicador %.2f\n", a->nome, p->nome, dano, mult);
+    printf("vida do personagem %s: %d\n", p->nome, p->vida);
 }

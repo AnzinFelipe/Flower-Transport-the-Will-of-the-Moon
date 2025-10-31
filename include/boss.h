@@ -4,6 +4,7 @@
 #define BOSS_H
 
 #include "ataque.h"
+#include "personagem.h"
 #include <stdlib.h>
 #include "raylib.h"
 
@@ -21,5 +22,7 @@ void adicionar_boss (Boss **boss, Ataque *ataque);
 void desenhar_vida_boss(Boss *boss, int largura, Color vida);
 
 void subtrair_vida_boss(Boss **boss, int dano, float mult);
+
+void ataque_boss(Boss *boss, Personagem **personagem);
 
 #endif

@@ -116,6 +116,18 @@ void adicionar_vantagens_desvantagens_personagem(Personagem **head, int num) {
     }
 }
 
+void subtrair_vida_personagem(Personagem **personagem, int personagem_num, int dano, float mult) {
+    Personagem *p = *personagem;
+    for (int i = 0; i < personagem_num; i++) {
+        p = p->prox;
+    }
+
+    p->vida -= dano * mult;
+    if (p->vida < 0) {
+        p->vida = 0;
+    }
+}
+
 void subtrair_energia_personagem(Personagem **personagem_atual, int energia_gasta) {
     (*personagem_atual)->energia -= energia_gasta;
     if ((*personagem_atual)->energia < 0) {
