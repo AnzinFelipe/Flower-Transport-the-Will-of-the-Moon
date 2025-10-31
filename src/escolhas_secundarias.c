@@ -41,7 +41,9 @@ void mudar_escolha_secundaria(int *escolhido, Personagem *personagem_atual, int 
     }
 }
 
-void desenhar_escolhas_ataques(int *escolhido, int *inicio, Personagem *personagem_atual, int personagem_num, int largura, int altura) {
+void desenhar_escolhas_ataques(int *escolhido, int *inicio, Personagem *personagem_atual, int personagem_num, int largura, int altura, int *energia_sobra) {
+    Color nao_pode = {100, 50, 50, 255};
+    Color nao_pode_escolhido = {200, 50, 50, 255};
     int total_ataques = 0;
     Ataque *a = personagem_atual->ataque;
 
@@ -77,15 +79,27 @@ void desenhar_escolhas_ataques(int *escolhido, int *inicio, Personagem *personag
     for (int i = 0; i < 3 && n != NULL; i++) {
         int indice_atual = *inicio + i;
         if (*escolhido == indice_atual) {
-            DrawText(n->nome, largura, altura / 2 + i * 50, 30, WHITE);
+            if (n->energia_gasta > personagem_atual->energia) {
+                DrawText(n->nome, largura, altura / 2 + i * 50, 30, nao_pode_escolhido);
+                *energia_sobra = 0;
+            } else {
+                DrawText(n->nome, largura, altura / 2 + i * 50, 30, WHITE);
+                *energia_sobra = 1;
+            }
         } else {
-            DrawText(n->nome, largura, altura / 2 + i * 50, 30, GRAY);
+            if (n->energia_gasta > personagem_atual->energia) {
+                DrawText(n->nome, largura, altura / 2 + i * 50, 30, nao_pode);
+            } else {
+                DrawText(n->nome, largura, altura / 2 + i * 50, 30, GRAY);
+            }
         }
         n = n->prox;
     }
 }
 
-void desenhar_escolhas_flores_dia(int *escolhido, int *inicio, Personagem *personagem_atual, int personagem_num, int largura, int altura) {
+void desenhar_escolhas_flores_dia(int *escolhido, int *inicio, Personagem *personagem_atual, int personagem_num, int largura, int altura, int *energia_sobra) {
+    Color nao_pode = {100, 50, 50, 255};
+    Color nao_pode_escolhido = {200, 50, 50, 255};
     int total_flores_dias = 0;
     Flor_dia *fd = personagem_atual->flor_dia;
 
@@ -121,15 +135,27 @@ void desenhar_escolhas_flores_dia(int *escolhido, int *inicio, Personagem *perso
     for (int i = 0; i < 3 && n != NULL; i++) {
         int indice_atual = *inicio + i;
         if (*escolhido == indice_atual) {
-            DrawText(n->nome, largura, altura / 2 + i * 50, 30, WHITE);
+            if (n->energia_gasta > personagem_atual->energia) {
+                DrawText(n->nome, largura, altura / 2 + i * 50, 30, nao_pode_escolhido);
+                *energia_sobra = 0;
+            } else {
+                DrawText(n->nome, largura, altura / 2 + i * 50, 30, WHITE);
+                *energia_sobra = 1;
+            }
         } else {
-            DrawText(n->nome, largura, altura / 2 + i * 50, 30, GRAY);
+            if (n->energia_gasta > personagem_atual->energia) {
+                DrawText(n->nome, largura, altura / 2 + i * 50, 30, nao_pode);
+            } else {
+                DrawText(n->nome, largura, altura / 2 + i * 50, 30, GRAY);
+            }
         }
         n = n->prox;
     }
 }
 
-void desenhar_escolhas_flores_noite(int *escolhido, int *inicio, Personagem *personagem_atual, int personagem_num, int largura, int altura) {
+void desenhar_escolhas_flores_noite(int *escolhido, int *inicio, Personagem *personagem_atual, int personagem_num, int largura, int altura, int *energia_sobra) {
+    Color nao_pode = {100, 50, 50, 255};
+    Color nao_pode_escolhido = {200, 50, 50, 255};
     int total_flores_noites = 0;
     Flor_noite *fn = personagem_atual->flor_noite;
 
@@ -166,9 +192,19 @@ void desenhar_escolhas_flores_noite(int *escolhido, int *inicio, Personagem *per
     for (int i = 0; i < 3 && n != NULL; i++) {
         int indice_atual = *inicio + i;
         if (*escolhido == indice_atual) {
-            DrawText(n->nome, largura, altura / 2 + i * 50, 30, WHITE);
+            if (n->energia_gasta > personagem_atual->energia) {
+                DrawText(n->nome, largura, altura / 2 + i * 50, 30, nao_pode_escolhido);
+                *energia_sobra = 0;
+            } else {
+                DrawText(n->nome, largura, altura / 2 + i * 50, 30, WHITE);
+                *energia_sobra = 1;
+            }
         } else {
-            DrawText(n->nome, largura, altura / 2 + i * 50, 30, GRAY);
+            if (n->energia_gasta > personagem_atual->energia) {
+                DrawText(n->nome, largura, altura / 2 + i * 50, 30, nao_pode);
+            } else {
+                DrawText(n->nome, largura, altura / 2 + i * 50, 30, GRAY);
+            }
         }
         n = n->prox;
     }

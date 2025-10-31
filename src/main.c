@@ -22,7 +22,7 @@ int main(void) {
     Texture2D quadro_laranja, quadro_laranja_noite, quadro_vinho, quadro_vinho_noite;
     Texture2D boss_ataque_dia, boss_ataque_noite;
     int escolhas, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, defender;
-    int escolhido, inicio_escolhas_secundarios, personagem_num, vez_inimigo, horario;
+    int escolhido, inicio_escolhas_secundarios, personagem_num, vez_inimigo, horario, energia_sobra;
     Personagem *personagem_atual = NULL;
     float pode_apertar, delay;
     float ataque_boss_tempo, delay_ataque_boss;
@@ -111,6 +111,7 @@ int main(void) {
                     escolhas = 1; escolha_flores_diurnas = 0; escolha_flores_noturnas = 0; escolha_ataques = 0; defender = 0;
                     escolhido = 0; inicio_escolhas_secundarios = 0; personagem_num = 0; vez_inimigo = 0; horario = 0;
                     personagem_atual = NULL;
+                    energia_sobra = 0;
                     pode_apertar = 0.0; delay = 0.1;
                     ataque_boss_tempo = 0.0; delay_ataque_boss = 2;
                     vida_cor = (Color){120, 18, 18, 255};
@@ -378,19 +379,21 @@ int main(void) {
                     //Escolha de ataques
                     inicio_escolhas_secundarios = 0;
                     mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-                    desenhar_escolhas_ataques(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura);
+                    desenhar_escolhas_ataques(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra);
             
                     if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                        acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
-                        escolha_ataques = 0;
-                        escolhido = 0;
-                        pode_apertar = 0.0;
-                        if (personagem_num == 3) {
-                            ataque_boss_tempo = 0.0;
-                            vez_inimigo = 1;
-                        } else {
-                            escolhas = 1;
-                            personagem_num++;
+                        if (energia_sobra == 1) {
+                            acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
+                            escolha_ataques = 0;
+                            escolhido = 0;
+                            pode_apertar = 0.0;
+                            if (personagem_num == 3) {
+                                ataque_boss_tempo = 0.0;
+                                vez_inimigo = 1;
+                            } else {
+                                escolhas = 1;
+                                personagem_num++;
+                            }
                         }
                     }
                     if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
@@ -404,19 +407,21 @@ int main(void) {
                     //Escolha de flores diurnas
                     inicio_escolhas_secundarios = 0;
                     mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-                    desenhar_escolhas_flores_dia(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura);
+                    desenhar_escolhas_flores_dia(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra);
             
                     if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                        acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
-                        escolha_flores_diurnas = 0;
-                        escolhido = 0;
-                        pode_apertar = 0.0;
-                        if (personagem_num == 3) {
-                            ataque_boss_tempo = 0.0;
-                            vez_inimigo = 1;
-                        } else {
-                            escolhas = 1;
-                            personagem_num++;
+                        if (energia_sobra == 1) {
+                            acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
+                            escolha_flores_diurnas = 0;
+                            escolhido = 0;
+                            pode_apertar = 0.0;
+                            if (personagem_num == 3) {
+                                ataque_boss_tempo = 0.0;
+                                vez_inimigo = 1;
+                            } else {
+                                escolhas = 1;
+                                personagem_num++;
+                            }
                         }
                     }
                     if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
@@ -430,19 +435,21 @@ int main(void) {
                     //Escolha de flores noturnas
                     inicio_escolhas_secundarios = 0;
                     mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-                    desenhar_escolhas_flores_noite(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura);
+                    desenhar_escolhas_flores_noite(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra);
             
                     if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                        acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
-                        escolha_flores_noturnas = 0;
-                        pode_apertar = 0.0;
-                        escolhido = 0;
-                        if (personagem_num == 3) {
-                            ataque_boss_tempo = 0.0;
-                            vez_inimigo = 1;
-                        } else {
-                            escolhas = 1;
-                            personagem_num++;
+                        if (energia_sobra == 1) {
+                            acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
+                            escolha_flores_noturnas = 0;
+                            pode_apertar = 0.0;
+                            escolhido = 0;
+                            if (personagem_num == 3) {
+                                ataque_boss_tempo = 0.0;
+                                vez_inimigo = 1;
+                            } else {
+                                escolhas = 1;
+                                personagem_num++;
+                            }
                         }
                     }
                     if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
