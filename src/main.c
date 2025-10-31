@@ -57,6 +57,13 @@ int main(void) {
                     GenTextureMipmaps(&noite);
                     SetTextureFilter(noite, TEXTURE_FILTER_TRILINEAR);
 
+                    relogio_dia = LoadTexture("assets/images/Relogio_dia.png");
+                    GenTextureMipmaps(&relogio_dia);
+                    SetTextureFilter(relogio_dia, TEXTURE_FILTER_TRILINEAR);
+                    relogio_noite = LoadTexture("assets/images/Relogio_noite.png");
+                    GenTextureMipmaps(&relogio_noite);
+                    SetTextureFilter(relogio_noite, TEXTURE_FILTER_TRILINEAR);
+
                     borda_escolhido = LoadTexture("assets/images/Borda.png");
                     GenTextureMipmaps(&borda_escolhido);
                     SetTextureFilter(borda_escolhido, TEXTURE_FILTER_TRILINEAR);
@@ -189,11 +196,13 @@ int main(void) {
                     DrawTextureEx(quadro_vermelho_noite, (Vector2){415, 650}, 0.0, 0.35, WHITE);
                     DrawTextureEx(quadro_laranja_noite, (Vector2){815, 650}, 0.0, 0.35, WHITE);
                     DrawTextureEx(quadro_vinho_noite, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
+                    DrawTextureEx(relogio_noite, (Vector2){0, 0}, 0.0, 0.5, WHITE);
                 } else if (horario == 0) {
                     DrawTextureEx(quadro_roxo, (Vector2){15, 650}, 0.0, 0.35, WHITE);
                     DrawTextureEx(quadro_vermelho, (Vector2){415, 650}, 0.0, 0.35, WHITE);
                     DrawTextureEx(quadro_laranja, (Vector2){815, 650}, 0.0, 0.35, WHITE);
                     DrawTextureEx(quadro_vinho, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
+                    DrawTextureEx(relogio_dia, (Vector2){0, 0}, 0.0, 0.5, WHITE);
                 }           
                 DrawRectangle(15, 615, 370, 35, vida_cor);
                 DrawRectangle(350, 650, 35, 250, energia_cor);
@@ -481,6 +490,8 @@ int main(void) {
         UnloadTexture(quadro_vermelho_noite);
         UnloadTexture(quadro_laranja_noite);
         UnloadTexture(quadro_vinho_noite);
+        UnloadTexture(relogio_dia);
+        UnloadTexture(relogio_noite);
         UnloadTexture(borda);
         UnloadTexture(borda_escolhido);
         UnloadTexture(noite);
