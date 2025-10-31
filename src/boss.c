@@ -41,7 +41,7 @@ void subtrair_vida_boss(Boss **boss, int dano, float mult) {
     }
 }
 
-void ataque_boss(Boss *boss, Personagem **personagem) {
+void ataque_boss(Boss *boss, Personagem **personagem, int *p0_morto, int *p1_morto, int *p2_morto, int *p3_morto) {
     int i, j, dano = 0;
     float mult = 1;
     int personagem_num;
@@ -98,7 +98,7 @@ void ataque_boss(Boss *boss, Personagem **personagem) {
         }
     }
 
-    subtrair_vida_personagem(personagem, personagem_num, dano, mult);
+    subtrair_vida_personagem(personagem, personagem_num, dano, mult, p0_morto, p1_morto, p2_morto, p3_morto);
     printf("Boss usou %s no personagem %s causando %d de dano com multiplicador %.2f\n", a->nome, p->nome, dano, mult);
     printf("vida do personagem %s: %d\n", p->nome, p->vida);
 }

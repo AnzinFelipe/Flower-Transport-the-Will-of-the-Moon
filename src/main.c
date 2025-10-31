@@ -23,6 +23,7 @@ int main(void) {
     Texture2D boss_ataque_dia, boss_ataque_noite;
     int escolhas, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, defender;
     int escolhido, inicio_escolhas_secundarios, personagem_num, vez_inimigo, horario, energia_sobra;
+    int p0_morto, p1_morto, p2_morto, p3_morto;
     Personagem *personagem_atual = NULL;
     float pode_apertar, delay;
     float ataque_boss_tempo, delay_ataque_boss;
@@ -111,6 +112,7 @@ int main(void) {
                     escolhas = 1; escolha_flores_diurnas = 0; escolha_flores_noturnas = 0; escolha_ataques = 0; defender = 0;
                     escolhido = 0; inicio_escolhas_secundarios = 0; personagem_num = 0; vez_inimigo = 0; horario = 0;
                     personagem_atual = NULL;
+                    p0_morto = 0, p1_morto = 0; p2_morto = 0; p3_morto = 0;
                     energia_sobra = 0;
                     pode_apertar = 0.0; delay = 0.1;
                     ataque_boss_tempo = 0.0; delay_ataque_boss = 2;
@@ -235,7 +237,9 @@ int main(void) {
                 DrawTextureEx(borda, (Vector2){400, 600}, 0.0, 0.5, GRAY);
                 DrawTextureEx(borda, (Vector2){800, 600}, 0.0, 0.5, GRAY);
                 DrawTextureEx(borda, (Vector2){1200, 600}, 0.0, 0.5, GRAY);
-                if (personagem_num == 0) {
+                if (vez_inimigo == 1) {
+                    // Nada pra nao ter borda de escolhido
+                } else if (personagem_num == 0) {
                     DrawTextureEx(borda_escolhido, (Vector2){0, 600}, 0.0, 0.5, WHITE);
                 } else if (personagem_num == 1) {
                     DrawTextureEx(borda_escolhido, (Vector2){400, 600}, 0.0, 0.5, WHITE);
@@ -248,7 +252,7 @@ int main(void) {
                 //Vez do inimigo ou vez do jogador
                 if (vez_inimigo == 1) {
                     if (ataque_boss_tempo >= delay_ataque_boss) {
-                        ataque_boss(boss, &personagem_head);
+                        ataque_boss(boss, &personagem_head, &p0_morto, &p1_morto, &p2_morto, &p3_morto);
                         vez_inimigo = 0;
                         personagem_num = 0;
                         escolhas = 1;
@@ -270,6 +274,12 @@ int main(void) {
                     pegar_personagem(personagem_num, &personagem_atual, personagem_head);
             
                     personagem_atual->defesa = 0;
+
+                    if (personagem_atual->vida == 0) {
+                        personagem_num++;
+                        pode_apertar = 0.0;
+                        continue;
+                    }
             
                     mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
                     
@@ -301,6 +311,12 @@ int main(void) {
                     pegar_personagem(personagem_num, &personagem_atual, personagem_head);
             
                     personagem_atual->defesa = 0;
+
+                    if (personagem_atual->vida == 0) {
+                        personagem_num++;
+                        pode_apertar = 0.0;
+                        continue;
+                    }
             
                     mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
                     
@@ -329,6 +345,12 @@ int main(void) {
                     pegar_personagem(personagem_num, &personagem_atual, personagem_head);
             
                     personagem_atual->defesa = 0;
+
+                    if (personagem_atual->vida == 0) {
+                        personagem_num++;
+                        pode_apertar = 0.0;
+                        continue;
+                    }
             
                     mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
             
@@ -357,6 +379,12 @@ int main(void) {
                     pegar_personagem(personagem_num, &personagem_atual, personagem_head);
             
                     personagem_atual->defesa = 0;
+
+                    if (personagem_atual->vida == 0) {
+                        personagem_num++;
+                        pode_apertar = 0.0;
+                        continue;
+                    }
             
                     mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
             
@@ -391,8 +419,19 @@ int main(void) {
                                 ataque_boss_tempo = 0.0;
                                 vez_inimigo = 1;
                             } else {
-                                escolhas = 1;
-                                personagem_num++;
+                                if (personagem_num == 2 && p3_morto == 1) {
+                                    ataque_boss_tempo = 0.0;
+                                    vez_inimigo = 1;
+                                } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
+                                    ataque_boss_tempo = 0.0;
+                                    vez_inimigo = 1;
+                                } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
+                                    ataque_boss_tempo = 0.0;
+                                    vez_inimigo = 1;
+                                } else {
+                                    escolhas = 1;
+                                    personagem_num++;
+                                }
                             }
                         }
                     }
@@ -419,8 +458,19 @@ int main(void) {
                                 ataque_boss_tempo = 0.0;
                                 vez_inimigo = 1;
                             } else {
-                                escolhas = 1;
-                                personagem_num++;
+                                if (personagem_num == 2 && p3_morto == 1) {
+                                    ataque_boss_tempo = 0.0;
+                                    vez_inimigo = 1;
+                                } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
+                                    ataque_boss_tempo = 0.0;
+                                    vez_inimigo = 1;
+                                } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
+                                    ataque_boss_tempo = 0.0;
+                                    vez_inimigo = 1;
+                                } else {
+                                    escolhas = 1;
+                                    personagem_num++;
+                                }
                             }
                         }
                     }
@@ -447,8 +497,19 @@ int main(void) {
                                 ataque_boss_tempo = 0.0;
                                 vez_inimigo = 1;
                             } else {
-                                escolhas = 1;
-                                personagem_num++;
+                                if (personagem_num == 2 && p3_morto == 1) {
+                                    ataque_boss_tempo = 0.0;
+                                    vez_inimigo = 1;
+                                } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
+                                    ataque_boss_tempo = 0.0;
+                                    vez_inimigo = 1;
+                                } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
+                                    ataque_boss_tempo = 0.0;
+                                    vez_inimigo = 1;
+                                } else {
+                                    escolhas = 1;
+                                    personagem_num++;
+                                }
                             }
                         }
                     }
@@ -475,8 +536,19 @@ int main(void) {
                         } else if (personagem_num == 2 && personagem_atual->energia > 40) {
                             personagem_atual->energia = 80;
                         }
-                        escolhas = 1;
-                        personagem_num++;
+                        if (personagem_num == 2 && p3_morto == 1) {
+                            ataque_boss_tempo = 0.0;
+                            vez_inimigo = 1;
+                        } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
+                            ataque_boss_tempo = 0.0;
+                            vez_inimigo = 1;
+                        } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
+                            ataque_boss_tempo = 0.0;
+                            vez_inimigo = 1;
+                        } else {
+                            escolhas = 1;
+                            personagem_num++;
+                        }
                     }
                 }
 

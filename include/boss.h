@@ -23,6 +23,6 @@ void desenhar_vida_boss(Boss *boss, int largura, Color vida);
 
 void subtrair_vida_boss(Boss **boss, int dano, float mult);
 
-void ataque_boss(Boss *boss, Personagem **personagem);
+void ataque_boss(Boss *boss, Personagem **personagem, int *p0_morto, int *p1_morto, int *p2_morto, int *p3_morto);
 
 #endif

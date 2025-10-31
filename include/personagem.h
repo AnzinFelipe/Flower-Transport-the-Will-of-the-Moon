@@ -32,7 +32,7 @@ void desenhar_vida_personagens(Personagem *personagem, int num, Color vida);
 
 void desenhar_energia_personagens(Personagem *personagem, int num, Color energia);
 
-void subtrair_vida_personagem(Personagem **personagem, int personagem_num, int dano, float mult);
+void subtrair_vida_personagem(Personagem **personagem, int personagem_num, int dano, float mult, int *p0_morto, int *p1_morto, int *p2_morto, int *p3_morto);
 
 void subtrair_energia_personagem(Personagem **personagem_atual, int energia_gasta);
 
