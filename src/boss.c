@@ -70,13 +70,29 @@ void ataque_boss(Boss *boss, Personagem **personagem) {
         for (j = 0; j < 3; j++) {
             if (p->vantagens_desvantagens[i][j] != NULL) {
                 if (j == 0 && strcmp(a->elemento, p->vantagens_desvantagens[i][j]) == 0) {
-                    mult = 1.5;
-                    break;
+                    if (p->defesa == 1) {
+                        mult = 1;
+                        break;
+                    } else {
+                        mult = 1.5;
+                        break;
+                    }
                 } else if (j == 1 && strcmp(a->elemento, p->vantagens_desvantagens[i][j]) == 0) {
-                    break;
+                    if (p->defesa == 1) {
+                        mult = 0.5;
+                        break;
+                    } else {
+                        mult = 1;
+                        break;
+                    }
                 } else if (j == 2 && strcmp(a->elemento, p->vantagens_desvantagens[i][j]) == 0) {
-                    mult = 0.75;
-                    break;                       
+                    if (p->defesa == 1) {
+                        mult = 0.25;
+                        break;
+                    } else {
+                        mult = 0.75;
+                        break;
+                    }                     
                 }   
             }
         }

@@ -172,7 +172,7 @@ int main(void) {
                     adicionar_flor_noite(&flor_noite_head3, "Energialida", 15, "Eletricidade", 10, 2.5, "");
 
                     personagem_head = NULL;
-                    adicionar_personagem(&personagem_head, "Roxo", 100, 60, NULL, flor_dia_head1, flor_noite_head1);
+                    adicionar_personagem(&personagem_head, "Roxo", 100, 80, NULL, flor_dia_head1, flor_noite_head1);
                     adicionar_personagem(&personagem_head, "Vermelho", 150, 40, ataque_head2, flor_dia_head2, NULL);
                     adicionar_personagem(&personagem_head, "Laranja", 80, 80, ataque_head3, NULL, flor_noite_head3);
                     adicionar_personagem(&personagem_head, "Verde", 100, 0, ataque_head4, NULL, NULL);
@@ -460,6 +460,14 @@ int main(void) {
                         ataque_boss_tempo = 0.0;
                         vez_inimigo = 1;
                     } else {
+                        personagem_atual->energia += GetRandomValue(10, 20);
+                        if (personagem_num == 0 && personagem_atual->energia > 60) {
+                            personagem_atual->energia = 80;
+                        } else if (personagem_num == 1 && personagem_atual->energia > 80) {
+                            personagem_atual->energia = 40;
+                        } else if (personagem_num == 2 && personagem_atual->energia > 40) {
+                            personagem_atual->energia = 80;
+                        }
                         escolhas = 1;
                         personagem_num++;
                     }
