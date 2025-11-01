@@ -30,8 +30,8 @@ void adicionar_boss (Boss **boss, Ataque *ataque) {
 }
 
 void desenhar_vida_boss(Boss *boss, int largura, Color vida) {
-    DrawRectangle(largura/2 - 300, 50, 600, 25, DARKGRAY);
-    DrawRectangle(largura/2 - 300, 50, boss->vida / 2, 25, vida);
+    DrawRectangle(largura/2 - 300, 20, 600, 25, DARKGRAY);
+    DrawRectangle(largura/2 - 300, 20, boss->vida / 2, 25, vida);
 }
 
 void subtrair_vida_boss(Boss **boss, int dano, float mult) {

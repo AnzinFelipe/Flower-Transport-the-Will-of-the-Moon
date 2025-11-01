@@ -20,13 +20,15 @@ int main(void) {
     Texture2D fundo, noite, relogio_dia, relogio_noite, borda_escolhido, borda;
     Texture2D quadro_roxo, quadro_roxo_noite, quadro_vermelho, quadro_vermelho_noite;
     Texture2D quadro_laranja, quadro_laranja_noite, quadro_vinho, quadro_vinho_noite;
-    Texture2D boss_ataque_dia, boss_ataque_noite;
+    Texture2D boss_dia_f1, boss_dia_f2, boss_dia_f3, boss_noite_f1, boss_noite_f2, boss_noite_f3;
+    Texture2D boss_acertar, boss_ataque_dia, boss_ataque_noite;
     int escolhas, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, defender;
     int escolhido, inicio_escolhas_secundarios, personagem_num, vez_inimigo, horario, energia_sobra;
     int p0_morto, p1_morto, p2_morto, p3_morto;
     Personagem *personagem_atual = NULL;
     float pode_apertar, delay;
     float ataque_boss_tempo, delay_ataque_boss;
+    float boss_animado, delay_boss_animado;
     Color vida_cor, energia_cor;
     Ataque *ataque_head2 = NULL, *ataque_head3 = NULL, *ataque_head4 = NULL, *ataque_head_boss = NULL;
     Flor_dia *flor_dia_head1 = NULL, *flor_dia_head2 = NULL;
@@ -102,6 +104,29 @@ int main(void) {
                     GenTextureMipmaps(&quadro_vinho_noite);
                     SetTextureFilter(quadro_vinho_noite, TEXTURE_FILTER_TRILINEAR);
 
+                    boss_dia_f1 = LoadTexture("assets/images/Boss_dia_f1.png");
+                    GenTextureMipmaps(&boss_dia_f1);
+                    SetTextureFilter(boss_dia_f1, TEXTURE_FILTER_TRILINEAR);
+                    boss_noite_f1 = LoadTexture("assets/images/Boss_noite_f1.png");
+                    GenTextureMipmaps(&boss_noite_f1);
+                    SetTextureFilter(boss_noite_f1, TEXTURE_FILTER_TRILINEAR);
+                    boss_dia_f2 = LoadTexture("assets/images/Boss_dia_f2.png");
+                    GenTextureMipmaps(&boss_dia_f2);
+                    SetTextureFilter(boss_dia_f2, TEXTURE_FILTER_TRILINEAR);
+                    boss_noite_f2 = LoadTexture("assets/images/Boss_noite_f2.png");
+                    GenTextureMipmaps(&boss_noite_f2);
+                    SetTextureFilter(boss_noite_f2, TEXTURE_FILTER_TRILINEAR);
+                    boss_dia_f3 = LoadTexture("assets/images/Boss_dia_f3.png");
+                    GenTextureMipmaps(&boss_dia_f3);
+                    SetTextureFilter(boss_dia_f3, TEXTURE_FILTER_TRILINEAR);
+                    boss_noite_f3 = LoadTexture("assets/images/Boss_noite_f3.png");
+                    GenTextureMipmaps(&boss_noite_f3);
+                    SetTextureFilter(boss_noite_f3, TEXTURE_FILTER_TRILINEAR);
+
+                    boss_acertar = LoadTexture("assets/images/Boss_acertar.png");
+                    GenTextureMipmaps(&boss_acertar);
+                    SetTextureFilter(boss_acertar, TEXTURE_FILTER_TRILINEAR);
+
                     boss_ataque_dia = LoadTexture("assets/images/Boss_ataque_dia.png");
                     GenTextureMipmaps(&boss_ataque_dia);
                     SetTextureFilter(boss_ataque_dia, TEXTURE_FILTER_TRILINEAR);
@@ -116,6 +141,7 @@ int main(void) {
                     energia_sobra = 0;
                     pode_apertar = 0.0; delay = 0.1;
                     ataque_boss_tempo = 0.0; delay_ataque_boss = 2;
+                    boss_animado = 0.0; delay_boss_animado = 0.4;
                     vida_cor = (Color){120, 18, 18, 255};
                     energia_cor = (Color){18, 120, 80, 255};
                     
@@ -194,6 +220,7 @@ int main(void) {
                 
                 pode_apertar += GetFrameTime();
                 ataque_boss_tempo += GetFrameTime();
+                boss_animado += GetFrameTime();
                 
                 if (IsKeyPressed(KEY_F11) && pode_apertar >= delay) {
                     ToggleFullscreen();
@@ -209,6 +236,19 @@ int main(void) {
                     DrawTextureEx(relogio_noite, (Vector2){0, 0}, 0.0, 0.5, WHITE);
                     if (vez_inimigo == 1) {
                         DrawTextureEx(boss_ataque_noite, (Vector2){0, 0}, 0.0, 1, WHITE);
+                    } else {
+                        if (boss_animado > delay_boss_animado * 4) {
+                            DrawTextureEx(boss_noite_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
+                            boss_animado = 0.0;
+                        } else if (boss_animado > delay_boss_animado * 3) {
+                            DrawTextureEx(boss_noite_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
+                        } else if (boss_animado > delay_boss_animado * 2) {
+                            DrawTextureEx(boss_noite_f3, (Vector2){0, 0}, 0.0, 1, WHITE);
+                        } else if (boss_animado > delay_boss_animado) {
+                            DrawTextureEx(boss_noite_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
+                        } else {
+                            DrawTextureEx(boss_noite_f1, (Vector2){0, 0}, 0.0, 1, WHITE);
+                        }
                     }
                     DrawTextureEx(quadro_roxo_noite, (Vector2){15, 650}, 0.0, 0.35, WHITE);
                     DrawTextureEx(quadro_vermelho_noite, (Vector2){415, 650}, 0.0, 0.35, WHITE);
@@ -218,6 +258,19 @@ int main(void) {
                     DrawTextureEx(relogio_dia, (Vector2){0, 0}, 0.0, 0.5, WHITE);
                     if (vez_inimigo == 1) {
                         DrawTextureEx(boss_ataque_dia, (Vector2){0, 0}, 0.0, 1, WHITE);
+                    } else {
+                        if (boss_animado > delay_boss_animado * 4) {
+                            DrawTextureEx(boss_dia_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
+                            boss_animado = 0.0;
+                        } else if (boss_animado > delay_boss_animado * 3) {
+                            DrawTextureEx(boss_dia_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
+                        } else if (boss_animado > delay_boss_animado * 2) {
+                            DrawTextureEx(boss_dia_f3, (Vector2){0, 0}, 0.0, 1, WHITE);
+                        } else if (boss_animado > delay_boss_animado) {
+                            DrawTextureEx(boss_dia_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
+                        } else {
+                            DrawTextureEx(boss_dia_f1, (Vector2){0, 0}, 0.0, 1, WHITE);
+                        }
                     }
                     DrawTextureEx(quadro_roxo, (Vector2){15, 650}, 0.0, 0.35, WHITE);
                     DrawTextureEx(quadro_vermelho, (Vector2){415, 650}, 0.0, 0.35, WHITE);
@@ -257,6 +310,7 @@ int main(void) {
                         personagem_num = 0;
                         escolhas = 1;
                         pode_apertar = 0.0;
+                        boss_animado = 0.0;
                         // 0 - dia, 1 - noite
                         if (horario == 0) {
                             horario  = 1;
@@ -265,7 +319,7 @@ int main(void) {
                         }
                     }
                 } else {
-                    DrawText("Sua Vez", largura / 2 - 100, 100, 40, WHITE);
+                    // Vez do player
                 }
             
                 //Escolhas primarias de cada personagem
@@ -594,12 +648,19 @@ int main(void) {
         UnloadTexture(quadro_vermelho);
         UnloadTexture(quadro_laranja);
         UnloadTexture(quadro_vinho);
-        UnloadTexture(boss_ataque_dia);   
+        UnloadTexture(boss_dia_f1);
+        UnloadTexture(boss_dia_f2);
+        UnloadTexture(boss_dia_f3);
+        UnloadTexture(boss_ataque_dia); 
         UnloadTexture(quadro_roxo_noite);
         UnloadTexture(quadro_vermelho_noite);
         UnloadTexture(quadro_laranja_noite);
         UnloadTexture(quadro_vinho_noite);
+        UnloadTexture(boss_noite_f1);
+        UnloadTexture(boss_noite_f2);
+        UnloadTexture(boss_noite_f3);
         UnloadTexture(boss_ataque_noite);
+        UnloadTexture(boss_acertar);
         UnloadTexture(relogio_dia);
         UnloadTexture(relogio_noite);
         UnloadTexture(borda);
