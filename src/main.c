@@ -63,7 +63,7 @@ int main(void) {
                     BG = LoadTexture("assets/images/BG.png");
                     GenTextureMipmaps(&BG);
                     SetTextureFilter(BG, TEXTURE_FILTER_TRILINEAR);
-                    BG_noite = LoadTexture("assets/images/BG_noite.png")
+                    BG_noite = LoadTexture("assets/images/BG_noite.png");
                     GenTextureMipmaps(&BG_noite);
                     SetTextureFilter(BG_noite, TEXTURE_FILTER_TRILINEAR);
 
@@ -309,10 +309,10 @@ int main(void) {
                     }
                     desenhar_personagem(personagem_head, 0, 100, quadro_roxo_noite, quadro_roxo2_noite, quadro_roxo3_noite);
                     desenhar_personagem(personagem_head, 1, 150, quadro_vermelho_noite, quadro_vermelho2_noite, quadro_vermelho3_noite);
-                    desenhar_personagem(personagem_head, 2, 180, quadro_laranja_noite, quadro_laranja2_noite, quadro_laranja3_noite);
+                    desenhar_personagem(personagem_head, 2, 80, quadro_laranja_noite, quadro_laranja2_noite, quadro_laranja3_noite);
                     desenhar_personagem(personagem_head, 3, 100, quadro_vinho_noite, quadro_vinho2_noite, quadro_vinho3_noite);   
                 } else if (horario == 0) {
-                    DrawTextureEx(BG, (Vector2){0, 0}, 0.0, 1, WHITE);
+                    DrawTextureEx(BG, (Vector2){0, 0}, 0.0, 1, GRAY);
                     DrawTextureEx(relogio_dia, (Vector2){0, 0}, 0.0, 0.5, WHITE);
                     if (vez_inimigo == 1) {
                         DrawTextureEx(boss_ataque_dia, (Vector2){0, 0}, 0.0, 1, WHITE);
@@ -332,7 +332,7 @@ int main(void) {
                     }
                     desenhar_personagem(personagem_head, 0, 100, quadro_roxo, quadro_roxo2, quadro_roxo3);
                     desenhar_personagem(personagem_head, 1, 150, quadro_vermelho, quadro_vermelho2, quadro_vermelho3);
-                    desenhar_personagem(personagem_head, 2, 180, quadro_laranja, quadro_laranja2, quadro_laranja3);
+                    desenhar_personagem(personagem_head, 2, 80, quadro_laranja, quadro_laranja2, quadro_laranja3);
                     desenhar_personagem(personagem_head, 3, 100, quadro_vinho, quadro_vinho2, quadro_vinho3); 
                 }           
                 desenhar_vida_personagens(personagem_head, 0, vida_cor);

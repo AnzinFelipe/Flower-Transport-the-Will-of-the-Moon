@@ -124,17 +124,7 @@ void desenhar_personagem(Personagem *personagem, int personagem_num, int vida_ma
         p = p->prox;
     }
 
-    if (p->vida <= vida_max * 0.25) {
-        if (personagem_num == 0) {
-            DrawTextureEx(pouca_vida, (Vector2){15, 650}, 0.0, 0.35, WHITE);
-        } else if (personagem_num == 1) {
-            DrawTextureEx(pouca_vida, (Vector2){415, 650}, 0.0, 0.35, WHITE);
-        } else if (personagem_num == 2) {
-            DrawTextureEx(pouca_vida, (Vector2){815, 650}, 0.0, 0.35, WHITE);
-        } else if (personagem_num == 3) {
-            DrawTextureEx(pouca_vida, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
-        }
-    } else if (p->vida == 0) {
+    if (p->vida == 0) {
         if (personagem_num == 0) {
             DrawTextureEx(derrotado, (Vector2){15, 650}, 0.0, 0.35, WHITE);
         } else if (personagem_num == 1) {
@@ -143,6 +133,16 @@ void desenhar_personagem(Personagem *personagem, int personagem_num, int vida_ma
             DrawTextureEx(derrotado, (Vector2){815, 650}, 0.0, 0.35, WHITE);
         } else if (personagem_num == 3) {
             DrawTextureEx(derrotado, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
+        }
+    } else if (p->vida <= vida_max * 0.25) {
+        if (personagem_num == 0) {
+            DrawTextureEx(pouca_vida, (Vector2){15, 650}, 0.0, 0.35, WHITE);
+        } else if (personagem_num == 1) {
+            DrawTextureEx(pouca_vida, (Vector2){415, 650}, 0.0, 0.35, WHITE);
+        } else if (personagem_num == 2) {
+            DrawTextureEx(pouca_vida, (Vector2){815, 650}, 0.0, 0.35, WHITE);
+        } else if (personagem_num == 3) {
+            DrawTextureEx(pouca_vida, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
         }
     } else {
         if (personagem_num == 0) {
@@ -193,7 +193,7 @@ void desenhar_energia_personagens(Personagem *personagem, int num, Color energia
         DrawRectangle(1150, 650, 35, 240, DARKGRAY);
         DrawRectangle(1150, 650, 35, p->energia * 2.9, energia);
     } else if (num == 3) {
-        DrawRectangle(1550, 650, 35, 240, BLACK);
+        DrawRectangle(1550, 650, 35, 240, DARKGRAY);
     }
 }
 
@@ -209,10 +209,13 @@ void subtrair_vida_personagem(Personagem **personagem, int personagem_num, int d
     }
     if (personagem_num == 0 && p->vida == 0) {
         *p0_morto = 1;
+        p->energia = 0;
     } else if (personagem_num == 1 && p->vida == 0) {
         *p1_morto = 1;
+        p->energia = 0;
     } else if (personagem_num == 2 && p->vida == 0) {
         *p2_morto = 1;
+        p->energia = 0;
     } else if (personagem_num == 3 && p->vida == 0) {
         *p3_morto = 1;
     }
