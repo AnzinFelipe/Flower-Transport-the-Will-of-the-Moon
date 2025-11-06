@@ -20,10 +20,10 @@ int main(void) {
     Texture2D BG, BG_noite, noite, relogio_dia, relogio_noite, borda_escolhido, borda;
     Texture2D quadro_roxo, quadro_roxo_noite, quadro_vermelho, quadro_vermelho_noite;
     Texture2D quadro_laranja, quadro_laranja_noite, quadro_vinho, quadro_vinho_noite;
-    Texture2D quadro_roxo2, quadro_roxo_noite2, quadro_vermelho2, quadro_vermelho_noite2;
-    Texture2D quadro_laranja2, quadro_laranja_noite2, quadro_vinho2, quadro_vinho_noite2;
-    Texture2D quadro_roxo3, quadro_roxo_noite3, quadro_vermelho3, quadro_vermelho_noite3;
-    Texture2D quadro_laranja3, quadro_laranja_noite3, quadro_vinho3, quadro_vinho_noite3;
+    Texture2D quadro_roxo2, quadro_roxo2_noite, quadro_vermelho2, quadro_vermelho2_noite;
+    Texture2D quadro_laranja2, quadro_laranja2_noite, quadro_vinho2, quadro_vinho2_noite;
+    Texture2D quadro_roxo3, quadro_roxo3_noite, quadro_vermelho3, quadro_vermelho3_noite;
+    Texture2D quadro_laranja3, quadro_laranja3_noite, quadro_vinho3, quadro_vinho3_noite;
     Texture2D boss_dia_f1, boss_dia_f2, boss_dia_f3, boss_noite_f1, boss_noite_f2, boss_noite_f3;
     Texture2D boss_acertar, boss_ataque_dia, boss_ataque_noite;
     int escolhas, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, defender;
