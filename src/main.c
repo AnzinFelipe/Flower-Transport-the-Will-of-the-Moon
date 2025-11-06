@@ -320,6 +320,9 @@ int main(void) {
                     }
                 } else {
                     // Vez do player
+                    if(currentScreen == SCREEN_GAME && p0_morto == 1 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1){
+                        currentScreen = SCREEN_GAMEOVER;
+                    }
                 }
             
                 //Escolhas primarias de cada personagem
@@ -627,6 +630,10 @@ int main(void) {
                         WHITE);
 
                 EndDrawing();
+                break;
+            
+            case SCREEN_GAMEOVER:
+                currentScreen = RunGameOver();
                 break;
         }
     }

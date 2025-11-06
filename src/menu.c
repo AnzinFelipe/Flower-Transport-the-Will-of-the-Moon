@@ -14,14 +14,14 @@ GameScreen RunMenu(void) {
         }
 
         BeginDrawing();
-        ClearBackground((Color){230, 200, 250, 255}); 
+        ClearBackground(PURPLE);
         
-        DrawText("Flower Transport", 400, 150, 60, PINK);
-        DrawText("the Will of the Moon", 450, 220, 30, PINK);
+        DrawText("Flower Transport", 400, 150, 60, BLACK);
+        DrawText("The Will of The Moon", 450, 220, 30, BLACK);
         
         for (int i = 0; i < 2; i++) {
             if (i == selecao) {
-                DrawText(opcao[i], 500, 300 + i * 60, 40, PURPLE);
+                DrawText(opcao[i], 500, 300 + i * 60, 40, (Color){255, 0, 144, 255});
             } else {
                 DrawText(opcao[i], 500, 300 + i * 60, 35, WHITE);
             }

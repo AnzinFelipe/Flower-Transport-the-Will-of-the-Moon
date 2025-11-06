@@ -6,7 +6,8 @@
 typedef enum GameScreen {
     SCREEN_MENU,
     SCREEN_GAME,
-    SCREEN_EXIT
+    SCREEN_EXIT,
+    SCREEN_GAMEOVER,
 } GameScreen;
 
 GameScreen RunMenu(void);
