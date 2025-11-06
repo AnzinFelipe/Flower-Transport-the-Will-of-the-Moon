@@ -28,6 +28,8 @@ void pegar_personagem(int personagem_num, Personagem **personagem_atual, Persona
 
 void adicionar_vantagens_desvantagens_personagem(Personagem **head, int num);
 
+void desenhar_personagem(Personagem *personagem, int personagem_num, int vida_max, Texture2D vida_cheia, Texture2D pouca_vida, Texture2D derrotado);
+
 void desenhar_vida_personagens(Personagem *personagem, int num, Color vida);
 
 void desenhar_energia_personagens(Personagem *personagem, int num, Color energia);

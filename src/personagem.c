@@ -117,9 +117,50 @@ void adicionar_vantagens_desvantagens_personagem(Personagem **head, int num) {
     }
 }
 
+void desenhar_personagem(Personagem *personagem, int personagem_num, int vida_max, Texture2D vida_cheia, Texture2D pouca_vida, Texture2D derrotado) {
+    Personagem *p = personagem;
+    int i;
+    for (i = 0; i < personagem_num; i++) {
+        p = p->prox;
+    }
+
+    if (p->vida <= vida_max * 0.25) {
+        if (personagem_num == 0) {
+            DrawTextureEx(pouca_vida, (Vector2){15, 650}, 0.0, 0.35, WHITE);
+        } else if (personagem_num == 1) {
+            DrawTextureEx(pouca_vida, (Vector2){415, 650}, 0.0, 0.35, WHITE);
+        } else if (personagem_num == 2) {
+            DrawTextureEx(pouca_vida, (Vector2){815, 650}, 0.0, 0.35, WHITE);
+        } else if (personagem_num == 3) {
+            DrawTextureEx(pouca_vida, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
+        }
+    } else if (p->vida == 0) {
+        if (personagem_num == 0) {
+            DrawTextureEx(derrotado, (Vector2){15, 650}, 0.0, 0.35, WHITE);
+        } else if (personagem_num == 1) {
+            DrawTextureEx(derrotado, (Vector2){415, 650}, 0.0, 0.35, WHITE);
+        } else if (personagem_num == 2) {
+            DrawTextureEx(derrotado, (Vector2){815, 650}, 0.0, 0.35, WHITE);
+        } else if (personagem_num == 3) {
+            DrawTextureEx(derrotado, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
+        }
+    } else {
+        if (personagem_num == 0) {
+            DrawTextureEx(vida_cheia, (Vector2){15, 650}, 0.0, 0.35, WHITE);
+        } else if (personagem_num == 1) {
+            DrawTextureEx(vida_cheia, (Vector2){415, 650}, 0.0, 0.35, WHITE);
+        } else if (personagem_num == 2) {
+            DrawTextureEx(vida_cheia, (Vector2){815, 650}, 0.0, 0.35, WHITE);
+        } else if (personagem_num == 3) {
+            DrawTextureEx(vida_cheia, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
+        }
+    }
+}
+
 void desenhar_vida_personagens(Personagem *personagem, int num, Color vida) {
     Personagem *p = personagem;
-    for (int i = 0; i < num; i++) {
+    int i;
+    for (i = 0; i < num; i++) {
         p = p->prox;
     }
     if (num == 0) {

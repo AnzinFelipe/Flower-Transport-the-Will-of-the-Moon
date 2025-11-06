@@ -17,9 +17,13 @@ int main(void) {
     
     RenderTexture2D janela;
     Music pink;
-    Texture2D fundo, noite, relogio_dia, relogio_noite, borda_escolhido, borda;
+    Texture2D BG, BG_noite, noite, relogio_dia, relogio_noite, borda_escolhido, borda;
     Texture2D quadro_roxo, quadro_roxo_noite, quadro_vermelho, quadro_vermelho_noite;
     Texture2D quadro_laranja, quadro_laranja_noite, quadro_vinho, quadro_vinho_noite;
+    Texture2D quadro_roxo2, quadro_roxo_noite2, quadro_vermelho2, quadro_vermelho_noite2;
+    Texture2D quadro_laranja2, quadro_laranja_noite2, quadro_vinho2, quadro_vinho_noite2;
+    Texture2D quadro_roxo3, quadro_roxo_noite3, quadro_vermelho3, quadro_vermelho_noite3;
+    Texture2D quadro_laranja3, quadro_laranja_noite3, quadro_vinho3, quadro_vinho_noite3;
     Texture2D boss_dia_f1, boss_dia_f2, boss_dia_f3, boss_noite_f1, boss_noite_f2, boss_noite_f3;
     Texture2D boss_acertar, boss_ataque_dia, boss_ataque_noite;
     int escolhas, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, defender;
@@ -56,7 +60,12 @@ int main(void) {
                     PlayMusicStream(pink);
                     
 
-                    fundo = LoadTexture("assets/images/Teste.png");
+                    BG = LoadTexture("assets/images/BG.png");
+                    GenTextureMipmaps(&BG);
+                    SetTextureFilter(BG, TEXTURE_FILTER_TRILINEAR);
+                    BG_noite = LoadTexture("assets/images/BG_noite.png")
+                    GenTextureMipmaps(&BG_noite);
+                    SetTextureFilter(BG_noite, TEXTURE_FILTER_TRILINEAR);
 
                     noite = LoadTexture("assets/images/Noite.png");
                     GenTextureMipmaps(&noite);
@@ -82,6 +91,18 @@ int main(void) {
                     quadro_roxo_noite = LoadTexture("assets/images/Roxo1_noite.png");
                     GenTextureMipmaps(&quadro_roxo_noite);
                     SetTextureFilter(quadro_roxo_noite, TEXTURE_FILTER_TRILINEAR);
+                    quadro_roxo2 = LoadTexture("assets/images/Roxo2.png");
+                    GenTextureMipmaps(&quadro_roxo2);
+                    SetTextureFilter(quadro_roxo2, TEXTURE_FILTER_TRILINEAR);
+                    quadro_roxo2_noite = LoadTexture("assets/images/Roxo2_noite.png");
+                    GenTextureMipmaps(&quadro_roxo2_noite);
+                    SetTextureFilter(quadro_roxo2_noite, TEXTURE_FILTER_TRILINEAR);
+                    quadro_roxo3 = LoadTexture("assets/images/Roxo3.png");
+                    GenTextureMipmaps(&quadro_roxo3);
+                    SetTextureFilter(quadro_roxo3, TEXTURE_FILTER_TRILINEAR);
+                    quadro_roxo3_noite = LoadTexture("assets/images/Roxo3_noite.png");
+                    GenTextureMipmaps(&quadro_roxo3_noite);
+                    SetTextureFilter(quadro_roxo3_noite, TEXTURE_FILTER_TRILINEAR);
 
                     quadro_vermelho = LoadTexture("assets/images/Vermelho1.png");
                     GenTextureMipmaps(&quadro_vermelho);
@@ -89,6 +110,18 @@ int main(void) {
                     quadro_vermelho_noite = LoadTexture("assets/images/Vermelho1_noite.png");
                     GenTextureMipmaps(&quadro_vermelho_noite);
                     SetTextureFilter(quadro_vermelho_noite, TEXTURE_FILTER_TRILINEAR);
+                    quadro_vermelho2 = LoadTexture("assets/images/Vermelho2.png");
+                    GenTextureMipmaps(&quadro_vermelho2);
+                    SetTextureFilter(quadro_vermelho2, TEXTURE_FILTER_TRILINEAR);
+                    quadro_vermelho2_noite = LoadTexture("assets/images/Vermelho2_noite.png");
+                    GenTextureMipmaps(&quadro_vermelho2_noite);
+                    SetTextureFilter(quadro_vermelho2_noite, TEXTURE_FILTER_TRILINEAR);
+                    quadro_vermelho3 = LoadTexture("assets/images/Vermelho3.png");
+                    GenTextureMipmaps(&quadro_vermelho3);
+                    SetTextureFilter(quadro_vermelho3, TEXTURE_FILTER_TRILINEAR);
+                    quadro_vermelho3_noite = LoadTexture("assets/images/Vermelho3_noite.png");
+                    GenTextureMipmaps(&quadro_vermelho3_noite);
+                    SetTextureFilter(quadro_vermelho3_noite, TEXTURE_FILTER_TRILINEAR);
 
                     quadro_laranja = LoadTexture("assets/images/Laranja1.png");
                     GenTextureMipmaps(&quadro_laranja);
@@ -96,6 +129,18 @@ int main(void) {
                     quadro_laranja_noite = LoadTexture("assets/images/Laranja1_noite.png");
                     GenTextureMipmaps(&quadro_laranja_noite);
                     SetTextureFilter(quadro_laranja_noite, TEXTURE_FILTER_TRILINEAR);
+                    quadro_laranja2 = LoadTexture("assets/images/Laranja2.png");
+                    GenTextureMipmaps(&quadro_laranja2);
+                    SetTextureFilter(quadro_laranja2, TEXTURE_FILTER_TRILINEAR);
+                    quadro_laranja2_noite = LoadTexture("assets/images/Laranja2_noite.png");
+                    GenTextureMipmaps(&quadro_laranja2_noite);
+                    SetTextureFilter(quadro_laranja2_noite, TEXTURE_FILTER_TRILINEAR);
+                    quadro_laranja3 = LoadTexture("assets/images/Laranja3.png");
+                    GenTextureMipmaps(&quadro_laranja3);
+                    SetTextureFilter(quadro_laranja3, TEXTURE_FILTER_TRILINEAR);
+                    quadro_laranja3_noite = LoadTexture("assets/images/Laranja3_noite.png");
+                    GenTextureMipmaps(&quadro_laranja3_noite);
+                    SetTextureFilter(quadro_laranja3_noite, TEXTURE_FILTER_TRILINEAR);
 
                     quadro_vinho = LoadTexture("assets/images/Vinho1.png");
                     GenTextureMipmaps(&quadro_vinho);
@@ -103,6 +148,18 @@ int main(void) {
                     quadro_vinho_noite = LoadTexture("assets/images/Vinho1_noite.png");
                     GenTextureMipmaps(&quadro_vinho_noite);
                     SetTextureFilter(quadro_vinho_noite, TEXTURE_FILTER_TRILINEAR);
+                    quadro_vinho2 = LoadTexture("assets/images/Vinho2.png");
+                    GenTextureMipmaps(&quadro_vinho2);
+                    SetTextureFilter(quadro_vinho2, TEXTURE_FILTER_TRILINEAR);
+                    quadro_vinho2_noite = LoadTexture("assets/images/Vinho2_noite.png");
+                    GenTextureMipmaps(&quadro_vinho2_noite);
+                    SetTextureFilter(quadro_vinho2_noite, TEXTURE_FILTER_TRILINEAR);
+                    quadro_vinho3 = LoadTexture("assets/images/Vinho3.png");
+                    GenTextureMipmaps(&quadro_vinho3);
+                    SetTextureFilter(quadro_vinho3, TEXTURE_FILTER_TRILINEAR);
+                    quadro_vinho3_noite = LoadTexture("assets/images/Vinho3_noite.png");
+                    GenTextureMipmaps(&quadro_vinho3_noite);
+                    SetTextureFilter(quadro_vinho3_noite, TEXTURE_FILTER_TRILINEAR);
 
                     boss_dia_f1 = LoadTexture("assets/images/Boss_dia_f1.png");
                     GenTextureMipmaps(&boss_dia_f1);
@@ -230,8 +287,8 @@ int main(void) {
                 BeginTextureMode(janela);
                 
                 ClearBackground(BLACK);
-                DrawTextureEx(fundo, (Vector2){0, 0}, 0.0, 0.85, BLACK);
                 if (horario == 1) {
+                    DrawTextureEx(BG_noite, (Vector2){0, 0}, 0.0, 1, WHITE);
                     DrawTextureEx(noite, (Vector2){0, 0}, 0.0, 1, WHITE);
                     DrawTextureEx(relogio_noite, (Vector2){0, 0}, 0.0, 0.5, WHITE);
                     if (vez_inimigo == 1) {
@@ -250,11 +307,12 @@ int main(void) {
                             DrawTextureEx(boss_noite_f1, (Vector2){0, 0}, 0.0, 1, WHITE);
                         }
                     }
-                    DrawTextureEx(quadro_roxo_noite, (Vector2){15, 650}, 0.0, 0.35, WHITE);
-                    DrawTextureEx(quadro_vermelho_noite, (Vector2){415, 650}, 0.0, 0.35, WHITE);
-                    DrawTextureEx(quadro_laranja_noite, (Vector2){815, 650}, 0.0, 0.35, WHITE);
-                    DrawTextureEx(quadro_vinho_noite, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
+                    desenhar_personagem(personagem_head, 0, 100, quadro_roxo_noite, quadro_roxo2_noite, quadro_roxo3_noite);
+                    desenhar_personagem(personagem_head, 1, 150, quadro_vermelho_noite, quadro_vermelho2_noite, quadro_vermelho3_noite);
+                    desenhar_personagem(personagem_head, 2, 180, quadro_laranja_noite, quadro_laranja2_noite, quadro_laranja3_noite);
+                    desenhar_personagem(personagem_head, 3, 100, quadro_vinho_noite, quadro_vinho2_noite, quadro_vinho3_noite);   
                 } else if (horario == 0) {
+                    DrawTextureEx(BG, (Vector2){0, 0}, 0.0, 1, WHITE);
                     DrawTextureEx(relogio_dia, (Vector2){0, 0}, 0.0, 0.5, WHITE);
                     if (vez_inimigo == 1) {
                         DrawTextureEx(boss_ataque_dia, (Vector2){0, 0}, 0.0, 1, WHITE);
@@ -272,10 +330,10 @@ int main(void) {
                             DrawTextureEx(boss_dia_f1, (Vector2){0, 0}, 0.0, 1, WHITE);
                         }
                     }
-                    DrawTextureEx(quadro_roxo, (Vector2){15, 650}, 0.0, 0.35, WHITE);
-                    DrawTextureEx(quadro_vermelho, (Vector2){415, 650}, 0.0, 0.35, WHITE);
-                    DrawTextureEx(quadro_laranja, (Vector2){815, 650}, 0.0, 0.35, WHITE);
-                    DrawTextureEx(quadro_vinho, (Vector2){1215, 650}, 0.0, 0.35, WHITE);
+                    desenhar_personagem(personagem_head, 0, 100, quadro_roxo, quadro_roxo2, quadro_roxo3);
+                    desenhar_personagem(personagem_head, 1, 150, quadro_vermelho, quadro_vermelho2, quadro_vermelho3);
+                    desenhar_personagem(personagem_head, 2, 180, quadro_laranja, quadro_laranja2, quadro_laranja3);
+                    desenhar_personagem(personagem_head, 3, 100, quadro_vinho, quadro_vinho2, quadro_vinho3); 
                 }           
                 desenhar_vida_personagens(personagem_head, 0, vida_cor);
                 desenhar_energia_personagens(personagem_head, 0, energia_cor);
@@ -652,17 +710,33 @@ int main(void) {
 
         UnloadRenderTexture(janela);
         UnloadTexture(quadro_roxo);
+        UnloadTexture(quadro_roxo2);
+        UnloadTexture(quadro_roxo3);
         UnloadTexture(quadro_vermelho);
+        UnloadTexture(quadro_vermelho2);
+        UnloadTexture(quadro_vermelho3);
         UnloadTexture(quadro_laranja);
+        UnloadTexture(quadro_laranja2);
+        UnloadTexture(quadro_laranja3);
         UnloadTexture(quadro_vinho);
+        UnloadTexture(quadro_vinho2);
+        UnloadTexture(quadro_vinho3);
         UnloadTexture(boss_dia_f1);
         UnloadTexture(boss_dia_f2);
         UnloadTexture(boss_dia_f3);
         UnloadTexture(boss_ataque_dia); 
         UnloadTexture(quadro_roxo_noite);
+        UnloadTexture(quadro_roxo2_noite);
+        UnloadTexture(quadro_roxo3_noite);
         UnloadTexture(quadro_vermelho_noite);
+        UnloadTexture(quadro_vermelho2_noite);
+        UnloadTexture(quadro_vermelho3_noite);
         UnloadTexture(quadro_laranja_noite);
+        UnloadTexture(quadro_laranja2_noite);
+        UnloadTexture(quadro_laranja3_noite);
         UnloadTexture(quadro_vinho_noite);
+        UnloadTexture(quadro_vinho2_noite);
+        UnloadTexture(quadro_vinho3_noite);
         UnloadTexture(boss_noite_f1);
         UnloadTexture(boss_noite_f2);
         UnloadTexture(boss_noite_f3);
@@ -673,7 +747,8 @@ int main(void) {
         UnloadTexture(borda);
         UnloadTexture(borda_escolhido);
         UnloadTexture(noite);
-        UnloadTexture(fundo);
+        UnloadTexture(BG);
+        UnloadTexture(BG_noite);
         UnloadMusicStream(pink);
         CloseAudioDevice();
     }
