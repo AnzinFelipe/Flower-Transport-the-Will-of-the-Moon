@@ -375,294 +375,294 @@ int main(void) {
                         } else if (horario == 1) {
                             horario = 0;
                         }
+                        if(currentScreen == SCREEN_GAME && p0_morto == 1 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1){
+                            currentScreen = SCREEN_GAMEOVER;
+                        }
                     }
                 } else {
                     // Vez do player
-                    if(currentScreen == SCREEN_GAME && p0_morto == 1 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1){
-                        currentScreen = SCREEN_GAMEOVER;
-                    }
-                }
-            
-                //Escolhas primarias de cada personagem
-                if (escolhas == 1 && personagem_num == 0) {
-                    //Personagem 0
-                    pegar_personagem(personagem_num, &personagem_atual, personagem_head);
-            
-                    personagem_atual->defesa = 0;
-
-                    if (personagem_atual->vida == 0) {
-                        personagem_num++;
-                        pode_apertar = 0.0;
-                        continue;
-                    }
-            
-                    mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
                     
-                    desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura, horario);
-                    
-                    if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                        if (escolhido == 0) {
-                            if (horario == 0) {
-                                escolha_flores_diurnas = 1;    
-                                escolhas = 0;
-                                escolhido = 0;
-                            }
-                        } else if (escolhido == 1) {
-                            if (horario == 1) {
-                                escolha_flores_noturnas = 1;    
-                                escolhas = 0;
-                                escolhido = 0;
-                            }
-                        } else if (escolhido == 2) {
-                            defender = 1;
-                            escolhas = 0;
-                            escolhido = 0;
-                        }
-                        pode_apertar = 0.0;
-                    }
-            
-                } else if (escolhas == 1 && personagem_num == 1) {
-                    //Personagem 1
-                    pegar_personagem(personagem_num, &personagem_atual, personagem_head);
-            
-                    personagem_atual->defesa = 0;
-
-                    if (personagem_atual->vida == 0) {
-                        personagem_num++;
-                        pode_apertar = 0.0;
-                        continue;
-                    }
-            
-                    mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
-                    
-                    desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura, horario);
-                    
-                    if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                        if (escolhido == 0) {
-                            escolha_ataques = 1;
-                            escolhas = 0;
-                            escolhido = 0;    
-                        } else if (escolhido == 1) {
-                            if (horario == 0) {
-                                escolha_flores_diurnas = 1;
-                                escolhas = 0;
-                                escolhido = 0;
-                            }
-                        } else if (escolhido == 2) {
-                            defender = 1;
-                            escolhas = 0;
-                            escolhido = 0;
-                        }
-                        pode_apertar = 0.0;
-                    }
-                } else if (escolhas == 1 && personagem_num == 2) {
-                    //Personagem 2
-                    pegar_personagem(personagem_num, &personagem_atual, personagem_head);
-            
-                    personagem_atual->defesa = 0;
-
-                    if (personagem_atual->vida == 0) {
-                        personagem_num++;
-                        pode_apertar = 0.0;
-                        continue;
-                    }
-            
-                    mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
-            
-                    desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura, horario);
-            
-                    if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                        if (escolhido == 0) {
-                            escolha_ataques = 1;
-                            escolhas = 0;
-                            escolhido = 0;   
-                        } else if (escolhido == 1) {
-                            if (horario == 1) {
-                                escolha_flores_noturnas = 1;
-                                escolhas = 0;
-                                escolhido = 0;
-                            }
-                        } else if (escolhido == 2) {
-                            defender = 1;
-                            escolhas = 0;
-                            escolhido = 0;
-                        }
-                        pode_apertar = 0.0;
-                    }
-                } else if (escolhas == 1 && personagem_num == 3) {
-                    //Personagem 3
-                    pegar_personagem(personagem_num, &personagem_atual, personagem_head);
-            
-                    personagem_atual->defesa = 0;
-
-                    if (personagem_atual->vida == 0) {
-                        personagem_num++;
-                        pode_apertar = 0.0;
-                        continue;
-                    }
-            
-                    mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
-            
-                    desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura, horario);
-            
-                    if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                        if (escolhido == 0) {
-                            escolha_ataques = 1;    
-                        } else if (escolhido == 1) {
-                            defender = 1;
-                        }
-                        escolhas = 0;
-                        escolhido = 0;
-                        pode_apertar = 0.0;
-                    }
-                }
+                    //Escolhas primarias de cada personagem
+                    if (escolhas == 1 && personagem_num == 0) {
+                        //Personagem 0
+                        pegar_personagem(personagem_num, &personagem_atual, personagem_head);
                 
-                //Escolhas secundarias
-                if (escolha_ataques == 1) {
-                    //Escolha de ataques
-                    inicio_escolhas_secundarios = 0;
-                    mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-                    desenhar_escolhas_ataques(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra);
-            
-                    if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                        if (energia_sobra == 1) {
-                            acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
+                        personagem_atual->defesa = 0;
+
+                        if (personagem_atual->vida == 0) {
+                            personagem_num++;
+                            pode_apertar = 0.0;
+                            continue;
+                        }
+                
+                        mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
+                        
+                        desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura, horario);
+                        
+                        if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                            if (escolhido == 0) {
+                                if (horario == 0) {
+                                    escolha_flores_diurnas = 1;    
+                                    escolhas = 0;
+                                    escolhido = 0;
+                                }
+                            } else if (escolhido == 1) {
+                                if (horario == 1) {
+                                    escolha_flores_noturnas = 1;    
+                                    escolhas = 0;
+                                    escolhido = 0;
+                                }
+                            } else if (escolhido == 2) {
+                                defender = 1;
+                                escolhas = 0;
+                                escolhido = 0;
+                            }
+                            pode_apertar = 0.0;
+                        }
+                
+                    } else if (escolhas == 1 && personagem_num == 1) {
+                        //Personagem 1
+                        pegar_personagem(personagem_num, &personagem_atual, personagem_head);
+                
+                        personagem_atual->defesa = 0;
+
+                        if (personagem_atual->vida == 0) {
+                            personagem_num++;
+                            pode_apertar = 0.0;
+                            continue;
+                        }
+                
+                        mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
+                        
+                        desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura, horario);
+                        
+                        if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                            if (escolhido == 0) {
+                                escolha_ataques = 1;
+                                escolhas = 0;
+                                escolhido = 0;    
+                            } else if (escolhido == 1) {
+                                if (horario == 0) {
+                                    escolha_flores_diurnas = 1;
+                                    escolhas = 0;
+                                    escolhido = 0;
+                                }
+                            } else if (escolhido == 2) {
+                                defender = 1;
+                                escolhas = 0;
+                                escolhido = 0;
+                            }
+                            pode_apertar = 0.0;
+                        }
+                    } else if (escolhas == 1 && personagem_num == 2) {
+                        //Personagem 2
+                        pegar_personagem(personagem_num, &personagem_atual, personagem_head);
+                
+                        personagem_atual->defesa = 0;
+
+                        if (personagem_atual->vida == 0) {
+                            personagem_num++;
+                            pode_apertar = 0.0;
+                            continue;
+                        }
+                
+                        mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
+                
+                        desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura, horario);
+                
+                        if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                            if (escolhido == 0) {
+                                escolha_ataques = 1;
+                                escolhas = 0;
+                                escolhido = 0;   
+                            } else if (escolhido == 1) {
+                                if (horario == 1) {
+                                    escolha_flores_noturnas = 1;
+                                    escolhas = 0;
+                                    escolhido = 0;
+                                }
+                            } else if (escolhido == 2) {
+                                defender = 1;
+                                escolhas = 0;
+                                escolhido = 0;
+                            }
+                            pode_apertar = 0.0;
+                        }
+                    } else if (escolhas == 1 && personagem_num == 3) {
+                        //Personagem 3
+                        pegar_personagem(personagem_num, &personagem_atual, personagem_head);
+                
+                        personagem_atual->defesa = 0;
+
+                        if (personagem_atual->vida == 0) {
+                            personagem_num++;
+                            pode_apertar = 0.0;
+                            continue;
+                        }
+                
+                        mudar_escolha_primaria(&escolhido, personagem_num, &pode_apertar, &delay);
+                
+                        desenhar_escolhas_primarias(escolhido, personagem_num, largura, altura, horario);
+                
+                        if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                            if (escolhido == 0) {
+                                escolha_ataques = 1;    
+                            } else if (escolhido == 1) {
+                                defender = 1;
+                            }
+                            escolhas = 0;
+                            escolhido = 0;
+                            pode_apertar = 0.0;
+                        }
+                    }
+                    
+                    //Escolhas secundarias
+                    if (escolha_ataques == 1) {
+                        //Escolha de ataques
+                        inicio_escolhas_secundarios = 0;
+                        mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
+                        desenhar_escolhas_ataques(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra);
+                
+                        if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                            if (energia_sobra == 1) {
+                                acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
+                                escolha_ataques = 0;
+                                escolhido = 0;
+                                pode_apertar = 0.0;
+                                if (personagem_num == 3) {
+                                    ataque_boss_tempo = 0.0;
+                                    vez_inimigo = 1;
+                                } else {
+                                    if (personagem_num == 2 && p3_morto == 1) {
+                                        ataque_boss_tempo = 0.0;
+                                        vez_inimigo = 1;
+                                    } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
+                                        ataque_boss_tempo = 0.0;
+                                        vez_inimigo = 1;
+                                    } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
+                                        ataque_boss_tempo = 0.0;
+                                        vez_inimigo = 1;
+                                    } else {
+                                        escolhas = 1;
+                                        personagem_num++;
+                                    }
+                                }
+                            }
+                        }
+                        if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
                             escolha_ataques = 0;
+                            escolhas = 1;
                             escolhido = 0;
                             pode_apertar = 0.0;
-                            if (personagem_num == 3) {
-                                ataque_boss_tempo = 0.0;
-                                vez_inimigo = 1;
-                            } else {
-                                if (personagem_num == 2 && p3_morto == 1) {
-                                    ataque_boss_tempo = 0.0;
-                                    vez_inimigo = 1;
-                                } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
-                                    ataque_boss_tempo = 0.0;
-                                    vez_inimigo = 1;
-                                } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
+                        }
+                    }
+                    if (escolha_flores_diurnas == 1) {
+                        //Escolha de flores diurnas
+                        inicio_escolhas_secundarios = 0;
+                        mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
+                        desenhar_escolhas_flores_dia(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra);
+                
+                        if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                            if (energia_sobra == 1) {
+                                acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
+                                escolha_flores_diurnas = 0;
+                                escolhido = 0;
+                                pode_apertar = 0.0;
+                                if (personagem_num == 3) {
                                     ataque_boss_tempo = 0.0;
                                     vez_inimigo = 1;
                                 } else {
-                                    escolhas = 1;
-                                    personagem_num++;
+                                    if (personagem_num == 2 && p3_morto == 1) {
+                                        ataque_boss_tempo = 0.0;
+                                        vez_inimigo = 1;
+                                    } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
+                                        ataque_boss_tempo = 0.0;
+                                        vez_inimigo = 1;
+                                    } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
+                                        ataque_boss_tempo = 0.0;
+                                        vez_inimigo = 1;
+                                    } else {
+                                        escolhas = 1;
+                                        personagem_num++;
+                                    }
                                 }
                             }
                         }
-                    }
-                    if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
-                        escolha_ataques = 0;
-                        escolhas = 1;
-                        escolhido = 0;
-                        pode_apertar = 0.0;
-                    }
-                }
-                if (escolha_flores_diurnas == 1) {
-                    //Escolha de flores diurnas
-                    inicio_escolhas_secundarios = 0;
-                    mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-                    desenhar_escolhas_flores_dia(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra);
-            
-                    if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                        if (energia_sobra == 1) {
-                            acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
+                        if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
                             escolha_flores_diurnas = 0;
+                            escolhas = 1;
                             escolhido = 0;
                             pode_apertar = 0.0;
-                            if (personagem_num == 3) {
-                                ataque_boss_tempo = 0.0;
-                                vez_inimigo = 1;
-                            } else {
-                                if (personagem_num == 2 && p3_morto == 1) {
-                                    ataque_boss_tempo = 0.0;
-                                    vez_inimigo = 1;
-                                } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
-                                    ataque_boss_tempo = 0.0;
-                                    vez_inimigo = 1;
-                                } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
+                        }
+                    }
+                    if (escolha_flores_noturnas == 1) {
+                        //Escolha de flores noturnas
+                        inicio_escolhas_secundarios = 0;
+                        mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
+                        desenhar_escolhas_flores_noite(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra);
+                
+                        if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                            if (energia_sobra == 1) {
+                                acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
+                                escolha_flores_noturnas = 0;
+                                pode_apertar = 0.0;
+                                escolhido = 0;
+                                if (personagem_num == 3) {
                                     ataque_boss_tempo = 0.0;
                                     vez_inimigo = 1;
                                 } else {
-                                    escolhas = 1;
-                                    personagem_num++;
+                                    if (personagem_num == 2 && p3_morto == 1) {
+                                        ataque_boss_tempo = 0.0;
+                                        vez_inimigo = 1;
+                                    } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
+                                        ataque_boss_tempo = 0.0;
+                                        vez_inimigo = 1;
+                                    } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
+                                        ataque_boss_tempo = 0.0;
+                                        vez_inimigo = 1;
+                                    } else {
+                                        escolhas = 1;
+                                        personagem_num++;
+                                    }
                                 }
                             }
                         }
-                    }
-                    if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
-                        escolha_flores_diurnas = 0;
-                        escolhas = 1;
-                        escolhido = 0;
-                        pode_apertar = 0.0;
-                    }
-                }
-                if (escolha_flores_noturnas == 1) {
-                    //Escolha de flores noturnas
-                    inicio_escolhas_secundarios = 0;
-                    mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-                    desenhar_escolhas_flores_noite(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra);
-            
-                    if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                        if (energia_sobra == 1) {
-                            acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
+                        if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
                             escolha_flores_noturnas = 0;
-                            pode_apertar = 0.0;
+                            escolhas = 1;
                             escolhido = 0;
-                            if (personagem_num == 3) {
-                                ataque_boss_tempo = 0.0;
-                                vez_inimigo = 1;
-                            } else {
-                                if (personagem_num == 2 && p3_morto == 1) {
-                                    ataque_boss_tempo = 0.0;
-                                    vez_inimigo = 1;
-                                } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
-                                    ataque_boss_tempo = 0.0;
-                                    vez_inimigo = 1;
-                                } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
-                                    ataque_boss_tempo = 0.0;
-                                    vez_inimigo = 1;
-                                } else {
-                                    escolhas = 1;
-                                    personagem_num++;
-                                }
-                            }
+                            pode_apertar = 0.0;
                         }
                     }
-                    if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
-                        escolha_flores_noturnas = 0;
-                        escolhas = 1;
-                        escolhido = 0;
+                    if (defender == 1) {
+                        personagem_atual->defesa = 1;
+                        defender = 0;
                         pode_apertar = 0.0;
-                    }
-                }
-                if (defender == 1) {
-                    personagem_atual->defesa = 1;
-                    defender = 0;
-                    pode_apertar = 0.0;
-                    if (personagem_num == 3) {
-                        ataque_boss_tempo = 0.0;
-                        vez_inimigo = 1;
-                    } else {
-                        personagem_atual->energia += GetRandomValue(10, 20);
-                        if (personagem_num == 0 && personagem_atual->energia > 60) {
-                            personagem_atual->energia = 80;
-                        } else if (personagem_num == 1 && personagem_atual->energia > 80) {
-                            personagem_atual->energia = 40;
-                        } else if (personagem_num == 2 && personagem_atual->energia > 40) {
-                            personagem_atual->energia = 80;
-                        }
-                        if (personagem_num == 2 && p3_morto == 1) {
-                            ataque_boss_tempo = 0.0;
-                            vez_inimigo = 1;
-                        } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
-                            ataque_boss_tempo = 0.0;
-                            vez_inimigo = 1;
-                        } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
+                        if (personagem_num == 3) {
                             ataque_boss_tempo = 0.0;
                             vez_inimigo = 1;
                         } else {
-                            escolhas = 1;
-                            personagem_num++;
+                            personagem_atual->energia += GetRandomValue(10, 20);
+                            if (personagem_num == 0 && personagem_atual->energia > 60) {
+                                personagem_atual->energia = 80;
+                            } else if (personagem_num == 1 && personagem_atual->energia > 80) {
+                                personagem_atual->energia = 40;
+                            } else if (personagem_num == 2 && personagem_atual->energia > 40) {
+                                personagem_atual->energia = 80;
+                            }
+                            if (personagem_num == 2 && p3_morto == 1) {
+                                ataque_boss_tempo = 0.0;
+                                vez_inimigo = 1;
+                            } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
+                                ataque_boss_tempo = 0.0;
+                                vez_inimigo = 1;
+                            } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
+                                ataque_boss_tempo = 0.0;
+                                vez_inimigo = 1;
+                            } else {
+                                escolhas = 1;
+                                personagem_num++;
+                            }
                         }
                     }
                 }
