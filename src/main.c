@@ -375,13 +375,13 @@ int main(void) {
                         } else if (horario == 1) {
                             horario = 0;
                         }
-                        if(p0_morto == 1 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1){
-                            currentScreen = SCREEN_GAMEOVER;
-                        }
                     }
                 } else {
-                   // Vez do jogador
-                
+                    // Vez do player
+                    if(currentScreen == SCREEN_GAME && p0_morto == 1 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1){
+                        currentScreen = SCREEN_GAMEOVER;
+                    }
+                }
             
                 //Escolhas primarias de cada personagem
                 if (escolhas == 1 && personagem_num == 0) {
@@ -666,7 +666,6 @@ int main(void) {
                         }
                     }
                 }
-            }
 
                 EndTextureMode();
                 
