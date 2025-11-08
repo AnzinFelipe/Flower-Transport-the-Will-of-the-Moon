@@ -25,7 +25,8 @@ int main(void) {
     Texture2D quadro_roxo3, quadro_roxo3_noite, quadro_vermelho3, quadro_vermelho3_noite;
     Texture2D quadro_laranja3, quadro_laranja3_noite, quadro_vinho3, quadro_vinho3_noite;
     Texture2D boss_dia_f1, boss_dia_f2, boss_dia_f3, boss_noite_f1, boss_noite_f2, boss_noite_f3;
-    Texture2D boss_acertar, boss_ataque_dia, boss_ataque_noite;
+    Texture2D boss_acertar, boss_coracao, boss_ataque_dia, boss_ataque_noite;
+    Texture2D proj_agua, proj_ar, proj_corte, proj_eletricidade, proj_fogo, proj_gelo, proj_impacto, proj_lunar, proj_perfuracao, proj_solar, proj_veneno;
     int escolhas, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, defender;
     int escolhido, inicio_escolhas_secundarios, personagem_num, vez_inimigo, horario, energia_sobra;
     int p0_morto, p1_morto, p2_morto, p3_morto;
