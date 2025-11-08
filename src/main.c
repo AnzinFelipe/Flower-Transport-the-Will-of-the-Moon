@@ -17,7 +17,7 @@ int main(void) {
     
     RenderTexture2D janela;
     Music pink;
-    Texture2D BG, BG_noite, noite, relogio_dia, relogio_noite, borda_escolhido, borda;
+    Texture2D BG, BG_noite, noite, relogio_dia, relogio_noite, borda_escolhido, borda, caixa;
     Texture2D quadro_roxo, quadro_roxo_noite, quadro_vermelho, quadro_vermelho_noite;
     Texture2D quadro_laranja, quadro_laranja_noite, quadro_vinho, quadro_vinho_noite;
     Texture2D quadro_roxo2, quadro_roxo2_noite, quadro_vermelho2, quadro_vermelho2_noite;
