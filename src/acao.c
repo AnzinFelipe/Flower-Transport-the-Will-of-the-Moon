@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 
-void acao(int *escolhido, Personagem **personagem_atual, Boss **boss, int ataque, int flor_dia, int flor_noite) {
+void acao(int *escolhido, Personagem **personagem_atual, Boss **boss, int ataque, int flor_dia, int flor_noite, int acertou_ataque) {
     int i, j, dano = 0, energia = 0;
     float mult = 1.0;
     Personagem *p = (*personagem_atual);
@@ -80,7 +80,9 @@ void acao(int *escolhido, Personagem **personagem_atual, Boss **boss, int ataque
         }
     }
 
-    subtrair_vida_boss(boss, dano, mult);
+    if (acertou_ataque == 1) {
+        subtrair_vida_boss(boss, dano, mult);
+    }
     printf("vida do boss: %d\n", (*boss)->vida);
     subtrair_energia_personagem(personagem_atual, energia);
     printf("energia do personagem %s: %d\n", p->nome, p->energia);

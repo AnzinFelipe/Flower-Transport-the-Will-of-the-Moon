@@ -6,6 +6,6 @@
 #include "personagem.h"
 #include "boss.h"
 
-void acao(int *escolhido, Personagem **personagem_atual, Boss **boss, int ataque, int flor_dia, int flor_noite);
+void acao(int *escolhido, Personagem **personagem_atual, Boss **boss, int ataque, int flor_dia, int flor_noite, int acertou_ataque);
 
 #endif

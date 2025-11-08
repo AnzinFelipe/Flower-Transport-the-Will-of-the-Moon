@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "escolhas_primarias.h"
 #include "escolhas_secundarias.h"
+#include "projeteis.h"
 #include "boss.h"
 #include "acao.h"
 #include "screens.h" 
@@ -29,7 +30,10 @@ int main(void) {
     Texture2D proj_agua, proj_ar, proj_corte, proj_eletricidade, proj_fogo, proj_gelo, proj_impacto, proj_lunar, proj_perfuracao, proj_solar, proj_veneno;
     int escolhas, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, defender;
     int escolhido, inicio_escolhas_secundarios, personagem_num, vez_inimigo, horario, energia_sobra;
+    int momento_atacar, verificar_ataque, ataque_apertado, acertou_ataque;
+    int projetil_ataque, projetil_flor_diurna, projetil_flor_noturna;
     int p0_morto, p1_morto, p2_morto, p3_morto;
+    char *elemento_atual;
     Personagem *personagem_atual = NULL;
     float pode_apertar, delay;
     float ataque_boss_tempo, delay_ataque_boss;
@@ -236,6 +240,9 @@ int main(void) {
                     escolhido = 0; inicio_escolhas_secundarios = 0; personagem_num = 0; vez_inimigo = 0; horario = 0;
                     personagem_atual = NULL;
                     p0_morto = 0, p1_morto = 0; p2_morto = 0; p3_morto = 0;
+                    momento_atacar = 0, verificar_ataque = 0, ataque_apertado = 0, acertou_ataque = 0;
+                    projetil_ataque = 0, projetil_flor_diurna = 0, projetil_flor_noturna = 0;
+                    elemento_atual = (char *)malloc(20);
                     energia_sobra = 0;
                     pode_apertar = 0.0; delay = 0.1;
                     ataque_boss_tempo = 0.0; delay_ataque_boss = 2;
@@ -566,28 +573,10 @@ int main(void) {
                 
                         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                             if (energia_sobra == 1) {
-                                acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
                                 escolha_ataques = 0;
-                                escolhido = 0;
+                                projetil_ataque = 1;
+                                momento_atacar = 1;
                                 pode_apertar = 0.0;
-                                if (personagem_num == 3) {
-                                    ataque_boss_tempo = 0.0;
-                                    vez_inimigo = 1;
-                                } else {
-                                    if (personagem_num == 2 && p3_morto == 1) {
-                                        ataque_boss_tempo = 0.0;
-                                        vez_inimigo = 1;
-                                    } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
-                                        ataque_boss_tempo = 0.0;
-                                        vez_inimigo = 1;
-                                    } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
-                                        ataque_boss_tempo = 0.0;
-                                        vez_inimigo = 1;
-                                    } else {
-                                        escolhas = 1;
-                                        personagem_num++;
-                                    }
-                                }
                             }
                         }
                         if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
@@ -605,28 +594,10 @@ int main(void) {
                 
                         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                             if (energia_sobra == 1) {
-                                acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
                                 escolha_flores_diurnas = 0;
-                                escolhido = 0;
+                                projetil_flor_diurna = 1;
+                                momento_atacar = 1;
                                 pode_apertar = 0.0;
-                                if (personagem_num == 3) {
-                                    ataque_boss_tempo = 0.0;
-                                    vez_inimigo = 1;
-                                } else {
-                                    if (personagem_num == 2 && p3_morto == 1) {
-                                        ataque_boss_tempo = 0.0;
-                                        vez_inimigo = 1;
-                                    } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
-                                        ataque_boss_tempo = 0.0;
-                                        vez_inimigo = 1;
-                                    } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
-                                        ataque_boss_tempo = 0.0;
-                                        vez_inimigo = 1;
-                                    } else {
-                                        escolhas = 1;
-                                        personagem_num++;
-                                    }
-                                }
                             }
                         }
                         if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
@@ -644,28 +615,10 @@ int main(void) {
                 
                         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                             if (energia_sobra == 1) {
-                                acao(&escolhido, &personagem_atual, &boss, escolha_ataques, escolha_flores_diurnas, escolha_flores_noturnas);
-                                escolha_flores_noturnas = 0;
+                                escolha_flores_noturnas= 0;
+                                projetil_flor_noturna = 1;
+                                momento_atacar = 1;
                                 pode_apertar = 0.0;
-                                escolhido = 0;
-                                if (personagem_num == 3) {
-                                    ataque_boss_tempo = 0.0;
-                                    vez_inimigo = 1;
-                                } else {
-                                    if (personagem_num == 2 && p3_morto == 1) {
-                                        ataque_boss_tempo = 0.0;
-                                        vez_inimigo = 1;
-                                    } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
-                                        ataque_boss_tempo = 0.0;
-                                        vez_inimigo = 1;
-                                    } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
-                                        ataque_boss_tempo = 0.0;
-                                        vez_inimigo = 1;
-                                    } else {
-                                        escolhas = 1;
-                                        personagem_num++;
-                                    }
-                                }
                             }
                         }
                         if (IsKeyPressed(KEY_X) && pode_apertar >= delay) {
@@ -691,6 +644,48 @@ int main(void) {
                             } else if (personagem_num == 2 && personagem_atual->energia > 40) {
                                 personagem_atual->energia = 80;
                             }
+                            if (personagem_num == 2 && p3_morto == 1) {
+                                ataque_boss_tempo = 0.0;
+                                vez_inimigo = 1;
+                            } else if (personagem_num == 1 && p2_morto == 1 && p3_morto == 1) {
+                                ataque_boss_tempo = 0.0;
+                                vez_inimigo = 1;
+                            } else if (personagem_num == 0 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1) {
+                                ataque_boss_tempo = 0.0;
+                                vez_inimigo = 1;
+                            } else {
+                                escolhas = 1;
+                                personagem_num++;
+                            }
+                        }
+                    }
+
+                    if (momento_atacar == 1) {
+                        //desenhar_projetil(elemento_atual, proj_agua, proj_ar, proj_corte, proj_eletricidade, proj_fogo, proj_gelo, proj_impacto, proj_lunar, proj_perfuracao, proj_solar, proj_veneno);
+                        if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                            momento_atacar = 0;
+                            ataque_apertado = 1;
+                            pode_apertar = 0.0;
+                        }
+                    }
+                    if (ataque_apertado == 1) {
+                        // Verificar com colisao
+                        acertou_ataque = 1;
+                        ataque_apertado = 0;
+                        verificar_ataque = 1;
+                    }
+                    if (verificar_ataque == 1) {
+                        acao(&escolhido, &personagem_atual, &boss, projetil_ataque, projetil_flor_diurna, projetil_flor_noturna, acertou_ataque);
+                        projetil_ataque = 0;
+                        projetil_flor_diurna = 0;
+                        projetil_flor_noturna = 0;
+                        escolhido = 0;
+                        acertou_ataque = 0;
+                        verificar_ataque = 0;
+                        if (personagem_num == 3) {
+                            ataque_boss_tempo = 0.0;
+                            vez_inimigo = 1;
+                        } else {
                             if (personagem_num == 2 && p3_morto == 1) {
                                 ataque_boss_tempo = 0.0;
                                 vez_inimigo = 1;
@@ -747,6 +742,7 @@ int main(void) {
         liberar_flor_noite(flor_noite_head1);
         liberar_flor_noite(flor_noite_head3);
         liberar_personagem(personagem_head);
+        free(elemento_atual);
         free(boss);
 
         UnloadRenderTexture(janela);
