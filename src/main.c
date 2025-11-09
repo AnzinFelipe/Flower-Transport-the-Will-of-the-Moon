@@ -55,6 +55,9 @@ int main(void) {
     {
         switch (currentScreen) {
             case SCREEN_EXIT:
+                    if (IsAudioDeviceReady()) {
+                        CloseAudioDevice();
+                    }
                 CloseWindow();
                 return 0;
             case SCREEN_MENU:
@@ -64,7 +67,9 @@ int main(void) {
                     janela = LoadRenderTexture(largura, altura);
                     SetTextureFilter(janela.texture, TEXTURE_FILTER_TRILINEAR);
                     
-                    InitAudioDevice();
+                    if (!IsAudioDeviceReady()) {
+                        InitAudioDevice();
+                    }
                     pink = LoadMusicStream("assets/music/Pink.mp3");
                     PlayMusicStream(pink);
                     
