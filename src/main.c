@@ -341,6 +341,7 @@ int main(void) {
                 }
 
                 if(derrotado == 1){
+                    horario = 0;
                     p0_morto = 0, p1_morto = 0; p2_morto = 0; p3_morto = 0;
                     personagem_head = NULL;
                     adicionar_personagem(&personagem_head, "Roxo", 100, 80, NULL, flor_dia_head1, flor_noite_head1);
