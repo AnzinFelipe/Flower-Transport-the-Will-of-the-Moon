@@ -34,6 +34,7 @@ int main(void) {
     int projetil_ataque, projetil_flor_diurna, projetil_flor_noturna;
     int p0_morto, p1_morto, p2_morto, p3_morto;
     int ir_coracao, voltar_coracao;
+    int derrotado = 0;
     char *elemento_atual;
     Personagem *personagem_atual = NULL;
     float velocidade_atual;
@@ -255,6 +256,7 @@ int main(void) {
                     boss_animado = 0.0; delay_boss_animado = 0.4;
                     vida_cor = (Color){120, 18, 18, 255};
                     energia_cor = (Color){18, 120, 80, 255};
+                    derrotado = 0;
                     
                     ataque_head2 = NULL;
                     adicionar_ataque(&ataque_head2, "Soco", 20, "Impacto", 5, 1.5, "");
@@ -336,6 +338,24 @@ int main(void) {
                 if (IsKeyPressed(KEY_F11) && pode_apertar >= delay) {
                     ToggleFullscreen();
                     pode_apertar = 0.0;
+                }
+
+                if(derrotado == 1){
+                    p0_morto = 0, p1_morto = 0; p2_morto = 0; p3_morto = 0;
+                    personagem_head = NULL;
+                    adicionar_personagem(&personagem_head, "Roxo", 100, 80, NULL, flor_dia_head1, flor_noite_head1);
+                    adicionar_personagem(&personagem_head, "Vermelho", 150, 40, ataque_head2, flor_dia_head2, NULL);
+                    adicionar_personagem(&personagem_head, "Laranja", 80, 80, ataque_head3, NULL, flor_noite_head3);
+                    adicionar_personagem(&personagem_head, "Verde", 100, 0, ataque_head4, NULL, NULL);
+                    
+                    adicionar_vantagens_desvantagens_personagem(&personagem_head, 0);
+                    adicionar_vantagens_desvantagens_personagem(&personagem_head, 1);
+                    adicionar_vantagens_desvantagens_personagem(&personagem_head, 2);
+                    adicionar_vantagens_desvantagens_personagem(&personagem_head, 3);
+                    
+                    boss = (Boss *)malloc(sizeof(Boss));
+                    adicionar_boss(&boss, ataque_head_boss);
+                    derrotado = 0;
                 }
 
                 BeginTextureMode(janela);
@@ -438,6 +458,9 @@ int main(void) {
                             horario = 0;
                         }
                         if(currentScreen == SCREEN_GAME && p0_morto == 1 && p1_morto == 1 && p2_morto == 1 && p3_morto == 1){
+                            liberar_personagem(personagem_head);
+                            free(boss);
+                            derrotado = 1;
                             currentScreen = SCREEN_GAMEOVER;
                         }
                     }
