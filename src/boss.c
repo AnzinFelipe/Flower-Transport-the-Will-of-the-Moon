@@ -34,6 +34,10 @@ void desenhar_vida_boss(Boss *boss, int largura, Color vida) {
     DrawRectangle(largura/2 - 300, 20, boss->vida / 2, 25, vida);
 }
 
+void desenhar_coracao(Texture2D coracao, float largura) {
+    DrawTextureEx(coracao, (Vector2){largura,0}, 0.0, 0.5, WHITE);
+}
+
 void subtrair_vida_boss(Boss **boss, int dano, float mult) {
     (*boss)->vida -= dano * mult;
     if ((*boss)->vida < 0) {

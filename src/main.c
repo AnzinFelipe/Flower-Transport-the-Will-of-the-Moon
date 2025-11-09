@@ -33,8 +33,10 @@ int main(void) {
     int momento_atacar, verificar_ataque, ataque_apertado, acertou_ataque;
     int projetil_ataque, projetil_flor_diurna, projetil_flor_noturna;
     int p0_morto, p1_morto, p2_morto, p3_morto;
+    int ir_coracao, voltar_coracao;
     char *elemento_atual;
     Personagem *personagem_atual = NULL;
+    float largura_coracao;
     float pode_apertar, delay;
     float ataque_boss_tempo, delay_ataque_boss;
     float boss_animado, delay_boss_animado;
@@ -242,6 +244,8 @@ int main(void) {
                     p0_morto = 0, p1_morto = 0; p2_morto = 0; p3_morto = 0;
                     momento_atacar = 0, verificar_ataque = 0, ataque_apertado = 0, acertou_ataque = 0;
                     projetil_ataque = 0, projetil_flor_diurna = 0, projetil_flor_noturna = 0;
+                    ir_coracao = 0, voltar_coracao = 0;
+                    largura_coracao = 0;
                     elemento_atual = (char *)malloc(20);
                     energia_sobra = 0;
                     pode_apertar = 0.0; delay = 0.1;
@@ -584,6 +588,7 @@ int main(void) {
                                 escolha_ataques = 0;
                                 projetil_ataque = 1;
                                 momento_atacar = 1;
+                                largura_coracao = 200;
                                 pode_apertar = 0.0;
                             }
                         }
@@ -605,6 +610,7 @@ int main(void) {
                                 escolha_flores_diurnas = 0;
                                 projetil_flor_diurna = 1;
                                 momento_atacar = 1;
+                                largura_coracao = 200;
                                 pode_apertar = 0.0;
                             }
                         }
@@ -626,6 +632,7 @@ int main(void) {
                                 escolha_flores_noturnas= 0;
                                 projetil_flor_noturna = 1;
                                 momento_atacar = 1;
+                                largura_coracao = 200;
                                 pode_apertar = 0.0;
                             }
                         }
@@ -669,7 +676,20 @@ int main(void) {
                     }
 
                     if (momento_atacar == 1) {
+                        desenhar_coracao(boss_coracao, largura_coracao);
                         desenhar_projetil(elemento_atual, proj_agua, proj_ar, proj_corte, proj_eletricidade, proj_fogo, proj_gelo, proj_impacto, proj_lunar, proj_perfuracao, proj_solar, proj_veneno);
+                        if (largura_coracao == 1000) {
+                            voltar_coracao = 1;
+                            ir_coracao = 0;
+                        } else if (largura_coracao == 200) {
+                            voltar_coracao = 0;
+                            ir_coracao = 1;
+                        }
+                        if (ir_coracao == 1) {
+                            largura_coracao += 20;
+                        } else if (voltar_coracao == 1) {
+                            largura_coracao -= 20;
+                        }
                         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                             momento_atacar = 0;
                             ataque_apertado = 1;
@@ -677,6 +697,7 @@ int main(void) {
                         }
                     }
                     if (ataque_apertado == 1) {
+                        desenhar_coracao(boss_coracao, largura_coracao);
                         // Verificar com colisao
                         acertou_ataque = 1;
                         ataque_apertado = 0;

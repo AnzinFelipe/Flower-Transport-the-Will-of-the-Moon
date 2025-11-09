@@ -21,6 +21,8 @@ void adicionar_boss (Boss **boss, Ataque *ataque);
 
 void desenhar_vida_boss(Boss *boss, int largura, Color vida);
 
+void desenhar_coracao(Texture2D coracao, float largura);
+
 void subtrair_vida_boss(Boss **boss, int dano, float mult);
 
 void ataque_boss(Boss *boss, Personagem **personagem, int *p0_morto, int *p1_morto, int *p2_morto, int *p3_morto);
