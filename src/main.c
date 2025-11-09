@@ -36,7 +36,8 @@ int main(void) {
     int ir_coracao, voltar_coracao;
     char *elemento_atual;
     Personagem *personagem_atual = NULL;
-    float largura_coracao;
+    float velocidade_atual;
+    float largura_coracao, altura_proj;
     float pode_apertar, delay;
     float ataque_boss_tempo, delay_ataque_boss;
     float boss_animado, delay_boss_animado;
@@ -245,8 +246,9 @@ int main(void) {
                     momento_atacar = 0, verificar_ataque = 0, ataque_apertado = 0, acertou_ataque = 0;
                     projetil_ataque = 0, projetil_flor_diurna = 0, projetil_flor_noturna = 0;
                     ir_coracao = 0, voltar_coracao = 0;
-                    largura_coracao = 0;
+                    largura_coracao = 0, altura_proj = 0;
                     elemento_atual = (char *)malloc(20);
+                    velocidade_atual = 0;
                     energia_sobra = 0;
                     pode_apertar = 0.0; delay = 0.1;
                     ataque_boss_tempo = 0.0; delay_ataque_boss = 2;
@@ -256,22 +258,22 @@ int main(void) {
                     
                     ataque_head2 = NULL;
                     adicionar_ataque(&ataque_head2, "Soco", 20, "Impacto", 5, 1.5, "");
-                    adicionar_ataque(&ataque_head2, "Chute", 15, "Impacto", 5, 1, "");
+                    adicionar_ataque(&ataque_head2, "Chute", 15, "Impacto", 5, 1.0, "");
                     adicionar_ataque(&ataque_head2, "Pa de jardinagem", 30, "Impacto", 10, 1.5, "");
                     adicionar_ataque(&ataque_head2, "Tesoura de poda", 25, "Corte", 10, 1.5, "");
 
                     ataque_head3 = NULL;
-                    adicionar_ataque(&ataque_head3, "Soco", 15, "Impacto", 5, 1.5, "");
-                    adicionar_ataque(&ataque_head3, "Unhada", 10, "Corte", 3, 2, "");
-                    adicionar_ataque(&ataque_head3, "Chute espiral", 25, "Perfuracao", 15, 2, "");
-                    adicionar_ataque(&ataque_head3, "Chifrada", 30, "Perfuracao", 20, 1, "");
+                    adicionar_ataque(&ataque_head3, "Soco", 15, "Impacto", 5, 2.0, "");
+                    adicionar_ataque(&ataque_head3, "Unhada", 10, "Corte", 3, 2.5, "");
+                    adicionar_ataque(&ataque_head3, "Chute espiral", 25, "Perfuracao", 15, 2.0, "");
+                    adicionar_ataque(&ataque_head3, "Chifrada", 30, "Perfuracao", 20, 1.5, "");
 
                     ataque_head4 = NULL;
-                    adicionar_ataque(&ataque_head4, "Soco solar", 35, "Impacto", 0, 1.5, "");
+                    adicionar_ataque(&ataque_head4, "Soco solar", 35, "Impacto", 0, 2.0, "");
                     adicionar_ataque(&ataque_head4, "Chute solar", 35, "Impacto", 0, 1.5, "");
-                    adicionar_ataque(&ataque_head4, "Lanca solar", 30, "Perfuracao", 0, 2, "");
-                    adicionar_ataque(&ataque_head4, "Espada solar", 30, "Corte", 0, 1.5, "");
-                    adicionar_ataque(&ataque_head4, "Fumaca venenosa", 10, "Veneno", 0, 1, "");
+                    adicionar_ataque(&ataque_head4, "Lanca solar", 30, "Perfuracao", 0, 2.5, "");
+                    adicionar_ataque(&ataque_head4, "Espada solar", 30, "Corte", 0, 1.0, "");
+                    adicionar_ataque(&ataque_head4, "Fumaca venenosa", 10, "Veneno", 0, 1.0, "");
 
                     ataque_head_boss = NULL;
                     adicionar_ataque(&ataque_head_boss, "Bafo lunar", 200, "Fogo", 0, 0, "");
@@ -280,33 +282,33 @@ int main(void) {
                     adicionar_ataque(&ataque_head_boss, "Olhar sombrio", 200, "Lunar", 0, 0, "");
                     
                     flor_dia_head1 = NULL;
-                    adicionar_flor_dia(&flor_dia_head1, "Flamigera-do-dia", 25, "Fogo", 15, 2.0, "");
-                    adicionar_flor_dia(&flor_dia_head1, "Tulipa afiada", 10, "Corte", 15, 2.0, "");
-                    adicionar_flor_dia(&flor_dia_head1, "Orquidea voltaica", 20, "Eletricidade", 15, 2.0, "");
-                    adicionar_flor_dia(&flor_dia_head1, "Nenufar real", 15, "Agua", 15, 2.0, "");
+                    adicionar_flor_dia(&flor_dia_head1, "Flamigera-do-dia", 25, "Fogo", 15, 1.5, "");
+                    adicionar_flor_dia(&flor_dia_head1, "Tulipa afiada", 10, "Corte", 15, 1.5, "");
+                    adicionar_flor_dia(&flor_dia_head1, "Orquidea voltaica", 20, "Eletricidade", 15, 2.5, "");
+                    adicionar_flor_dia(&flor_dia_head1, "Nenufar real", 15, "Agua", 15, 1.5, "");
                     adicionar_flor_dia(&flor_dia_head1, "Girassol", 20, "Solar", 15, 2.0, "");
-                    adicionar_flor_dia(&flor_dia_head1, "Ventanilia", 15, "Ar", 15, 2.0, "");
+                    adicionar_flor_dia(&flor_dia_head1, "Ventanilia", 15, "Ar", 15, 2.5, "");
 
                     flor_dia_head2 = NULL;
-                    adicionar_flor_dia(&flor_dia_head2, "Rosa gelida", 15, "Gelo", 15, 2.0, "");
-                    adicionar_flor_dia(&flor_dia_head2, "Helicopdea", 10, "Ar", 15, 2.0, "");
+                    adicionar_flor_dia(&flor_dia_head2, "Rosa gelida", 15, "Gelo", 15, 1.0, "");
+                    adicionar_flor_dia(&flor_dia_head2, "Helicopdea", 10, "Ar", 15, 2.5, "");
                     adicionar_flor_dia(&flor_dia_head2, "Girassol", 20, "Solar", 15, 2.0, "");
-                    adicionar_flor_dia(&flor_dia_head2, "Gravitiana", 20, "Impacto", 15, 2.0, "");
+                    adicionar_flor_dia(&flor_dia_head2, "Gravitiana", 20, "Impacto", 15, 1.0, "");
                     adicionar_flor_dia(&flor_dia_head2, "Lotus", 15, "Agua", 15, 2.0, "");
 
                     flor_noite_head1 = NULL;
-                    adicionar_flor_noite(&flor_noite_head1, "Rosa cromada", 20, "Impacto", 10, 2.5, "");
-                    adicionar_flor_noite(&flor_noite_head1, "Rainha-da-noite", 20, "Fogo", 10, 2.5, "");
+                    adicionar_flor_noite(&flor_noite_head1, "Rosa cromada", 20, "Impacto", 10, 1.0, "");
+                    adicionar_flor_noite(&flor_noite_head1, "Rainha-da-noite", 20, "Fogo", 10, 2.0, "");
                     adicionar_flor_noite(&flor_noite_head1, "Realeza espinhenta", 15, "Perfuracao", 10, 2.5, "");
-                    adicionar_flor_noite(&flor_noite_head1, "Flor de Mandacaru", 20, "Agua", 10, 2.5, "");
-                    adicionar_flor_noite(&flor_noite_head1, "Trombeta-de-anjo", 15, "Veneno", 10, 2.5, "");
-                    adicionar_flor_noite(&flor_noite_head1, "Gloria-da-friagem", 20, "Gelo", 10, 2.5, "");
+                    adicionar_flor_noite(&flor_noite_head1, "Flor de Mandacaru", 20, "Agua", 10, 1.5, "");
+                    adicionar_flor_noite(&flor_noite_head1, "Trombeta-de-anjo", 15, "Veneno", 10, 1.5, "");
+                    adicionar_flor_noite(&flor_noite_head1, "Gloria-da-friagem", 20, "Gelo", 10, 1.5, "");
 
                     flor_noite_head3 = NULL;
-                    adicionar_flor_noite(&flor_noite_head3, "Dama-da-noite", 20, "Lunar", 10, 2.5, "");
-                    adicionar_flor_noite(&flor_noite_head3, "Flamigera-da-noite", 25, "Fogo", 10, 2.5, "");
+                    adicionar_flor_noite(&flor_noite_head3, "Dama-da-noite", 20, "Lunar", 10, 2.0, "");
+                    adicionar_flor_noite(&flor_noite_head3, "Flamigera-da-noite", 25, "Fogo", 10, 1.5, "");
                     adicionar_flor_noite(&flor_noite_head3, "Realeza espinhenta", 15, "Perfuracao", 10, 2.5, "");
-                    adicionar_flor_noite(&flor_noite_head3, "Gloria-da-friagem", 20, "Gelo", 10, 2.5, "");
+                    adicionar_flor_noite(&flor_noite_head3, "Gloria-da-friagem", 20, "Gelo", 10, 1.5, "");
                     adicionar_flor_noite(&flor_noite_head3, "Energialida", 15, "Eletricidade", 10, 2.5, "");
 
                     personagem_head = NULL;
@@ -581,7 +583,7 @@ int main(void) {
                         //Escolha de ataques
                         inicio_escolhas_secundarios = 0;
                         mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-                        desenhar_escolhas_ataques(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra, elemento_atual);
+                        desenhar_escolhas_ataques(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra, elemento_atual, &velocidade_atual);
                 
                         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                             if (energia_sobra == 1) {
@@ -589,6 +591,7 @@ int main(void) {
                                 projetil_ataque = 1;
                                 momento_atacar = 1;
                                 largura_coracao = 200;
+                                altura_proj = 515;
                                 pode_apertar = 0.0;
                             }
                         }
@@ -603,7 +606,7 @@ int main(void) {
                         //Escolha de flores diurnas
                         inicio_escolhas_secundarios = 0;
                         mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-                        desenhar_escolhas_flores_dia(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra, elemento_atual);
+                        desenhar_escolhas_flores_dia(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra, elemento_atual, &velocidade_atual);
                 
                         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                             if (energia_sobra == 1) {
@@ -611,6 +614,7 @@ int main(void) {
                                 projetil_flor_diurna = 1;
                                 momento_atacar = 1;
                                 largura_coracao = 200;
+                                altura_proj = 515;
                                 pode_apertar = 0.0;
                             }
                         }
@@ -625,7 +629,7 @@ int main(void) {
                         //Escolha de flores noturnas
                         inicio_escolhas_secundarios = 0;
                         mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-                        desenhar_escolhas_flores_noite(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra, elemento_atual);
+                        desenhar_escolhas_flores_noite(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra, elemento_atual, &velocidade_atual);
                 
                         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                             if (energia_sobra == 1) {
@@ -633,6 +637,7 @@ int main(void) {
                                 projetil_flor_noturna = 1;
                                 momento_atacar = 1;
                                 largura_coracao = 200;
+                                altura_proj = 515;
                                 pode_apertar = 0.0;
                             }
                         }
@@ -677,7 +682,9 @@ int main(void) {
 
                     if (momento_atacar == 1) {
                         desenhar_coracao(boss_coracao, largura_coracao);
-                        desenhar_projetil(elemento_atual, proj_agua, proj_ar, proj_corte, proj_eletricidade, proj_fogo, proj_gelo, proj_impacto, proj_lunar, proj_perfuracao, proj_solar, proj_veneno);
+                        desenhar_projetil(elemento_atual, altura_proj, proj_agua, proj_ar, proj_corte,
+                            proj_eletricidade, proj_fogo, proj_gelo, proj_impacto, proj_lunar,
+                            proj_perfuracao, proj_solar, proj_veneno);
                         if (largura_coracao == 1000) {
                             voltar_coracao = 1;
                             ir_coracao = 0;
@@ -690,18 +697,19 @@ int main(void) {
                         } else if (voltar_coracao == 1) {
                             largura_coracao -= 20;
                         }
-                        if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
-                            momento_atacar = 0;
+                        if (ataque_apertado == 1) {
+                            altura_proj -= 20 * velocidade_atual;
+                            // Verificar com colisao
+                            if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                                acertou_ataque = 1;
+                                ataque_apertado = 0;
+                                verificar_ataque = 1;
+                                momento_atacar = 0;
+                            }
+                        } else if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                             ataque_apertado = 1;
                             pode_apertar = 0.0;
                         }
-                    }
-                    if (ataque_apertado == 1) {
-                        desenhar_coracao(boss_coracao, largura_coracao);
-                        // Verificar com colisao
-                        acertou_ataque = 1;
-                        ataque_apertado = 0;
-                        verificar_ataque = 1;
                     }
                     if (verificar_ataque == 1) {
                         acao(&escolhido, &personagem_atual, &boss, projetil_ataque, projetil_flor_diurna, projetil_flor_noturna, acertou_ataque);

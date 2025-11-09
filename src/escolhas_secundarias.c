@@ -1,5 +1,6 @@
 #include "escolhas_secundarias.h"
 #include "raylib.h"
+#include <string.h>
 #include <stdlib.h>
 
 void mudar_escolha_secundaria(int *escolhido, Personagem *personagem_atual, int escolha_flores_diurnas, int escolha_flores_noturnas, int escolha_ataques, float *pode_apertar, float *delay) {
@@ -41,7 +42,7 @@ void mudar_escolha_secundaria(int *escolhido, Personagem *personagem_atual, int 
     }
 }
 
-void desenhar_escolhas_ataques(int *escolhido, int *inicio, Personagem *personagem_atual, int personagem_num, int largura, int altura, int *energia_sobra, char *elemento) {
+void desenhar_escolhas_ataques(int *escolhido, int *inicio, Personagem *personagem_atual, int personagem_num, int largura, int altura, int *energia_sobra, char *elemento, float *velocidade) {
     Color nao_pode = {100, 50, 50, 255};
     Color nao_pode_escolhido = {200, 50, 50, 255};
     int total_ataques = 0;
@@ -86,6 +87,7 @@ void desenhar_escolhas_ataques(int *escolhido, int *inicio, Personagem *personag
                 DrawText(n->nome, largura, altura / 2 + i * 50, 30, WHITE);
                 *energia_sobra = 1;
                 strcpy(elemento, n->elemento);
+                *velocidade = n->velocidade;
             }
         } else {
             if (n->energia_gasta > personagem_atual->energia) {
@@ -98,7 +100,7 @@ void desenhar_escolhas_ataques(int *escolhido, int *inicio, Personagem *personag
     }
 }
 
-void desenhar_escolhas_flores_dia(int *escolhido, int *inicio, Personagem *personagem_atual, int personagem_num, int largura, int altura, int *energia_sobra, char *elemento) {
+void desenhar_escolhas_flores_dia(int *escolhido, int *inicio, Personagem *personagem_atual, int personagem_num, int largura, int altura, int *energia_sobra, char *elemento, float *velocidade) {
     Color nao_pode = {100, 50, 50, 255};
     Color nao_pode_escolhido = {200, 50, 50, 255};
     int total_flores_dias = 0;
@@ -143,6 +145,7 @@ void desenhar_escolhas_flores_dia(int *escolhido, int *inicio, Personagem *perso
                 DrawText(n->nome, largura, altura / 2 + i * 50, 30, WHITE);
                 *energia_sobra = 1;
                 strcpy(elemento, n->elemento);
+                *velocidade = n->velocidade;
             }
         } else {
             if (n->energia_gasta > personagem_atual->energia) {
@@ -155,7 +158,7 @@ void desenhar_escolhas_flores_dia(int *escolhido, int *inicio, Personagem *perso
     }
 }
 
-void desenhar_escolhas_flores_noite(int *escolhido, int *inicio, Personagem *personagem_atual, int personagem_num, int largura, int altura, int *energia_sobra, char *elemento) {
+void desenhar_escolhas_flores_noite(int *escolhido, int *inicio, Personagem *personagem_atual, int personagem_num, int largura, int altura, int *energia_sobra, char *elemento, float *velocidade) {
     Color nao_pode = {100, 50, 50, 255};
     Color nao_pode_escolhido = {200, 50, 50, 255};
     int total_flores_noites = 0;
@@ -201,6 +204,7 @@ void desenhar_escolhas_flores_noite(int *escolhido, int *inicio, Personagem *per
                 DrawText(n->nome, largura, altura / 2 + i * 50, 30, WHITE);
                 *energia_sobra = 1;
                 strcpy(elemento, n->elemento);
+                *velocidade = n->velocidade;
             }
         } else {
             if (n->energia_gasta > personagem_atual->energia) {
