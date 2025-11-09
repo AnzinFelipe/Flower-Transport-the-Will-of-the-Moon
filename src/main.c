@@ -270,10 +270,10 @@ int main(void) {
                     adicionar_ataque(&ataque_head4, "Fumaca venenosa", 10, "Veneno", 0, 1, "");
 
                     ataque_head_boss = NULL;
-                    adicionar_ataque(&ataque_head_boss, "Bafo lunar", 25, "Fogo", 0, 0, "");
-                    adicionar_ataque(&ataque_head_boss, "Chute dilacerante", 25, "Corte", 0, 0, "");
-                    adicionar_ataque(&ataque_head_boss, "Espectro lunatico", 30, "Lunar", 0, 0, "");
-                    adicionar_ataque(&ataque_head_boss, "Olhar sombrio", 20, "Lunar", 0, 0, "");
+                    adicionar_ataque(&ataque_head_boss, "Bafo lunar", 200, "Fogo", 0, 0, "");
+                    adicionar_ataque(&ataque_head_boss, "Chute dilacerante", 200, "Corte", 0, 0, "");
+                    adicionar_ataque(&ataque_head_boss, "Espectro lunatico", 200, "Lunar", 0, 0, "");
+                    adicionar_ataque(&ataque_head_boss, "Olhar sombrio", 200, "Lunar", 0, 0, "");
                     
                     flor_dia_head1 = NULL;
                     adicionar_flor_dia(&flor_dia_head1, "Flamigera-do-dia", 25, "Fogo", 15, 2.0, "");
@@ -342,17 +342,21 @@ int main(void) {
                     if (vez_inimigo == 1) {
                         DrawTextureEx(boss_ataque_noite, (Vector2){0, 0}, 0.0, 1, WHITE);
                     } else {
-                        if (boss_animado > delay_boss_animado * 4) {
-                            DrawTextureEx(boss_noite_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
-                            boss_animado = 0.0;
-                        } else if (boss_animado > delay_boss_animado * 3) {
-                            DrawTextureEx(boss_noite_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
-                        } else if (boss_animado > delay_boss_animado * 2) {
-                            DrawTextureEx(boss_noite_f3, (Vector2){0, 0}, 0.0, 1, WHITE);
-                        } else if (boss_animado > delay_boss_animado) {
-                            DrawTextureEx(boss_noite_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
+                        if (momento_atacar == 1 || ataque_apertado == 1) {
+                            DrawTextureEx(boss_acertar, (Vector2){0, 0}, 0.0, 1, WHITE);
                         } else {
-                            DrawTextureEx(boss_noite_f1, (Vector2){0, 0}, 0.0, 1, WHITE);
+                            if (boss_animado > delay_boss_animado * 4) {
+                                DrawTextureEx(boss_noite_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
+                                boss_animado = 0.0;
+                            } else if (boss_animado > delay_boss_animado * 3) {
+                                DrawTextureEx(boss_noite_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
+                            } else if (boss_animado > delay_boss_animado * 2) {
+                                DrawTextureEx(boss_noite_f3, (Vector2){0, 0}, 0.0, 1, WHITE);
+                            } else if (boss_animado > delay_boss_animado) {
+                                DrawTextureEx(boss_noite_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
+                            } else {
+                                DrawTextureEx(boss_noite_f1, (Vector2){0, 0}, 0.0, 1, WHITE);
+                            }
                         }
                     }
                     desenhar_personagem(personagem_head, 0, 100, quadro_roxo_noite, quadro_roxo2_noite, quadro_roxo3_noite);
@@ -365,17 +369,21 @@ int main(void) {
                     if (vez_inimigo == 1) {
                         DrawTextureEx(boss_ataque_dia, (Vector2){0, 0}, 0.0, 1, WHITE);
                     } else {
-                        if (boss_animado > delay_boss_animado * 4) {
-                            DrawTextureEx(boss_dia_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
-                            boss_animado = 0.0;
-                        } else if (boss_animado > delay_boss_animado * 3) {
-                            DrawTextureEx(boss_dia_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
-                        } else if (boss_animado > delay_boss_animado * 2) {
-                            DrawTextureEx(boss_dia_f3, (Vector2){0, 0}, 0.0, 1, WHITE);
-                        } else if (boss_animado > delay_boss_animado) {
-                            DrawTextureEx(boss_dia_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
+                        if (momento_atacar == 1 || ataque_apertado == 1) {
+                            DrawTextureEx(boss_acertar, (Vector2){0, 0}, 0.0, 1, WHITE);
                         } else {
-                            DrawTextureEx(boss_dia_f1, (Vector2){0, 0}, 0.0, 1, WHITE);
+                            if (boss_animado > delay_boss_animado * 4) {
+                                DrawTextureEx(boss_dia_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
+                                boss_animado = 0.0;
+                            } else if (boss_animado > delay_boss_animado * 3) {
+                                DrawTextureEx(boss_dia_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
+                            } else if (boss_animado > delay_boss_animado * 2) {
+                                DrawTextureEx(boss_dia_f3, (Vector2){0, 0}, 0.0, 1, WHITE);
+                            } else if (boss_animado > delay_boss_animado) {
+                                DrawTextureEx(boss_dia_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
+                            } else {
+                                DrawTextureEx(boss_dia_f1, (Vector2){0, 0}, 0.0, 1, WHITE);
+                            }
                         }
                     }
                     desenhar_personagem(personagem_head, 0, 100, quadro_roxo, quadro_roxo2, quadro_roxo3);
@@ -569,7 +577,7 @@ int main(void) {
                         //Escolha de ataques
                         inicio_escolhas_secundarios = 0;
                         mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-                        desenhar_escolhas_ataques(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra);
+                        desenhar_escolhas_ataques(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra, elemento_atual);
                 
                         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                             if (energia_sobra == 1) {
@@ -590,7 +598,7 @@ int main(void) {
                         //Escolha de flores diurnas
                         inicio_escolhas_secundarios = 0;
                         mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-                        desenhar_escolhas_flores_dia(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra);
+                        desenhar_escolhas_flores_dia(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra, elemento_atual);
                 
                         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                             if (energia_sobra == 1) {
@@ -611,7 +619,7 @@ int main(void) {
                         //Escolha de flores noturnas
                         inicio_escolhas_secundarios = 0;
                         mudar_escolha_secundaria(&escolhido, personagem_atual, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, &pode_apertar, &delay);
-                        desenhar_escolhas_flores_noite(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra);
+                        desenhar_escolhas_flores_noite(&escolhido, &inicio_escolhas_secundarios, personagem_atual, personagem_num, largura, altura, &energia_sobra, elemento_atual);
                 
                         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                             if (energia_sobra == 1) {
@@ -661,7 +669,7 @@ int main(void) {
                     }
 
                     if (momento_atacar == 1) {
-                        //desenhar_projetil(elemento_atual, proj_agua, proj_ar, proj_corte, proj_eletricidade, proj_fogo, proj_gelo, proj_impacto, proj_lunar, proj_perfuracao, proj_solar, proj_veneno);
+                        desenhar_projetil(elemento_atual, proj_agua, proj_ar, proj_corte, proj_eletricidade, proj_fogo, proj_gelo, proj_impacto, proj_lunar, proj_perfuracao, proj_solar, proj_veneno);
                         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
                             momento_atacar = 0;
                             ataque_apertado = 1;
