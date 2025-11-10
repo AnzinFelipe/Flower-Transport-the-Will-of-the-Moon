@@ -39,6 +39,8 @@ int main(void) {
     Personagem *personagem_atual = NULL;
     float velocidade_atual;
     float largura_coracao, altura_proj;
+    Rectangle colisao_proj_horizontal, colisao_proj_vertical, colisao_teto;
+    Vector2 colisao_coracao;
     float pode_apertar, delay;
     float ataque_boss_tempo, delay_ataque_boss;
     float boss_animado, delay_boss_animado;
@@ -262,7 +264,8 @@ int main(void) {
                     vida_cor = (Color){120, 18, 18, 255};
                     energia_cor = (Color){18, 120, 80, 255};
                     derrotado = 0;
-                    
+                    colisao_teto = (Rectangle){0, 0, 1600, 1};
+
                     ataque_head2 = NULL;
                     adicionar_ataque(&ataque_head2, "Soco", 20, "Impacto", 5, 1.5, "");
                     adicionar_ataque(&ataque_head2, "Chute", 15, "Impacto", 5, 1.0, "");
@@ -710,10 +713,14 @@ int main(void) {
                     }
 
                     if (momento_atacar == 1) {
+                        colisao_coracao = (Vector2){200 + largura_coracao, 175};
+                        //DrawCircleV(colisao_coracao, 80, GREEN);
                         desenhar_coracao(boss_coracao, largura_coracao);
+                        colisao_proj_horizontal = (Rectangle){750, altura_proj + 50, 100, 20};
+                        colisao_proj_vertical = (Rectangle){780, altura_proj + 10, 40, 90};
                         desenhar_projetil(elemento_atual, altura_proj, proj_agua, proj_ar, proj_corte,
                             proj_eletricidade, proj_fogo, proj_gelo, proj_impacto, proj_lunar,
-                            proj_perfuracao, proj_solar, proj_veneno);
+                            proj_perfuracao, proj_solar, proj_veneno, colisao_proj_horizontal, colisao_proj_vertical);
                         if (largura_coracao == 1000) {
                             voltar_coracao = 1;
                             ir_coracao = 0;
@@ -729,8 +736,13 @@ int main(void) {
                         if (ataque_apertado == 1) {
                             altura_proj -= 20 * velocidade_atual;
                             // Verificar com colisao
-                            if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
+                            if (CheckCollisionCircleRec(colisao_coracao, 80, colisao_proj_horizontal) || CheckCollisionCircleRec(colisao_coracao, 80, colisao_proj_vertical)) {
                                 acertou_ataque = 1;
+                                ataque_apertado = 0;
+                                verificar_ataque = 1;
+                                momento_atacar = 0;
+                            } else if (CheckCollisionRecs(colisao_proj_horizontal, colisao_teto) || CheckCollisionRecs(colisao_proj_vertical, colisao_teto)) {
+                                acertou_ataque = 0;
                                 ataque_apertado = 0;
                                 verificar_ataque = 1;
                                 momento_atacar = 0;
