@@ -85,6 +85,12 @@ void desenhar_escolhas_ataques(int *escolhido, int *inicio, Personagem *personag
                 *energia_sobra = 0;
             } else {
                 DrawText(n->nome, largura, altura / 2 + i * 50, 30, WHITE);
+                DrawRectangle(10, 10, 360, 96, (Color){0, 0, 0, 160});
+                DrawText(TextFormat("Ataque: %s", n->nome), 18, 16, 20, WHITE);
+                DrawText(TextFormat("Elemento: %s", n->elemento), 18, 40, 20, WHITE);
+                DrawText(TextFormat("Dano: %d", n->dano), 18, 64, 20, WHITE);
+                DrawText(TextFormat("Custo de Energia: %d", n->energia_gasta), 18, 86, 18, WHITE);
+
                 *energia_sobra = 1;
                 strcpy(elemento, n->elemento);
                 *velocidade = n->velocidade;
@@ -143,6 +149,12 @@ void desenhar_escolhas_flores_dia(int *escolhido, int *inicio, Personagem *perso
                 *energia_sobra = 0;
             } else {
                 DrawText(n->nome, largura, altura / 2 + i * 50, 30, WHITE);
+                DrawRectangle(10, 10, 360, 96, (Color){0, 0, 0, 160});
+                DrawText(TextFormat("Flor: %s", n->nome), 18, 16, 20, WHITE);
+                DrawText(TextFormat("Elemento: %s", n->elemento), 18, 40, 20, WHITE);
+                DrawText(TextFormat("Dano: %d", n->dano), 18, 64, 20, WHITE);
+                DrawText(TextFormat("Custo de Energia: %d", n->energia_gasta), 18, 86, 18, WHITE);
+
                 *energia_sobra = 1;
                 strcpy(elemento, n->elemento);
                 *velocidade = n->velocidade;
@@ -202,6 +214,12 @@ void desenhar_escolhas_flores_noite(int *escolhido, int *inicio, Personagem *per
                 *energia_sobra = 0;
             } else {
                 DrawText(n->nome, largura, altura / 2 + i * 50, 30, WHITE);
+                DrawRectangle(10, 10, 360, 96, (Color){0, 0, 0, 160});
+                DrawText(TextFormat("Flor: %s", n->nome), 18, 16, 20, WHITE);
+                DrawText(TextFormat("Elemento: %s", n->elemento), 18, 40, 20, WHITE);
+                DrawText(TextFormat("Dano: %d", n->dano), 18, 64, 20, WHITE);
+                DrawText(TextFormat("Custo de Energia: %d", n->energia_gasta), 18, 86, 18, WHITE);
+
                 *energia_sobra = 1;
                 strcpy(elemento, n->elemento);
                 *velocidade = n->velocidade;
