@@ -99,7 +99,7 @@ void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura,
 
         if (personagem_atual != NULL) {
             int vida = 150;
-            int energia = 40;
+            int energia = 50;
             DrawTextEx(fonte, TextFormat("%s", personagem_atual->nome), (Vector2){1275, 70}, 22, 2, WHITE);
             DrawTextEx(fonte, TextFormat("Vida: %d/%d", personagem_atual->vida, vida), (Vector2){1275, 100}, 22, 2, WHITE);
             DrawTextEx(fonte, TextFormat("Energia: %d/%d", personagem_atual->energia, energia), (Vector2){1275, 130}, 22, 2, WHITE);

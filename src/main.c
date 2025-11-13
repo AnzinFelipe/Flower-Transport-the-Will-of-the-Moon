@@ -13,7 +13,6 @@ int main(void) {
     int largura = 1600, altura = 900;
 
     SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_MAXIMIZED);
-    setlocale(LC_ALL, "");
     InitWindow(largura, altura, "Flower Transport - the Will of the Moon");
 
     GameScreen currentScreen = SCREEN_MENU;
@@ -391,11 +390,11 @@ int main(void) {
                             jogo_iniciado->vez_inimigo = 1;
                         } else {
                             jogo_iniciado->personagem_atual->energia += GetRandomValue(10, 20);
-                            if (jogo_iniciado->personagem_num == 0 && jogo_iniciado->personagem_atual->energia > 60) {
+                            if (jogo_iniciado->personagem_num == 0 && jogo_iniciado->personagem_atual->energia > 80) {
                                 jogo_iniciado->personagem_atual->energia = 80;
-                            } else if (jogo_iniciado->personagem_num == 1 && jogo_iniciado->personagem_atual->energia > 80) {
-                                jogo_iniciado->personagem_atual->energia = 40;
-                            } else if (jogo_iniciado->personagem_num == 2 && jogo_iniciado->personagem_atual->energia > 40) {
+                            } else if (jogo_iniciado->personagem_num == 1 && jogo_iniciado->personagem_atual->energia > 50) {
+                                jogo_iniciado->personagem_atual->energia = 50;
+                            } else if (jogo_iniciado->personagem_num == 2 && jogo_iniciado->personagem_atual->energia > 80) {
                                 jogo_iniciado->personagem_atual->energia = 80;
                             }
                             if (jogo_iniciado->personagem_num == 2 && jogo_iniciado->p3_morto == 1) {

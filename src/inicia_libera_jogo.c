@@ -13,7 +13,7 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     s->janela = LoadRenderTexture(largura, altura);
     SetTextureFilter(s->janela.texture, TEXTURE_FILTER_TRILINEAR);
     
-    s->fonte = LoadFontEx("assets/fonts/Floreste.ttf", 40, NULL, 0);
+    s->fonte = LoadFontEx("assets/fonts/EmilysCandy-Regular.ttf", 40, NULL, 252);
     SetTextureFilter(s->fonte.texture, TEXTURE_FILTER_BILINEAR);
 
     if (!IsAudioDeviceReady()) {
@@ -258,10 +258,10 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     adicionar_flor_noite(&s->flor_noite_head3, "Gloria-da-friagem", 20, "Gelo", 10, 1.5, "");
     adicionar_flor_noite(&s->flor_noite_head3, "Energialida", 15, "Eletricidade", 10, 2.5, "");
 
-    adicionar_personagem(&s->personagem_head, "Roxo", 100, 80, NULL, s->flor_dia_head1, s->flor_noite_head1);
-    adicionar_personagem(&s->personagem_head, "Vermelho", 150, 40, s->ataque_head2, s->flor_dia_head2, NULL);
-    adicionar_personagem(&s->personagem_head, "Laranja", 80, 80, s->ataque_head3, NULL, s->flor_noite_head3);
-    adicionar_personagem(&s->personagem_head, "Verde", 100, 0, s->ataque_head4, NULL, NULL);
+    adicionar_personagem(&s->personagem_head, "Narciso", 100, 80, NULL, s->flor_dia_head1, s->flor_noite_head1);
+    adicionar_personagem(&s->personagem_head, "Roderick", 150, 50, s->ataque_head2, s->flor_dia_head2, NULL);
+    adicionar_personagem(&s->personagem_head, "Edoras", 80, 80, s->ataque_head3, NULL, s->flor_noite_head3);
+    adicionar_personagem(&s->personagem_head, "Lumennyl", 100, 0, s->ataque_head4, NULL, NULL);
 
     adicionar_vantagens_desvantagens_personagem(&s->personagem_head, 0);
     adicionar_vantagens_desvantagens_personagem(&s->personagem_head, 1);
