@@ -13,6 +13,7 @@ int main(void) {
     int largura = 1600, altura = 900;
 
     SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_MAXIMIZED);
+    setlocale(LC_ALL, "");
     InitWindow(largura, altura, "Flower Transport - the Will of the Moon");
 
     GameScreen currentScreen = SCREEN_MENU;
