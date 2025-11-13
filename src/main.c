@@ -182,7 +182,7 @@ int main(void) {
                 
                         mudar_escolha_primaria(&jogo_iniciado->escolhido, jogo_iniciado->personagem_num, &jogo_iniciado->pode_apertar, &jogo_iniciado->delay);
                         
-                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario);
+                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario, jogo_iniciado->fonte);
                         
                         if (IsKeyPressed(KEY_Z) && jogo_iniciado->pode_apertar >= jogo_iniciado->delay) {
                             if (jogo_iniciado->escolhido == 0) {
@@ -219,7 +219,7 @@ int main(void) {
                 
                         mudar_escolha_primaria(&jogo_iniciado->escolhido, jogo_iniciado->personagem_num, &jogo_iniciado->pode_apertar, &jogo_iniciado->delay);
                         
-                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario);
+                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario, jogo_iniciado->fonte);
                         
                         if (IsKeyPressed(KEY_Z) && jogo_iniciado->pode_apertar >= jogo_iniciado->delay) {
                             if (jogo_iniciado->escolhido == 0) {
@@ -253,7 +253,7 @@ int main(void) {
                 
                         mudar_escolha_primaria(&jogo_iniciado->escolhido, jogo_iniciado->personagem_num, &jogo_iniciado->pode_apertar, &jogo_iniciado->delay);
                 
-                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario);
+                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario, jogo_iniciado->fonte);
                 
                         if (IsKeyPressed(KEY_Z) && jogo_iniciado->pode_apertar >= jogo_iniciado->delay) {
                             if (jogo_iniciado->escolhido == 0) {
@@ -287,7 +287,7 @@ int main(void) {
                 
                         mudar_escolha_primaria(&jogo_iniciado->escolhido, jogo_iniciado->personagem_num, &jogo_iniciado->pode_apertar, &jogo_iniciado->delay);
                 
-                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario);
+                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario, jogo_iniciado->fonte);
                 
                         if (IsKeyPressed(KEY_Z) && jogo_iniciado->pode_apertar >= jogo_iniciado->delay) {
                             if (jogo_iniciado->escolhido == 0) {
@@ -305,8 +305,10 @@ int main(void) {
                     if (jogo_iniciado->escolha_ataques == 1) {
                         //Escolha de ataques
                         jogo_iniciado->inicio_escolhas_secundarios = 0;
-                        mudar_escolha_secundaria(&jogo_iniciado->escolhido, jogo_iniciado->personagem_atual, jogo_iniciado->escolha_flores_diurnas, jogo_iniciado->escolha_flores_noturnas, jogo_iniciado->escolha_ataques, &jogo_iniciado->pode_apertar, &jogo_iniciado->delay);
-                        desenhar_escolhas_ataques(&jogo_iniciado->escolhido, &jogo_iniciado->inicio_escolhas_secundarios, jogo_iniciado->personagem_atual, jogo_iniciado->personagem_num, largura, altura, &jogo_iniciado->energia_sobra, jogo_iniciado->elemento_atual, &jogo_iniciado->velocidade_atual);
+                        mudar_escolha_secundaria(&jogo_iniciado->escolhido, jogo_iniciado->personagem_atual, jogo_iniciado->escolha_flores_diurnas, jogo_iniciado->escolha_flores_noturnas, 
+                            jogo_iniciado->escolha_ataques, &jogo_iniciado->pode_apertar, &jogo_iniciado->delay);
+                        desenhar_escolhas_ataques(&jogo_iniciado->escolhido, &jogo_iniciado->inicio_escolhas_secundarios, jogo_iniciado->personagem_atual, jogo_iniciado->personagem_num, 
+                            largura, altura, &jogo_iniciado->energia_sobra, jogo_iniciado->elemento_atual, &jogo_iniciado->velocidade_atual, jogo_iniciado->fonte);
                 
                         if (IsKeyPressed(KEY_Z) && jogo_iniciado->pode_apertar >= jogo_iniciado->delay) {
                             if (jogo_iniciado->energia_sobra == 1) {
@@ -328,8 +330,10 @@ int main(void) {
                     if (jogo_iniciado->escolha_flores_diurnas == 1) {
                         //Escolha de flores diurnas
                         jogo_iniciado->inicio_escolhas_secundarios = 0;
-                        mudar_escolha_secundaria(&jogo_iniciado->escolhido, jogo_iniciado->personagem_atual, jogo_iniciado->escolha_flores_diurnas, jogo_iniciado->escolha_flores_noturnas, jogo_iniciado->escolha_ataques, &jogo_iniciado->pode_apertar, &jogo_iniciado->delay);
-                        desenhar_escolhas_flores_dia(&jogo_iniciado->escolhido, &jogo_iniciado->inicio_escolhas_secundarios, jogo_iniciado->personagem_atual, jogo_iniciado->personagem_num, largura, altura, &jogo_iniciado->energia_sobra, jogo_iniciado->elemento_atual, &jogo_iniciado->velocidade_atual);
+                        mudar_escolha_secundaria(&jogo_iniciado->escolhido, jogo_iniciado->personagem_atual, jogo_iniciado->escolha_flores_diurnas, jogo_iniciado->escolha_flores_noturnas, 
+                            jogo_iniciado->escolha_ataques, &jogo_iniciado->pode_apertar, &jogo_iniciado->delay);
+                        desenhar_escolhas_flores_dia(&jogo_iniciado->escolhido, &jogo_iniciado->inicio_escolhas_secundarios, jogo_iniciado->personagem_atual, jogo_iniciado->personagem_num, 
+                            largura, altura, &jogo_iniciado->energia_sobra, jogo_iniciado->elemento_atual, &jogo_iniciado->velocidade_atual, jogo_iniciado->fonte);
                 
                         if (IsKeyPressed(KEY_Z) && jogo_iniciado->pode_apertar >= jogo_iniciado->delay) {
                             if (jogo_iniciado->energia_sobra == 1) {
@@ -351,8 +355,10 @@ int main(void) {
                     if (jogo_iniciado->escolha_flores_noturnas == 1) {
                         //Escolha de flores noturnas
                         jogo_iniciado->inicio_escolhas_secundarios = 0;
-                        mudar_escolha_secundaria(&jogo_iniciado->escolhido, jogo_iniciado->personagem_atual, jogo_iniciado->escolha_flores_diurnas, jogo_iniciado->escolha_flores_noturnas, jogo_iniciado->escolha_ataques, &jogo_iniciado->pode_apertar, &jogo_iniciado->delay);
-                        desenhar_escolhas_flores_noite(&jogo_iniciado->escolhido, &jogo_iniciado->inicio_escolhas_secundarios, jogo_iniciado->personagem_atual, jogo_iniciado->personagem_num, largura, altura, &jogo_iniciado->energia_sobra, jogo_iniciado->elemento_atual, &jogo_iniciado->velocidade_atual);
+                        mudar_escolha_secundaria(&jogo_iniciado->escolhido, jogo_iniciado->personagem_atual, jogo_iniciado->escolha_flores_diurnas, jogo_iniciado->escolha_flores_noturnas, 
+                            jogo_iniciado->escolha_ataques, &jogo_iniciado->pode_apertar, &jogo_iniciado->delay);
+                        desenhar_escolhas_flores_noite(&jogo_iniciado->escolhido, &jogo_iniciado->inicio_escolhas_secundarios, jogo_iniciado->personagem_atual, jogo_iniciado->personagem_num, 
+                            largura, altura, &jogo_iniciado->energia_sobra, jogo_iniciado->elemento_atual, &jogo_iniciado->velocidade_atual, jogo_iniciado->fonte);
                 
                         if (IsKeyPressed(KEY_Z) && jogo_iniciado->pode_apertar >= jogo_iniciado->delay) {
                             if (jogo_iniciado->energia_sobra == 1) {

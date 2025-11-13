@@ -3,6 +3,12 @@
 
 GameScreen RunMenu(void) {
     const char opcao[2][15] = {"INICIAR JOGO", "SAIR"};
+    Texture2D menu1 = LoadTexture("assets/images/Menu1.png");
+    GenTextureMipmaps(&menu1);
+    SetTextureFilter(menu1, TEXTURE_FILTER_TRILINEAR);
+    Texture2D menu2 = LoadTexture("assets/images/Menu2.png");
+    GenTextureMipmaps(&menu2);
+    SetTextureFilter(menu2, TEXTURE_FILTER_TRILINEAR);
     int selecao = 0;
     float pode_apertar = 0.0, delay = 0.1;
 
@@ -19,20 +25,18 @@ GameScreen RunMenu(void) {
 
         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
             pode_apertar = 0.0;
+            UnloadTexture(menu1);
+            UnloadTexture(menu2); 
             return (selecao == 0) ? SCREEN_GAME : SCREEN_EXIT;
         }
 
         BeginDrawing();
         ClearBackground(PURPLE);
-        
-        DrawText("Flower Transport", 400, 150, 60, BLACK);
-        DrawText("The Will of The Moon", 450, 220, 30, BLACK);
-        
         for (int i = 0; i < 2; i++) {
             if (i == selecao) {
-                DrawText(opcao[i], 500, 300 + i * 60, 40, (Color){255, 0, 144, 255});
+                DrawTextureEx(menu2, (Vector2){0, 0}, 0.0, 1, WHITE);
             } else {
-                DrawText(opcao[i], 500, 300 + i * 60, 35, WHITE);
+                DrawTextureEx(menu1, (Vector2){0, 0}, 0.0, 1, WHITE);
             }
         }
         

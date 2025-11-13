@@ -13,6 +13,9 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     s->janela = LoadRenderTexture(largura, altura);
     SetTextureFilter(s->janela.texture, TEXTURE_FILTER_TRILINEAR);
     
+    s->fonte = LoadFontEx("assets/fonts/Floreste.ttf", 40, NULL, 0);
+    SetTextureFilter(s->fonte.texture, TEXTURE_FILTER_BILINEAR);
+
     if (!IsAudioDeviceReady()) {
         InitAudioDevice();
     }
@@ -336,6 +339,7 @@ void liberar_jogo(VariaveisInicioJogo *s){
     UnloadTexture(s->noite);
     UnloadTexture(s->BG);
     UnloadTexture(s->BG_noite);
+    UnloadFont(s->fonte);
     UnloadMusicStream(s->pink);
     CloseAudioDevice();
 }
