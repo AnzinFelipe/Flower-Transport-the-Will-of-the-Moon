@@ -1,5 +1,6 @@
 #include "escolhas_primarias.h"
 #include "raylib.h"
+#include <stdlib.h>
 
 void mudar_escolha_primaria(int *escolhido, int personagem_num, float *pode_apertar, float *delay) {
     int max_escolhido = 0;
@@ -25,7 +26,7 @@ void mudar_escolha_primaria(int *escolhido, int personagem_num, float *pode_aper
     }
 }
 
-void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura, int altura, int horario, Font fonte) {
+void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura, int altura, int horario, Font fonte, Personagem *personagem_atual) {
     Color nao_pode = {100, 50, 50, 255};
     Color nao_pode_escolhido = {200, 50, 50, 255};
     int largura1 = largura - (largura - 50);
@@ -63,6 +64,14 @@ void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura,
         } else {
             DrawTextEx(fonte, "Defender", (Vector2){largura1, altura_geral + 100}, 40, 2, GRAY);
         }
+
+        if (personagem_atual != NULL) {
+            int vida = 100;
+            int energia = 80;
+            DrawTextEx(fonte, TextFormat("%s", personagem_atual->nome), (Vector2){1275, 70}, 22, 2, WHITE);
+            DrawTextEx(fonte, TextFormat("Vida: %d/%d", personagem_atual->vida, vida), (Vector2){1275, 100}, 22, 2, WHITE);
+            DrawTextEx(fonte, TextFormat("Energia: %d/%d", personagem_atual->energia, energia), (Vector2){1275, 130}, 22, 2, WHITE);
+        }
     } else if (personagem_num == 1) {
        if (escolhido == 0) {
             DrawTextEx(fonte, "Ataques", (Vector2){largura2, altura_geral}, 40, 2, WHITE);
@@ -87,6 +96,14 @@ void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura,
         } else {
             DrawTextEx(fonte, "Defender", (Vector2){largura2, altura_geral + 100}, 40, 2, GRAY);
         } 
+
+        if (personagem_atual != NULL) {
+            int vida = 150;
+            int energia = 40;
+            DrawTextEx(fonte, TextFormat("%s", personagem_atual->nome), (Vector2){1275, 70}, 22, 2, WHITE);
+            DrawTextEx(fonte, TextFormat("Vida: %d/%d", personagem_atual->vida, vida), (Vector2){1275, 100}, 22, 2, WHITE);
+            DrawTextEx(fonte, TextFormat("Energia: %d/%d", personagem_atual->energia, energia), (Vector2){1275, 130}, 22, 2, WHITE);
+        }
     } else if (personagem_num == 2) {
         if (escolhido == 0) {
             DrawTextEx(fonte, "Ataques", (Vector2){largura3, altura_geral}, 40, 2, WHITE);
@@ -111,6 +128,14 @@ void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura,
         } else {
             DrawTextEx(fonte, "Defender", (Vector2){largura3, altura_geral + 100}, 40, 2, GRAY);
         }
+
+        if (personagem_atual != NULL) {
+            int vida = 80;
+            int energia = 80;
+            DrawTextEx(fonte, TextFormat("%s", personagem_atual->nome), (Vector2){1275, 70}, 22, 2, WHITE);
+            DrawTextEx(fonte, TextFormat("Vida: %d/%d", personagem_atual->vida, vida), (Vector2){1275, 100}, 22, 2, WHITE);
+            DrawTextEx(fonte, TextFormat("Energia: %d/%d", personagem_atual->energia, energia), (Vector2){1275, 130}, 22, 2, WHITE);
+        }
     } else if (personagem_num == 3) {
         if (escolhido == 0) {
             DrawTextEx(fonte, "Ataques", (Vector2){largura4, altura_geral + 25}, 40, 2, WHITE);
@@ -121,6 +146,13 @@ void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura,
             DrawTextEx(fonte, "Defender", (Vector2){largura4, altura_geral + 75}, 40, 2, WHITE);
         } else {
             DrawTextEx(fonte, "Defender", (Vector2){largura4, altura_geral + 75}, 40, 2, GRAY);
+        }
+
+        if (personagem_atual != NULL) {
+            int vida = 100;
+            DrawTextEx(fonte, TextFormat("%s", personagem_atual->nome), (Vector2){1275, 70}, 22, 2, WHITE);
+            DrawTextEx(fonte, TextFormat("Vida: %d/%d", personagem_atual->vida, vida), (Vector2){1275, 100}, 22, 2, WHITE);
+            DrawTextEx(fonte, TextFormat("Energia: %d", personagem_atual->energia), (Vector2){1275, 130}, 22, 2, WHITE);
         }
     }
 }

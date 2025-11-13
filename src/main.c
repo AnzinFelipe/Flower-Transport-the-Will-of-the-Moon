@@ -72,6 +72,7 @@ int main(void) {
                         if (jogo_iniciado->momento_atacar == 1 || jogo_iniciado->ataque_apertado == 1) {
                             DrawTextureEx(jogo_iniciado->boss_acertar, (Vector2){0, 0}, 0.0, 1, WHITE);
                         } else {
+                            DrawRectangle(1250, 50, 300, 375, (Color){0, 0, 0, 160});
                             DrawTextureEx(jogo_iniciado->caixa, (Vector2){1240, 40}, 0.0, 0.4, WHITE);
                             if (jogo_iniciado->boss_animado > jogo_iniciado->delay_boss_animado * 4) {
                                 DrawTextureEx(jogo_iniciado->boss_noite_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
@@ -100,6 +101,7 @@ int main(void) {
                         if (jogo_iniciado->momento_atacar == 1 || jogo_iniciado->ataque_apertado == 1) {
                             DrawTextureEx(jogo_iniciado->boss_acertar, (Vector2){0, 0}, 0.0, 1, WHITE);
                         } else {
+                            DrawRectangle(1250, 50, 300, 375, (Color){0, 0, 0, 160});
                             DrawTextureEx(jogo_iniciado->caixa, (Vector2){1240, 40}, 0.0, 0.4, WHITE);
                             if (jogo_iniciado->boss_animado > jogo_iniciado->delay_boss_animado * 4) {
                                 DrawTextureEx(jogo_iniciado->boss_dia_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
@@ -184,7 +186,7 @@ int main(void) {
                 
                         mudar_escolha_primaria(&jogo_iniciado->escolhido, jogo_iniciado->personagem_num, &jogo_iniciado->pode_apertar, &jogo_iniciado->delay);
                         
-                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario, jogo_iniciado->fonte);
+                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario, jogo_iniciado->fonte, jogo_iniciado->personagem_atual);
                         
                         if (IsKeyPressed(KEY_Z) && jogo_iniciado->pode_apertar >= jogo_iniciado->delay) {
                             if (jogo_iniciado->escolhido == 0) {
@@ -221,7 +223,7 @@ int main(void) {
                 
                         mudar_escolha_primaria(&jogo_iniciado->escolhido, jogo_iniciado->personagem_num, &jogo_iniciado->pode_apertar, &jogo_iniciado->delay);
                         
-                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario, jogo_iniciado->fonte);
+                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario, jogo_iniciado->fonte, jogo_iniciado->personagem_atual);
                         
                         if (IsKeyPressed(KEY_Z) && jogo_iniciado->pode_apertar >= jogo_iniciado->delay) {
                             if (jogo_iniciado->escolhido == 0) {
@@ -255,7 +257,7 @@ int main(void) {
                 
                         mudar_escolha_primaria(&jogo_iniciado->escolhido, jogo_iniciado->personagem_num, &jogo_iniciado->pode_apertar, &jogo_iniciado->delay);
                 
-                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario, jogo_iniciado->fonte);
+                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario, jogo_iniciado->fonte, jogo_iniciado->personagem_atual);
                 
                         if (IsKeyPressed(KEY_Z) && jogo_iniciado->pode_apertar >= jogo_iniciado->delay) {
                             if (jogo_iniciado->escolhido == 0) {
@@ -289,7 +291,7 @@ int main(void) {
                 
                         mudar_escolha_primaria(&jogo_iniciado->escolhido, jogo_iniciado->personagem_num, &jogo_iniciado->pode_apertar, &jogo_iniciado->delay);
                 
-                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario, jogo_iniciado->fonte);
+                        desenhar_escolhas_primarias(jogo_iniciado->escolhido, jogo_iniciado->personagem_num, largura, altura, jogo_iniciado->horario, jogo_iniciado->fonte, jogo_iniciado->personagem_atual);
                 
                         if (IsKeyPressed(KEY_Z) && jogo_iniciado->pode_apertar >= jogo_iniciado->delay) {
                             if (jogo_iniciado->escolhido == 0) {
