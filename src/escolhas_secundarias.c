@@ -85,11 +85,11 @@ void desenhar_escolhas_ataques(int *escolhido, int *inicio, Personagem *personag
                 *energia_sobra = 0;
             } else {
                 DrawTextEx(fonte ,n->nome, (Vector2){largura, altura / 2 + i * 50}, 40, 2, WHITE);
-                DrawRectangle(10, 10, 360, 116, (Color){0, 0, 0, 160});
-                DrawTextEx(fonte, TextFormat("Ataque: %s", n->nome), (Vector2){18, 16}, 20, 2, WHITE);
-                DrawTextEx(fonte, TextFormat("Elemento: %s", n->elemento), (Vector2){18, 40}, 20, 2, WHITE);
-                DrawTextEx(fonte, TextFormat("Dano: %d", n->dano), (Vector2){18, 64}, 20, 2, WHITE);
-                DrawTextEx(fonte, TextFormat("Custo de Energia: %d", n->energia_gasta), (Vector2){18, 86}, 18, 2, WHITE);
+                DrawRectangle(1250, 50, 300, 350, (Color){0, 0, 0, 160});
+                DrawTextEx(fonte, TextFormat("Ataque: %s", n->nome), (Vector2){1280, 66}, 25, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Elemento: %s", n->elemento), (Vector2){1270, 106}, 25, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Dano: %d", n->dano), (Vector2){1270, 136}, 25, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Custo de Energia: %d", n->energia_gasta), (Vector2){1270, 166}, 25, 2, WHITE);
 
                 char *rapidez = "";
                 if (n->velocidade == 1.0f) 
@@ -101,7 +101,7 @@ void desenhar_escolhas_ataques(int *escolhido, int *inicio, Personagem *personag
                 else if (n->velocidade == 2.5f) 
                     rapidez = "Muito Rápido";
 
-                DrawTextEx(fonte, TextFormat("Velocidade: %s", rapidez), (Vector2){18, 106}, 18, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Velocidade: %s", rapidez), (Vector2){1270, 196}, 25, 2, WHITE);
                 *energia_sobra = 1;
                 strcpy(elemento, n->elemento);
                 *velocidade = n->velocidade;
@@ -160,11 +160,11 @@ void desenhar_escolhas_flores_dia(int *escolhido, int *inicio, Personagem *perso
                 *energia_sobra = 0;
             } else {
                 DrawTextEx(fonte ,n->nome, (Vector2){largura, altura / 2 + i * 50}, 40, 2, WHITE);
-                DrawRectangle(10, 10, 360, 116, (Color){0, 0, 0, 160});
-                DrawTextEx(fonte, TextFormat("Flor: %s", n->nome), (Vector2){18, 16}, 20, 2, WHITE);
-                DrawTextEx(fonte, TextFormat("Elemento: %s", n->elemento), (Vector2){18, 40}, 20, 2, WHITE);
-                DrawTextEx(fonte, TextFormat("Dano: %d", n->dano), (Vector2){18, 64}, 20, 2, WHITE);
-                DrawTextEx(fonte, TextFormat("Custo de Energia: %d", n->energia_gasta), (Vector2){18, 86}, 18, 2, WHITE);
+                DrawRectangle(1250, 50, 300, 350, (Color){0, 0, 0, 160});
+                DrawTextEx(fonte, TextFormat("Flor: %s", n->nome), (Vector2){1280, 66}, 25, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Elemento: %s", n->elemento), (Vector2){1270, 106}, 25, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Dano: %d", n->dano), (Vector2){1270, 136}, 25, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Custo de Energia: %d", n->energia_gasta), (Vector2){1270, 166}, 25, 2, WHITE);
                 char *rapidez = "";
                 if (n->velocidade == 1.0f) 
                     rapidez = "Lento";
@@ -175,7 +175,7 @@ void desenhar_escolhas_flores_dia(int *escolhido, int *inicio, Personagem *perso
                 else if (n->velocidade == 2.5f) 
                     rapidez = "Muito Rápido";
 
-                DrawTextEx(fonte, TextFormat("Velocidade: %s", rapidez), (Vector2){18, 106}, 18, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Velocidade: %s", rapidez), (Vector2){1270, 196}, 25, 2, WHITE);
                 *energia_sobra = 1;
                 strcpy(elemento, n->elemento);
                 *velocidade = n->velocidade;
@@ -235,11 +235,11 @@ void desenhar_escolhas_flores_noite(int *escolhido, int *inicio, Personagem *per
                 *energia_sobra = 0;
             } else {
                 DrawTextEx(fonte ,n->nome, (Vector2){largura, altura / 2 + i * 50}, 40, 2, WHITE);
-                DrawRectangle(10, 10, 360, 116, (Color){0, 0, 0, 160});
-                DrawTextEx(fonte, TextFormat("Flor: %s", n->nome), (Vector2){18, 16}, 20, 2, WHITE);
-                DrawTextEx(fonte, TextFormat("Elemento: %s", n->elemento), (Vector2){18, 40}, 20, 2, WHITE);
-                DrawTextEx(fonte, TextFormat("Dano: %d", n->dano), (Vector2){18, 64}, 20, 2, WHITE);
-                DrawTextEx(fonte, TextFormat("Custo de Energia: %d", n->energia_gasta), (Vector2){18, 86}, 18, 2, WHITE);
+                DrawRectangle(1250, 50, 300, 350, (Color){0, 0, 0, 160});
+                DrawTextEx(fonte, TextFormat("Flor: %s", n->nome), (Vector2){1280, 66}, 25, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Elemento: %s", n->elemento), (Vector2){1270, 106}, 25, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Dano: %d", n->dano), (Vector2){1270, 136}, 25, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Custo de Energia: %d", n->energia_gasta), (Vector2){1270, 166}, 25, 2, WHITE);
                 char *rapidez = "";
                 if (n->velocidade == 1.0f) 
                     rapidez = "Lento";
@@ -250,7 +250,7 @@ void desenhar_escolhas_flores_noite(int *escolhido, int *inicio, Personagem *per
                 else if (n->velocidade == 2.5f) 
                     rapidez = "Muito Rápido";
 
-                DrawTextEx(fonte, TextFormat("Velocidade: %s", rapidez), (Vector2){18, 106}, 18, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Velocidade: %s", rapidez), (Vector2){1270, 196}, 25, 2, WHITE);
 
                 *energia_sobra = 1;
                 strcpy(elemento, n->elemento);

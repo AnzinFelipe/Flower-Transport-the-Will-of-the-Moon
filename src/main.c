@@ -72,6 +72,7 @@ int main(void) {
                         if (jogo_iniciado->momento_atacar == 1 || jogo_iniciado->ataque_apertado == 1) {
                             DrawTextureEx(jogo_iniciado->boss_acertar, (Vector2){0, 0}, 0.0, 1, WHITE);
                         } else {
+                            DrawTextureEx(jogo_iniciado->caixa, (Vector2){1240, 40}, 0.0, 0.4, WHITE);
                             if (jogo_iniciado->boss_animado > jogo_iniciado->delay_boss_animado * 4) {
                                 DrawTextureEx(jogo_iniciado->boss_noite_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
                                 jogo_iniciado->boss_animado = 0.0;
@@ -99,6 +100,7 @@ int main(void) {
                         if (jogo_iniciado->momento_atacar == 1 || jogo_iniciado->ataque_apertado == 1) {
                             DrawTextureEx(jogo_iniciado->boss_acertar, (Vector2){0, 0}, 0.0, 1, WHITE);
                         } else {
+                            DrawTextureEx(jogo_iniciado->caixa, (Vector2){1240, 40}, 0.0, 0.4, WHITE);
                             if (jogo_iniciado->boss_animado > jogo_iniciado->delay_boss_animado * 4) {
                                 DrawTextureEx(jogo_iniciado->boss_dia_f2, (Vector2){0, 0}, 0.0, 1, WHITE);
                                 jogo_iniciado->boss_animado = 0.0;
