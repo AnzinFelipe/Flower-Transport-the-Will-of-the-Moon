@@ -23,8 +23,12 @@ void desenhar_vida_boss(Boss *boss, int largura, Color vida, Font fonte);
 
 void desenhar_coracao(Texture2D coracao, float largura);
 
+void desenhar_olho(Texture2D olho1, Texture2D olho2, Texture2D olho3, float *olho_animado, float olho_delay);
+
 void subtrair_vida_boss(Boss **boss, int dano, float mult);
 
-void ataque_boss(Boss *boss, Personagem **personagem, int *p0_morto, int *p1_morto, int *p2_morto, int *p3_morto);
+void pegar_personagem_aleatorio(Personagem *personagem, int *random_p);
+
+void ataque_boss(Boss *boss, Personagem **personagem, int random_p, int *p0_morto, int *p1_morto, int *p2_morto, int *p3_morto);
 
 #endif

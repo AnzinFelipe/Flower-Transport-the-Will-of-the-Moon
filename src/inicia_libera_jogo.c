@@ -160,6 +160,17 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     GenTextureMipmaps(&s->boss_ataque_noite);
     SetTextureFilter(s->boss_ataque_noite, TEXTURE_FILTER_TRILINEAR);
 
+    s->olho1 = LoadTexture("assets/images/boss/Olho_f1.png");
+    GenTextureMipmaps(&s->olho1);
+    SetTextureFilter(s->olho1, TEXTURE_FILTER_TRILINEAR);
+    s->olho2 = LoadTexture("assets/images/boss/Olho_f2.png");
+    GenTextureMipmaps(&s->olho2);
+    SetTextureFilter(s->olho2, TEXTURE_FILTER_TRILINEAR);
+    s->olho3 = LoadTexture("assets/images/boss/Olho_f3.png");
+    GenTextureMipmaps(&s->olho3);
+    SetTextureFilter(s->olho3, TEXTURE_FILTER_TRILINEAR);
+
+
     s->proj_agua = LoadTexture("assets/images/projeteis/Agua.png");
     GenTextureMipmaps(&s->proj_agua);
     SetTextureFilter(s->proj_agua, TEXTURE_FILTER_TRILINEAR);
@@ -204,9 +215,11 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     s->elemento_atual = (char *)malloc(20);
     s->velocidade_atual = 0.0;
     s->energia_sobra = 0;
+    s->comeco = 1, s->random_p = 0;
     s->pode_apertar = 0.0; s->delay = 0.1;
     s->ataque_boss_tempo = 0.0; s->delay_ataque_boss = 2;
     s->boss_animado = 0.0; s->delay_boss_animado = 0.4;
+    s->olho_animado = 0.0; s->olho_delay = 0.2;
     s->vida_cor = (Color){120, 18, 18, 255};
     s->energia_cor = (Color){18, 120, 80, 255};
     s->colisao_teto = (Rectangle){0, 0, 1600, 1};
@@ -320,6 +333,9 @@ void liberar_jogo(VariaveisInicioJogo *s){
     UnloadTexture(s->boss_ataque_noite);
     UnloadTexture(s->boss_acertar);
     UnloadTexture(s->boss_coracao);
+    UnloadTexture(s->olho1);
+    UnloadTexture(s->olho2);
+    UnloadTexture(s->olho3);
     UnloadTexture(s->proj_agua);
     UnloadTexture(s->proj_ar);
     UnloadTexture(s->proj_corte);

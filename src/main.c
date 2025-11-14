@@ -152,12 +152,13 @@ int main(void) {
                 //Vez do inimigo ou vez do jogador
                 if (jogo_iniciado->vez_inimigo == 1) {
                     if (jogo_iniciado->ataque_boss_tempo >= jogo_iniciado->delay_ataque_boss) {
-                        ataque_boss(jogo_iniciado->boss, &jogo_iniciado->personagem_head, &jogo_iniciado->p0_morto, &jogo_iniciado->p1_morto, &jogo_iniciado->p2_morto, &jogo_iniciado->p3_morto);
+                        ataque_boss(jogo_iniciado->boss, &jogo_iniciado->personagem_head, jogo_iniciado->random_p, &jogo_iniciado->p0_morto, &jogo_iniciado->p1_morto, &jogo_iniciado->p2_morto, &jogo_iniciado->p3_morto);
                         jogo_iniciado->vez_inimigo = 0;
                         jogo_iniciado->personagem_num = 0;
                         jogo_iniciado->escolhas = 1;
                         jogo_iniciado->pode_apertar = 0.0;
                         jogo_iniciado->boss_animado = 0.0;
+                        jogo_iniciado->comeco = 1;
                         // 0 - dia, 1 - noite
                         if (jogo_iniciado->horario == 0) {
                             jogo_iniciado->horario  = 1;
@@ -172,12 +173,20 @@ int main(void) {
                     }
                 } else {
                     // Vez do player
+                    if (jogo_iniciado->comeco == 1) {
+                        pegar_personagem_aleatorio(jogo_iniciado->personagem_head, &jogo_iniciado->random_p);
+                        jogo_iniciado->comeco = 0;
+                    }
                     
                     //Escolhas primarias de cada personagem
                     if (jogo_iniciado->escolhas == 1 && jogo_iniciado->personagem_num == 0) {
                         //Personagem 0
                         pegar_personagem(jogo_iniciado->personagem_num, &jogo_iniciado->personagem_atual, jogo_iniciado->personagem_head);
-                
+                        
+                        if(jogo_iniciado->random_p == 0) {
+                            desenhar_olho(jogo_iniciado->olho1, jogo_iniciado->olho2, jogo_iniciado->olho3, &jogo_iniciado->olho_animado, jogo_iniciado->olho_delay);
+                        }
+
                         jogo_iniciado->personagem_atual->defesa = 0;
 
                         if (jogo_iniciado->personagem_atual->vida == 0) {
@@ -215,6 +224,10 @@ int main(void) {
                         //Personagem 1
                         pegar_personagem(jogo_iniciado->personagem_num, &jogo_iniciado->personagem_atual, jogo_iniciado->personagem_head);
                 
+                        if(jogo_iniciado->random_p == 1) {
+                            desenhar_olho(jogo_iniciado->olho1, jogo_iniciado->olho2, jogo_iniciado->olho3, &jogo_iniciado->olho_animado, jogo_iniciado->olho_delay);
+                        }
+
                         jogo_iniciado->personagem_atual->defesa = 0;
 
                         if (jogo_iniciado->personagem_atual->vida == 0) {
@@ -249,6 +262,10 @@ int main(void) {
                         //Personagem 2
                         pegar_personagem(jogo_iniciado->personagem_num, &jogo_iniciado->personagem_atual, jogo_iniciado->personagem_head);
                 
+                        if(jogo_iniciado->random_p == 2) {
+                            desenhar_olho(jogo_iniciado->olho1, jogo_iniciado->olho2, jogo_iniciado->olho3, &jogo_iniciado->olho_animado, jogo_iniciado->olho_delay);
+                        }
+
                         jogo_iniciado->personagem_atual->defesa = 0;
 
                         if (jogo_iniciado->personagem_atual->vida == 0) {
@@ -283,6 +300,10 @@ int main(void) {
                         //Personagem 3
                         pegar_personagem(jogo_iniciado->personagem_num, &jogo_iniciado->personagem_atual, jogo_iniciado->personagem_head);
                 
+                        if(jogo_iniciado->random_p == 3) {
+                            desenhar_olho(jogo_iniciado->olho1, jogo_iniciado->olho2, jogo_iniciado->olho3, &jogo_iniciado->olho_animado, jogo_iniciado->olho_delay);
+                        }
+
                         jogo_iniciado->personagem_atual->defesa = 0;
 
                         if (jogo_iniciado->personagem_atual->vida == 0) {

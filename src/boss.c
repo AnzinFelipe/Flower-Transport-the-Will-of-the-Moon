@@ -39,6 +39,21 @@ void desenhar_coracao(Texture2D coracao, float largura) {
     DrawTextureEx(coracao, (Vector2){largura,0}, 0.0, 0.5, WHITE);
 }
 
+void desenhar_olho(Texture2D olho1, Texture2D olho2, Texture2D olho3, float *olho_animado, float olho_delay) {
+    *olho_animado += GetFrameTime();
+
+    if (*olho_animado >= olho_delay * 3) {
+        *olho_animado = 0;
+        DrawTextureEx(olho1, (Vector2){1375, 280}, 0.0, 0.5, WHITE);
+    } else if (*olho_animado >= olho_delay * 2) {
+        DrawTextureEx(olho3, (Vector2){1375, 280}, 0.0, 0.5, WHITE);
+    } else if (*olho_animado >= olho_delay) {
+        DrawTextureEx(olho2, (Vector2){1375, 280}, 0.0, 0.5, WHITE);
+    } else {
+        DrawTextureEx(olho1, (Vector2){1375, 280}, 0.0, 0.5, WHITE);
+    }
+}
+
 void subtrair_vida_boss(Boss **boss, int dano, float mult) {
     (*boss)->vida -= dano * mult;
     if ((*boss)->vida < 0) {
@@ -46,10 +61,25 @@ void subtrair_vida_boss(Boss **boss, int dano, float mult) {
     }
 }
 
-void ataque_boss(Boss *boss, Personagem **personagem, int *p0_morto, int *p1_morto, int *p2_morto, int *p3_morto) {
+void pegar_personagem_aleatorio(Personagem *personagem, int *random_p) {
+    int i;
+    Personagem *p;
+
+    while (1) {
+        p = personagem;
+        *random_p = GetRandomValue(0, 3);
+        for (i = 0; i < *random_p && p != NULL; i++) {
+            p = p->prox;
+        }
+        if (p->vida != 0) {
+            break;
+        }
+    }
+}
+
+void ataque_boss(Boss *boss, Personagem **personagem, int random_p, int *p0_morto, int *p1_morto, int *p2_morto, int *p3_morto) {
     int i, j, dano = 0;
     float mult = 1;
-    int personagem_num;
     int ataque_num = GetRandomValue(0, 3);
     
     Ataque *a = boss->ataque;
@@ -58,17 +88,10 @@ void ataque_boss(Boss *boss, Personagem **personagem, int *p0_morto, int *p1_mor
     }
     dano = a->dano;
     
-    Personagem *p;
+    Personagem *p = *personagem;
 
-    while (1) {
-        p = *personagem;
-        personagem_num = GetRandomValue(0, 3);
-        for (i = 0; i < personagem_num && p != NULL; i++) {
-            p = p->prox;
-        }
-        if (p->vida != 0) {
-            break;
-        }
+    for (i = 0; i < random_p && p != NULL; i++) {
+        p = p->prox;
     }
 
     for (i = 0; i < 6; i++) {
@@ -103,7 +126,7 @@ void ataque_boss(Boss *boss, Personagem **personagem, int *p0_morto, int *p1_mor
         }
     }
 
-    subtrair_vida_personagem(personagem, personagem_num, dano, mult, p0_morto, p1_morto, p2_morto, p3_morto);
+    subtrair_vida_personagem(personagem, random_p, dano, mult, p0_morto, p1_morto, p2_morto, p3_morto);
     printf("Boss usou %s no personagem %s causando %d de dano com multiplicador %.2f\n", a->nome, p->nome, dano, mult);
     printf("vida do personagem %s: %d\n", p->nome, p->vida);
 }
