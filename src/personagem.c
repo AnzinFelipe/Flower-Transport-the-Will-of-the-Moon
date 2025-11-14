@@ -188,7 +188,7 @@ void desenhar_energia_personagens(Personagem *personagem, int num, Color energia
         DrawRectangle(350, 650, 35, p->energia * 2.9, energia);
     } else if (num == 1) {
         DrawRectangle(750, 650, 35, 240, DARKGRAY);
-        DrawRectangle(750, 650, 35, p->energia * 5.9, energia);
+        DrawRectangle(750, 650, 35, p->energia * 4.9, energia);
     } else if (num == 2) {
         DrawRectangle(1150, 650, 35, 240, DARKGRAY);
         DrawRectangle(1150, 650, 35, p->energia * 2.9, energia);
