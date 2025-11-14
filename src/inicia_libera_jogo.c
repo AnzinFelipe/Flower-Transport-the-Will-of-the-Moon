@@ -213,50 +213,50 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
 
     adicionar_ataque(&s->ataque_head2, "Soco", 20, "Impacto", 5, 1.5, "");
     adicionar_ataque(&s->ataque_head2, "Chute", 15, "Impacto", 5, 1.0, "");
-    adicionar_ataque(&s->ataque_head2, "Pa de jardinagem", 30, "Impacto", 10, 1.5, "");
+    adicionar_ataque(&s->ataque_head2, "Pá de jardinagem", 30, "Impacto", 10, 1.5, "");
     adicionar_ataque(&s->ataque_head2, "Tesoura de poda", 25, "Corte", 10, 1.5, "");
 
     adicionar_ataque(&s->ataque_head3, "Soco", 15, "Impacto", 5, 2.0, "");
     adicionar_ataque(&s->ataque_head3, "Unhada", 10, "Corte", 3, 2.5, "");
-    adicionar_ataque(&s->ataque_head3, "Chute espiral", 25, "Perfuracao", 15, 2.0, "");
-    adicionar_ataque(&s->ataque_head3, "Chifrada", 30, "Perfuracao", 20, 1.5, "");
+    adicionar_ataque(&s->ataque_head3, "Chute espiral", 25, "Perfuração", 15, 2.0, "");
+    adicionar_ataque(&s->ataque_head3, "Chifrada", 30, "Perfuração", 20, 1.5, "");
 
     adicionar_ataque(&s->ataque_head4, "Soco solar", 35, "Impacto", 0, 2.0, "");
     adicionar_ataque(&s->ataque_head4, "Chute solar", 35, "Impacto", 0, 1.5, "");
-    adicionar_ataque(&s->ataque_head4, "Lanca solar", 30, "Perfuracao", 0, 2.5, "");
+    adicionar_ataque(&s->ataque_head4, "Lança solar", 30, "Perfuração", 0, 2.5, "");
     adicionar_ataque(&s->ataque_head4, "Espada solar", 30, "Corte", 0, 1.0, "");
-    adicionar_ataque(&s->ataque_head4, "Fumaca venenosa", 10, "Veneno", 0, 1.0, "");
+    adicionar_ataque(&s->ataque_head4, "Fumaça venenosa", 10, "Veneno", 0, 1.0, "");
 
-    adicionar_ataque(&s->ataque_head_boss, "Bafo lunar", 200, "Fogo", 0, 0, "");
-    adicionar_ataque(&s->ataque_head_boss, "Chute dilacerante", 200, "Corte", 0, 0, "");
-    adicionar_ataque(&s->ataque_head_boss, "Espectro lunatico", 200, "Lunar", 0, 0, "");
-    adicionar_ataque(&s->ataque_head_boss, "Olhar sombrio", 200, "Lunar", 0, 0, "");
+    adicionar_ataque(&s->ataque_head_boss, "Bafo lunar", 25, "Fogo", 0, 0, "");
+    adicionar_ataque(&s->ataque_head_boss, "Chute dilacerante", 20, "Corte", 0, 0, "");
+    adicionar_ataque(&s->ataque_head_boss, "Espectro lunático", 30, "Lunar", 0, 0, "");
+    adicionar_ataque(&s->ataque_head_boss, "Olhar sombrio", 25, "Lunar", 0, 0, "");
 
-    adicionar_flor_dia(&s->flor_dia_head1, "Flamigera-do-dia", 25, "Fogo", 15, 1.5, "");
+    adicionar_flor_dia(&s->flor_dia_head1, "Flamígera-do-dia", 25, "Fogo", 15, 1.5, "");
     adicionar_flor_dia(&s->flor_dia_head1, "Tulipa afiada", 10, "Corte", 15, 1.5, "");
-    adicionar_flor_dia(&s->flor_dia_head1, "Orquidea voltaica", 20, "Eletricidade", 15, 2.5, "");
-    adicionar_flor_dia(&s->flor_dia_head1, "Nenufar real", 15, "Agua", 15, 1.5, "");
+    adicionar_flor_dia(&s->flor_dia_head1, "Orquídea voltaica", 20, "Eletricidade", 15, 2.5, "");
+    adicionar_flor_dia(&s->flor_dia_head1, "Nenúfar real", 15, "Água", 15, 1.5, "");
     adicionar_flor_dia(&s->flor_dia_head1, "Girassol", 20, "Solar", 15, 2.0, "");
     adicionar_flor_dia(&s->flor_dia_head1, "Ventanilia", 15, "Ar", 15, 2.5, "");
 
-    adicionar_flor_dia(&s->flor_dia_head2, "Rosa gelida", 15, "Gelo", 15, 1.0, "");
+    adicionar_flor_dia(&s->flor_dia_head2, "Rosa gélida", 15, "Gelo", 15, 1.0, "");
     adicionar_flor_dia(&s->flor_dia_head2, "Helicopdea", 10, "Ar", 15, 2.5, "");
     adicionar_flor_dia(&s->flor_dia_head2, "Girassol", 20, "Solar", 15, 2.0, "");
     adicionar_flor_dia(&s->flor_dia_head2, "Gravitiana", 20, "Impacto", 15, 1.0, "");
-    adicionar_flor_dia(&s->flor_dia_head2, "Lotus", 15, "Agua", 15, 2.0, "");
+    adicionar_flor_dia(&s->flor_dia_head2, "Lótus", 15, "Água", 15, 2.0, "");
 
     adicionar_flor_noite(&s->flor_noite_head1, "Rosa cromada", 20, "Impacto", 10, 1.0, "");
     adicionar_flor_noite(&s->flor_noite_head1, "Rainha-da-noite", 20, "Fogo", 10, 2.0, "");
-    adicionar_flor_noite(&s->flor_noite_head1, "Realeza espinhenta", 15, "Perfuracao", 10, 2.5, "");
-    adicionar_flor_noite(&s->flor_noite_head1, "Flor de Mandacaru", 20, "Agua", 10, 1.5, "");
+    adicionar_flor_noite(&s->flor_noite_head1, "Realeza espinhenta", 15, "Perfuração", 10, 2.5, "");
+    adicionar_flor_noite(&s->flor_noite_head1, "Flor de Mandacaru", 20, "Água", 10, 1.5, "");
     adicionar_flor_noite(&s->flor_noite_head1, "Trombeta-de-anjo", 15, "Veneno", 10, 1.5, "");
-    adicionar_flor_noite(&s->flor_noite_head1, "Gloria-da-friagem", 20, "Gelo", 10, 1.5, "");
+    adicionar_flor_noite(&s->flor_noite_head1, "Glória-da-friagem", 20, "Gelo", 10, 1.5, "");
 
     adicionar_flor_noite(&s->flor_noite_head3, "Dama-da-noite", 20, "Lunar", 10, 2.0, "");
-    adicionar_flor_noite(&s->flor_noite_head3, "Flamigera-da-noite", 25, "Fogo", 10, 1.5, "");
-    adicionar_flor_noite(&s->flor_noite_head3, "Realeza espinhenta", 15, "Perfuracao", 10, 2.5, "");
-    adicionar_flor_noite(&s->flor_noite_head3, "Gloria-da-friagem", 20, "Gelo", 10, 1.5, "");
-    adicionar_flor_noite(&s->flor_noite_head3, "Energialida", 15, "Eletricidade", 10, 2.5, "");
+    adicionar_flor_noite(&s->flor_noite_head3, "Flamígera-da-noite", 25, "Fogo", 10, 1.5, "");
+    adicionar_flor_noite(&s->flor_noite_head3, "Realeza espinhenta", 15, "Perfuração", 10, 2.5, "");
+    adicionar_flor_noite(&s->flor_noite_head3, "Glória-da-friagem", 20, "Gelo", 10, 1.5, "");
+    adicionar_flor_noite(&s->flor_noite_head3, "Energiálida", 15, "Eletricidade", 10, 2.5, "");
 
     adicionar_personagem(&s->personagem_head, "Narciso", 100, 80, NULL, s->flor_dia_head1, s->flor_noite_head1);
     adicionar_personagem(&s->personagem_head, "Roderick", 150, 50, s->ataque_head2, s->flor_dia_head2, NULL);

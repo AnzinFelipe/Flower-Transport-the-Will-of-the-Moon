@@ -10,8 +10,8 @@ void adicionar_vantagens_desvantagens_boss(Boss **boss) {
     // j = 0 Fraquezas | j = 1 Neutro | j = 2 Resistencias
     static char *elementos[4][3] = {
         {"Fogo", "Impacto", "Veneno"},
-        {"Agua", "Eletricidade", "Gelo"},
-        {"Perfuracao", "Ar", "Lunar"},
+        {"Água", "Eletricidade", "Gelo"},
+        {"Perfuração", "Ar", "Lunar"},
         {"Solar", "Corte", NULL}
     };
 
@@ -23,7 +23,7 @@ void adicionar_vantagens_desvantagens_boss(Boss **boss) {
 }
 
 void adicionar_boss (Boss **boss, Ataque *ataque) {
-    (*boss)->nome = "Morticia, a vontade da lua";
+    (*boss)->nome = "Kalma, a vontade da lua";
     (*boss)->vida = 1200;
     (*boss)->ataque = ataque;
     adicionar_vantagens_desvantagens_boss(boss);

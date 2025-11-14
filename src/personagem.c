@@ -57,10 +57,10 @@ void adicionar_vantagens_desvantagens_personagem(Personagem **head, int num) {
         static char *elementos[6][3] = {
             // j = 0 Fraquezas | j = 1 Neutro | j = 2 Resistencias
             {"Fogo", "Eletricidade", "Solar"},
-            {"Lunar", "Ar", "Agua"},
+            {"Lunar", "Ar", "Água"},
             {"Veneno", "Gelo", NULL},
             {NULL, "Impacto", NULL},
-            {NULL, "Perfuracao", NULL},
+            {NULL, "Perfuração", NULL},
             {NULL, "Corte", NULL}
         };
 
@@ -73,9 +73,9 @@ void adicionar_vantagens_desvantagens_personagem(Personagem **head, int num) {
         static char *elementos[6][3] = {
             {"Eletricidade", "Veneno", "Solar"},
             {"Lunar", "Gelo", "Fogo"},
-            {"Ar", "Impacto", "Perfuracao"},
+            {"Ar", "Impacto", "Perfuração"},
             {NULL, NULL, "Corte"},
-            {NULL, NULL, "Agua"},
+            {NULL, NULL, "Água"},
             {NULL, NULL, NULL}
         };
 
@@ -87,10 +87,10 @@ void adicionar_vantagens_desvantagens_personagem(Personagem **head, int num) {
     } else if (num == 2) {
         static char *elementos[6][3] = {
             {"Solar", "Ar", "Lunar"},
-            {"Gelo", "Agua", "Veneno"},
+            {"Gelo", "Água", "Veneno"},
             {"Fogo", "Eletricidade", NULL},
             {"Corte", "Impacto", NULL},
-            {"Perfuracao", NULL, NULL},
+            {"Perfuração", NULL, NULL},
             {NULL, NULL, NULL}
         };
 
@@ -102,8 +102,8 @@ void adicionar_vantagens_desvantagens_personagem(Personagem **head, int num) {
     } else if (num == 3) {
         static char *elementos[6][3] = {
             {"Lunar", "Gelo", "Solar"},
-            {"Agua", "Eletricidade", "Veneno"},
-            {"Perfuracao", "Ar", "Fogo"},
+            {"Água", "Eletricidade", "Veneno"},
+            {"Perfuração", "Ar", "Fogo"},
             {NULL, "Impacto", NULL},
             {NULL, "Corte", NULL},
             {NULL, NULL, NULL}

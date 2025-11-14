@@ -85,7 +85,7 @@ void desenhar_escolhas_ataques(int *escolhido, int *inicio, Personagem *personag
                 *energia_sobra = 0;
             } else {
                 DrawTextEx(fonte ,n->nome, (Vector2){largura, altura / 2 + i * 50}, 40, 2, WHITE);
-                DrawTextEx(fonte, TextFormat("Ataque: %s", n->nome), (Vector2){1280, 66}, 25, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("%s", n->nome), (Vector2){1280, 66}, 30, 2, WHITE);
                 DrawTextEx(fonte, TextFormat("Elemento: %s", n->elemento), (Vector2){1270, 106}, 25, 2, WHITE);
                 DrawTextEx(fonte, TextFormat("Dano: %d", n->dano), (Vector2){1270, 136}, 25, 2, WHITE);
                 DrawTextEx(fonte, TextFormat("Custo de Energia: %d", n->energia_gasta), (Vector2){1270, 166}, 25, 2, WHITE);
@@ -159,7 +159,7 @@ void desenhar_escolhas_flores_dia(int *escolhido, int *inicio, Personagem *perso
                 *energia_sobra = 0;
             } else {
                 DrawTextEx(fonte ,n->nome, (Vector2){largura, altura / 2 + i * 50}, 40, 2, WHITE);
-                DrawTextEx(fonte, TextFormat("Flor: %s", n->nome), (Vector2){1280, 66}, 25, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("%s", n->nome), (Vector2){1280, 66}, 30, 2, WHITE);
                 DrawTextEx(fonte, TextFormat("Elemento: %s", n->elemento), (Vector2){1270, 106}, 25, 2, WHITE);
                 DrawTextEx(fonte, TextFormat("Dano: %d", n->dano), (Vector2){1270, 136}, 25, 2, WHITE);
                 DrawTextEx(fonte, TextFormat("Custo de Energia: %d", n->energia_gasta), (Vector2){1270, 166}, 25, 2, WHITE);
@@ -233,7 +233,7 @@ void desenhar_escolhas_flores_noite(int *escolhido, int *inicio, Personagem *per
                 *energia_sobra = 0;
             } else {
                 DrawTextEx(fonte ,n->nome, (Vector2){largura, altura / 2 + i * 50}, 40, 2, WHITE);
-                DrawTextEx(fonte, TextFormat("Flor: %s", n->nome), (Vector2){1280, 66}, 25, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("%s", n->nome), (Vector2){1280, 66}, 30, 2, WHITE);
                 DrawTextEx(fonte, TextFormat("Elemento: %s", n->elemento), (Vector2){1270, 106}, 25, 2, WHITE);
                 DrawTextEx(fonte, TextFormat("Dano: %d", n->dano), (Vector2){1270, 136}, 25, 2, WHITE);
                 DrawTextEx(fonte, TextFormat("Custo de Energia: %d", n->energia_gasta), (Vector2){1270, 166}, 25, 2, WHITE);
