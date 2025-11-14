@@ -81,7 +81,7 @@ void desenhar_escolhas_ataques(int *escolhido, int *inicio, Personagem *personag
         int indice_atual = *inicio + i;
         if (*escolhido == indice_atual) {
             if (n->energia_gasta > personagem_atual->energia) {
-                DrawText(n->nome, largura, altura / 2 + i * 50, 30, nao_pode_escolhido);
+                DrawTextEx(fonte ,n->nome, (Vector2){largura, altura / 2 + i * 50}, 40, 2, nao_pode_escolhido);
                 *energia_sobra = 0;
             } else {
                 DrawTextEx(fonte ,n->nome, (Vector2){largura, altura / 2 + i * 50}, 40, 2, WHITE);
@@ -155,7 +155,7 @@ void desenhar_escolhas_flores_dia(int *escolhido, int *inicio, Personagem *perso
         int indice_atual = *inicio + i;
         if (*escolhido == indice_atual) {
             if (n->energia_gasta > personagem_atual->energia) {
-                DrawText(n->nome, largura, altura / 2 + i * 50, 30, nao_pode_escolhido);
+                DrawTextEx(fonte ,n->nome, (Vector2){largura, altura / 2 + i * 50}, 40, 2, nao_pode_escolhido);
                 *energia_sobra = 0;
             } else {
                 DrawTextEx(fonte ,n->nome, (Vector2){largura, altura / 2 + i * 50}, 40, 2, WHITE);
@@ -229,7 +229,7 @@ void desenhar_escolhas_flores_noite(int *escolhido, int *inicio, Personagem *per
         int indice_atual = *inicio + i;
         if (*escolhido == indice_atual) {
             if (n->energia_gasta > personagem_atual->energia) {
-                DrawText(n->nome, largura, altura / 2 + i * 50, 30, nao_pode_escolhido);
+                DrawTextEx(fonte ,n->nome, (Vector2){largura, altura / 2 + i * 50}, 40, 2, nao_pode_escolhido);
                 *energia_sobra = 0;
             } else {
                 DrawTextEx(fonte ,n->nome, (Vector2){largura, altura / 2 + i * 50}, 40, 2, WHITE);

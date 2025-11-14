@@ -19,7 +19,7 @@ void adicionar_vantagens_desvantagens_boss(Boss **boss);
 
 void adicionar_boss (Boss **boss, Ataque *ataque);
 
-void desenhar_vida_boss(Boss *boss, int largura, Color vida);
+void desenhar_vida_boss(Boss *boss, int largura, Color vida, Font fonte);
 
 void desenhar_coracao(Texture2D coracao, float largura);
 

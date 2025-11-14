@@ -65,13 +65,13 @@ int main(void) {
                 if (jogo_iniciado->horario == 1) {
                     DrawTextureEx(jogo_iniciado->BG_noite, (Vector2){0, 0}, 0.0, 1, WHITE);
                     DrawTextureEx(jogo_iniciado->noite, (Vector2){0, 0}, 0.0, 1, WHITE);
-                    DrawTextureEx(jogo_iniciado->relogio_noite, (Vector2){0, 0}, 0.0, 0.5, WHITE);
                     if (jogo_iniciado->vez_inimigo == 1) {
                         DrawTextureEx(jogo_iniciado->boss_ataque_noite, (Vector2){0, 0}, 0.0, 1, WHITE);
                     } else {
                         if (jogo_iniciado->momento_atacar == 1 || jogo_iniciado->ataque_apertado == 1) {
                             DrawTextureEx(jogo_iniciado->boss_acertar, (Vector2){0, 0}, 0.0, 1, WHITE);
                         } else {
+                            DrawTextureEx(jogo_iniciado->relogio_noite, (Vector2){0, 20}, 0.0, 0.5, WHITE);
                             DrawRectangle(1250, 50, 300, 375, (Color){0, 0, 0, 160});
                             DrawTextureEx(jogo_iniciado->caixa, (Vector2){1240, 40}, 0.0, 0.4, WHITE);
                             if (jogo_iniciado->boss_animado > jogo_iniciado->delay_boss_animado * 4) {
@@ -94,13 +94,13 @@ int main(void) {
                     desenhar_personagem(jogo_iniciado->personagem_head, 3, 100, jogo_iniciado->quadro_vinho_noite, jogo_iniciado->quadro_vinho2_noite, jogo_iniciado->quadro_vinho3_noite);   
                 } else if (jogo_iniciado->horario == 0) {
                     DrawTextureEx(jogo_iniciado->BG, (Vector2){0, 0}, 0.0, 1, GRAY);
-                    DrawTextureEx(jogo_iniciado->relogio_dia, (Vector2){0, 0}, 0.0, 0.5, WHITE);
                     if (jogo_iniciado->vez_inimigo == 1) {
                         DrawTextureEx(jogo_iniciado->boss_ataque_dia, (Vector2){0, 0}, 0.0, 1, WHITE);
                     } else {
                         if (jogo_iniciado->momento_atacar == 1 || jogo_iniciado->ataque_apertado == 1) {
                             DrawTextureEx(jogo_iniciado->boss_acertar, (Vector2){0, 0}, 0.0, 1, WHITE);
                         } else {
+                            DrawTextureEx(jogo_iniciado->relogio_dia, (Vector2){0, 20}, 0.0, 0.5, WHITE);
                             DrawRectangle(1250, 50, 300, 375, (Color){0, 0, 0, 160});
                             DrawTextureEx(jogo_iniciado->caixa, (Vector2){1240, 40}, 0.0, 0.4, WHITE);
                             if (jogo_iniciado->boss_animado > jogo_iniciado->delay_boss_animado * 4) {
@@ -130,7 +130,9 @@ int main(void) {
                 desenhar_energia_personagens(jogo_iniciado->personagem_head, 2, jogo_iniciado->energia_cor);
                 desenhar_vida_personagens(jogo_iniciado->personagem_head, 3, jogo_iniciado->vida_cor);
                 desenhar_energia_personagens(jogo_iniciado->personagem_head, 3, jogo_iniciado->energia_cor);
-                desenhar_vida_boss(jogo_iniciado->boss, largura, jogo_iniciado->vida_cor);
+                if (!(jogo_iniciado->vez_inimigo)) {
+                    desenhar_vida_boss(jogo_iniciado->boss, largura, jogo_iniciado->vida_cor, jogo_iniciado->fonte);
+                }
                 DrawTextureEx(jogo_iniciado->borda, (Vector2){0, 600}, 0.0, 0.5, GRAY);
                 DrawTextureEx(jogo_iniciado->borda, (Vector2){400, 600}, 0.0, 0.5, GRAY);
                 DrawTextureEx(jogo_iniciado->borda, (Vector2){800, 600}, 0.0, 0.5, GRAY);

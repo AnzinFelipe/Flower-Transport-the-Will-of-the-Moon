@@ -71,6 +71,12 @@ void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura,
             DrawTextEx(fonte, TextFormat("%s", personagem_atual->nome), (Vector2){1280, 66}, 30, 2, WHITE);
             DrawTextEx(fonte, TextFormat("Vida: %d/%d", personagem_atual->vida, vida), (Vector2){1275, 110}, 25, 2, WHITE);
             DrawTextEx(fonte, TextFormat("Energia: %d/%d", personagem_atual->energia, energia), (Vector2){1275, 140}, 25, 2, WHITE);
+            if (horario == 0) {
+                DrawTextEx(fonte, TextFormat("Horário: dia"), (Vector2){1275, 180}, 30, 2, WHITE);
+            } else if (horario == 1) {
+                DrawTextEx(fonte, TextFormat("Horário: noite?"), (Vector2){1275, 180}, 30, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Parece que o cadáver\nconjurou um feitiço que\nescureceu o céu"), (Vector2){1275, 220}, 25, 2, WHITE);
+            }   
         }
     } else if (personagem_num == 1) {
        if (escolhido == 0) {
@@ -103,6 +109,12 @@ void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura,
             DrawTextEx(fonte, TextFormat("%s", personagem_atual->nome), (Vector2){1280, 66}, 30, 2, WHITE);
             DrawTextEx(fonte, TextFormat("Vida: %d/%d", personagem_atual->vida, vida), (Vector2){1275, 110}, 25, 2, WHITE);
             DrawTextEx(fonte, TextFormat("Energia: %d/%d", personagem_atual->energia, energia), (Vector2){1275, 140}, 25, 2, WHITE);
+            if (horario == 0) {
+                DrawTextEx(fonte, TextFormat("Horário: dia"), (Vector2){1275, 180}, 30, 2, WHITE);
+            } else if (horario == 1) {
+                DrawTextEx(fonte, TextFormat("Horário: noite?"), (Vector2){1275, 180}, 30, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Parece que o cadáver\nconjurou um feitiço que\nescureceu o céu"), (Vector2){1275, 220}, 25, 2, WHITE);
+            } 
         }
     } else if (personagem_num == 2) {
         if (escolhido == 0) {
@@ -135,6 +147,12 @@ void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura,
             DrawTextEx(fonte, TextFormat("%s", personagem_atual->nome), (Vector2){1280, 66}, 30, 2, WHITE);
             DrawTextEx(fonte, TextFormat("Vida: %d/%d", personagem_atual->vida, vida), (Vector2){1275, 110}, 25, 2, WHITE);
             DrawTextEx(fonte, TextFormat("Energia: %d/%d", personagem_atual->energia, energia), (Vector2){1275, 140}, 25, 2, WHITE);
+            if (horario == 0) {
+                DrawTextEx(fonte, TextFormat("Horário: dia"), (Vector2){1275, 180}, 30, 2, WHITE);
+            } else if (horario == 1) {
+                DrawTextEx(fonte, TextFormat("Horário: noite?"), (Vector2){1275, 180}, 30, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Parece que o cadáver\nconjurou um feitiço que\nescureceu o céu"), (Vector2){1275, 220}, 25, 2, WHITE);
+            } 
         }
     } else if (personagem_num == 3) {
         if (escolhido == 0) {
@@ -153,6 +171,12 @@ void desenhar_escolhas_primarias(int escolhido, int personagem_num, int largura,
             DrawTextEx(fonte, TextFormat("%s", personagem_atual->nome), (Vector2){1280, 66}, 30, 2, WHITE);
             DrawTextEx(fonte, TextFormat("Vida: %d/%d", personagem_atual->vida, vida), (Vector2){1275, 110}, 25, 2, WHITE);
             DrawTextEx(fonte, TextFormat("Energia: infinita"), (Vector2){1275, 140}, 25, 2, WHITE);
+            if (horario == 0) {
+                DrawTextEx(fonte, TextFormat("Horário: dia"), (Vector2){1275, 180}, 30, 2, WHITE);
+            } else if (horario == 1) {
+                DrawTextEx(fonte, TextFormat("Horário: noite?"), (Vector2){1275, 180}, 30, 2, WHITE);
+                DrawTextEx(fonte, TextFormat("Parece que o cadáver\nconjurou um feitiço que\nescureceu o céu"), (Vector2){1275, 220}, 25, 2, WHITE);
+            } 
         }
     }
 }

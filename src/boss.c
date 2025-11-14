@@ -29,9 +29,10 @@ void adicionar_boss (Boss **boss, Ataque *ataque) {
     adicionar_vantagens_desvantagens_boss(boss);
 }
 
-void desenhar_vida_boss(Boss *boss, int largura, Color vida) {
+void desenhar_vida_boss(Boss *boss, int largura, Color vida, Font fonte) {
     DrawRectangle(largura/2 - 300, 20, 600, 25, DARKGRAY);
     DrawRectangle(largura/2 - 300, 20, boss->vida / 2, 25, vida);
+    DrawTextEx(fonte, "Kalma, a vontade do Lua", (Vector2){50, 20}, 40, 2, WHITE);
 }
 
 void desenhar_coracao(Texture2D coracao, float largura) {
