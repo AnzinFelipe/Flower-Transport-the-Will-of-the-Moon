@@ -27,7 +27,7 @@ GameScreen RunMenu(void) {
             pode_apertar = 0.0;
             UnloadTexture(menu1);
             UnloadTexture(menu2); 
-            return (selecao == 0) ? SCREEN_GAME : SCREEN_EXIT;
+            return (selecao == 0) ? SCREEN_CUTSCENE : SCREEN_EXIT;
         }
 
         BeginDrawing();

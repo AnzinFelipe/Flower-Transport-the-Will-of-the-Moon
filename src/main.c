@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <math.h>
 
+
 int main(void) {
     int largura = 1600, altura = 900;
 
@@ -34,13 +35,15 @@ int main(void) {
                 return 0;
             case SCREEN_MENU:
                 currentScreen = RunMenu();
+                break; 
+            case SCREEN_CUTSCENE:
+                currentScreen = RunCutscene();
                 if (currentScreen == SCREEN_GAME) {
-                    // Inicializa todas as variáveis do jogo se entrar na tela de jogo
-
                     novo_jogo(jogo_iniciado, largura, altura);
                     derrotado = 0;
+                    
                 }
-                break; 
+                break;
             case SCREEN_GAME:
                 
                 if(derrotado == 1){
