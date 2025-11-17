@@ -19,9 +19,10 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     if (!IsAudioDeviceReady()) {
         InitAudioDevice();
     }
-    s->pink = LoadMusicStream("assets/music/Pink.mp3");
-    PlayMusicStream(s->pink);
-    
+    s->batalha = LoadMusicStream("assets/music/Batalha.mp3");
+    PlayMusicStream(s->batalha);
+    s->batalha2 = LoadMusicStream("assets/music/Batalha2.mp3");
+    PlayMusicStream(s->batalha2);
 
     s->BG = LoadTexture("assets/images/BG.png");
     GenTextureMipmaps(&s->BG);
@@ -356,6 +357,7 @@ void liberar_jogo(VariaveisInicioJogo *s){
     UnloadTexture(s->BG);
     UnloadTexture(s->BG_noite);
     UnloadFont(s->fonte);
-    UnloadMusicStream(s->pink);
+    UnloadMusicStream(s->batalha);
+    UnloadMusicStream(s->batalha2);
     CloseAudioDevice();
 }

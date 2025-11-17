@@ -51,7 +51,15 @@ int main(void) {
                     derrotado = 0;
                 }
 
-                UpdateMusicStream(jogo_iniciado->pink);
+                UpdateMusicStream(jogo_iniciado->batalha);
+                UpdateMusicStream(jogo_iniciado->batalha2);
+                if (jogo_iniciado->horario == 0) {
+                    SetMusicVolume(jogo_iniciado->batalha, 1);
+                    SetMusicVolume(jogo_iniciado->batalha2, 0);
+                } else if (jogo_iniciado->horario == 1) {
+                    SetMusicVolume(jogo_iniciado->batalha, 0);
+                    SetMusicVolume(jogo_iniciado->batalha2, 1);
+                }
                 
                 jogo_iniciado->pode_apertar += GetFrameTime();
                 jogo_iniciado->ataque_boss_tempo += GetFrameTime();
