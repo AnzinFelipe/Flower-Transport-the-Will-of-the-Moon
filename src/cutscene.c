@@ -71,6 +71,11 @@ GameScreen RunCutscene(void)
             else
             {
                 LiberarImagens(listaImagens);
+
+                BeginDrawing();
+                ClearBackground(BLACK);
+                EndDrawing();
+
                 return SCREEN_GAME;
             }
         }
