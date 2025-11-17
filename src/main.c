@@ -66,10 +66,15 @@ int main(void) {
                 jogo_iniciado->boss_animado += GetFrameTime();
                 
                 if (IsKeyPressed(KEY_F11) && jogo_iniciado->pode_apertar >= jogo_iniciado->delay) {
-                    ToggleFullscreen();
+                    if (IsWindowFullscreen()) {
+                        ToggleFullscreen();
+                        SetWindowSize(1600, 900);
+                    } else {
+                        SetWindowSize(1600, 900);
+                        ToggleFullscreen();
+                    }
                     jogo_iniciado->pode_apertar = 0.0;
                 }
-
                 BeginTextureMode(jogo_iniciado->janela);
                 
                 ClearBackground(BLACK);
