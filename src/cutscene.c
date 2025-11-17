@@ -53,6 +53,7 @@ GameScreen RunCutscene(void)
 {
     Images* listaImagens = CriarCutsceneImages();
     Images* imagemAtual = listaImagens;
+    Font fonte = LoadFontEx("assets/fonts/EmilysCandy-Regular.ttf", 40, NULL, 252);
     int cont = 1;
     float temporizador = 0.0;
     
@@ -91,7 +92,28 @@ GameScreen RunCutscene(void)
         );
         
         DrawText(TextFormat("%d/10", cont), 10, 10, 20, WHITE);
-        
+
+        if (cont == 1) {
+            DrawTextEx(fonte, "Após nossos transportadores\npassarem pelos Lagos Gelados\nao Norte da floresta espinhenta,\neles se encontram pensando\nem seus próximos passos.", (Vector2){800, 300}, 40, 2, BLACK); 
+        } else if (cont == 2) {
+            DrawTextEx(fonte, "Narciso", (Vector2){560, 370}, 40, 2, (Color){120, 0, 120, 255});
+            DrawTextEx(fonte, "Conferindo o mapa,\nprecisamos andar mais\nalguns quilômetros para\no Sul até chegarmos\nà próxima ilha.", (Vector2){1150, 50}, 40, 2, BLACK);
+        } else if (cont == 3) {
+            DrawTextEx(fonte, "Roderick", (Vector2){220, 120}, 40, 2, (Color){120, 0, 0, 255});
+            DrawTextEx(fonte, "Precisamos decidir se vamos descansar\nagora ou continuaremos andando.\nSó temos provisões para mais 3 dias,\no quanto antes chegarmos à próxima\ncidade, melhor.", (Vector2){850, 50}, 40, 2, BLACK);
+        } else if (cont == 4) {
+            DrawTextEx(fonte, "Edoras", (Vector2){1200, 250}, 40, 2, (Color){200, 60, 0, 255});
+            DrawTextEx(fonte, "Vamos seguir em frente logo! Eu consigo\nver um caminho sem muitos espinhos ali\nmais pra frente, não vai ser tão difícil\nandar por ele. A gente precisa se distanciar\no máximo daquele caçador, o Lu já fez\no favor de nos atrasar demais.", (Vector2){50, 50}, 40, 2, BLACK);
+        } else if (cont == 5) {
+            DrawTextEx(fonte, "Lumennyl", (Vector2){700, 275}, 40, 2, (Color){152, 35, 107, 255});
+            DrawTextEx(fonte, "Eu sei que todos vocês\nestão cansados.\nE eu não atrasei a gente\n                coisa nenhuma.", (Vector2){580, 500}, 40, 2, BLACK);
+            DrawTextEx(fonte, "Aham.", (Vector2){1000, 750}, 40, 2, BLACK);
+        } else if (cont == 6) {
+            DrawTextEx(fonte, "Então tu quer que a gente acampe aqui?\nCom aquele cadáver decapitado todo estranho\nolhando pra gente? Ótima ideia viu, talvez\neu consiga dormir se aquilo não me der\nnenhum pesadelo.", (Vector2){75, 100}, 40, 2, BLACK);
+        } else if (cont == 10) {
+            DrawTextEx(fonte, "Kalma, a vontade do Lua", (Vector2){1050, 150}, 40, 2, (Color){152, 35, 35, 255});
+        }
+         
         EndDrawing();
     }
     
