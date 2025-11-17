@@ -240,10 +240,10 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     adicionar_ataque(&s->ataque_head4, "Espada solar", 30, "Corte", 0, 1.0, "");
     adicionar_ataque(&s->ataque_head4, "Fumaça venenosa", 10, "Veneno", 0, 1.0, "");
 
-    adicionar_ataque(&s->ataque_head_boss, "Bafo lunar", 25, "Fogo", 0, 0, "");
-    adicionar_ataque(&s->ataque_head_boss, "Chute dilacerante", 20, "Corte", 0, 0, "");
-    adicionar_ataque(&s->ataque_head_boss, "Espectro lunático", 30, "Lunar", 0, 0, "");
-    adicionar_ataque(&s->ataque_head_boss, "Olhar sombrio", 25, "Lunar", 0, 0, "");
+    adicionar_ataque(&s->ataque_head_boss, "Bafo lunar", 250, "Fogo", 0, 0, "");
+    adicionar_ataque(&s->ataque_head_boss, "Chute dilacerante", 200, "Corte", 0, 0, "");
+    adicionar_ataque(&s->ataque_head_boss, "Espectro lunático", 300, "Lunar", 0, 0, "");
+    adicionar_ataque(&s->ataque_head_boss, "Olhar sombrio", 250, "Lunar", 0, 0, "");
 
     adicionar_flor_dia(&s->flor_dia_head1, "Flamígera-do-dia", 25, "Fogo", 15, 1.5, "");
     adicionar_flor_dia(&s->flor_dia_head1, "Tulipa afiada", 10, "Corte", 15, 1.5, "");
