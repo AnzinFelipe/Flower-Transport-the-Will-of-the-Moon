@@ -2,7 +2,6 @@
 TARGET = main
 
 # Compilador e flags
-CC = gcc
 CFLAGS = -Wall -Wextra -O2
 
 # Diretórios
@@ -13,11 +12,23 @@ INC_DIR = include
 SRC = $(wildcard $(SRC_DIR)/*.c)
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(SRC_DIR)/%.o)
 
-# Bibliotecas
-LIBS = -lraylib -lm -lpthread -ldl -lGL -lrt -lX11
+# Detecção do Sistema Operacional
+ifeq ($(OS),Windows_NT)
+    # Windows
+    TARGET := $(TARGET).exe
+    CC = C:/raylib/w64devkit/bin/gcc.exe
+    RAYLIB_PATH = C:/raylib/raylib-5.0_win64_mingw-w64
+    LIBS = -L$(RAYLIB_PATH)/lib -lraylib -lopengl32 -lgdi32 -lwinmm
+    RAYLIB_INCLUDE = -I$(RAYLIB_PATH)/include
+else
+    # Linux
+    CC = gcc
+    LIBS = -lraylib -lm -lpthread -ldl
+    RAYLIB_INCLUDE = -I/usr/local/include
+endif
 
 # Flags de include
-CFLAGS += -I$(INC_DIR)
+CFLAGS += -I$(INC_DIR) $(RAYLIB_INCLUDE)
 
 # Make
 all: $(TARGET)
@@ -37,3 +48,5 @@ run: all
 # Make clean remove os arquivos criados
 clean:
 	rm -f $(OBJ) $(TARGET)
+
+.PHONY: all run clean
