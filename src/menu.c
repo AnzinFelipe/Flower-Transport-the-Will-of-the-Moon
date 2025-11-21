@@ -3,6 +3,11 @@
 #include <math.h>
 
 GameScreen RunMenu(void) {
+    if (!IsAudioDeviceReady()) {
+        InitAudioDevice();
+    }
+    Music menu = LoadMusicStream("assets/music/Menu.mp3");
+    PlayMusicStream(menu);
     const char opcao[2][15] = {"INICIAR JOGO", "SAIR"};
     Texture2D menu1 = LoadTexture("assets/images/Menu1.png");
     GenTextureMipmaps(&menu1);
@@ -18,12 +23,16 @@ GameScreen RunMenu(void) {
 
     while (!WindowShouldClose()) {
 
+        UpdateMusicStream(menu);
+
         pode_apertar += GetFrameTime();
         if (IsKeyPressed(KEY_UP)) selecao = !selecao;
         if (IsKeyPressed(KEY_DOWN)) selecao = !selecao;
 
         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
             pode_apertar = 0.0;
+            UnloadMusicStream(menu);
+            CloseAudioDevice();
             UnloadTexture(menu1);
             UnloadTexture(menu2); 
             return (selecao == 0) ? SCREEN_CUTSCENE : SCREEN_EXIT;

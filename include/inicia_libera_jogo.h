@@ -10,8 +10,7 @@
 
 typedef struct VariaveisInicioJogo{
     RenderTexture2D janela;
-    Music batalha;
-    Music batalha2;
+    Music batalha, batalha2;
     Font fonte; 
     Texture2D BG, BG_noite, noite, relogio_dia, relogio_noite, borda_escolhido, borda, caixa;
     Texture2D quadro_roxo, quadro_roxo_noite, quadro_vermelho, quadro_vermelho_noite;

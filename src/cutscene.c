@@ -53,6 +53,11 @@ void LiberarImagens(Images* listaImagens)
 
 GameScreen RunCutscene(void)
 {
+    if (!IsAudioDeviceReady()) {
+        InitAudioDevice();
+    }
+    Music inicio = LoadMusicStream("assets/music/Inicio.mp3");
+    PlayMusicStream(inicio);
     Images* listaImagens = CriarCutsceneImages();
     Images* imagemAtual = listaImagens;
     Font fonte = LoadFontEx("assets/fonts/EmilysCandy-Regular.ttf", 40, NULL, 252);
@@ -64,6 +69,9 @@ GameScreen RunCutscene(void)
     
     while (!WindowShouldClose())
     {
+
+        UpdateMusicStream(inicio);
+
         temporizador += GetFrameTime();
         
         if (IsKeyPressed(KEY_Z) && temporizador >= 0.1)
@@ -77,7 +85,8 @@ GameScreen RunCutscene(void)
             else
             {
                 LiberarImagens(listaImagens);
-
+                UnloadMusicStream(inicio);
+                CloseAudioDevice();
                 BeginDrawing();
                 ClearBackground(BLACK);
                 EndDrawing();

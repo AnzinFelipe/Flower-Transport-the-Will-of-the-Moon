@@ -3,6 +3,11 @@
 #include <math.h>
 
 GameScreen RunGameOver(void){
+    if (!IsAudioDeviceReady()) {
+        InitAudioDevice();
+    }
+    Music gameover_musica = LoadMusicStream("assets/music/Gameover.mp3");
+    PlayMusicStream(gameover_musica);
     const char opcao[2][16] = {"TENTAR DE NOVO!", "SUCUMBIR..."};
     int selecao = 0;
     Texture2D gameover = LoadTexture("assets/images/Gameover.png");
@@ -15,12 +20,16 @@ GameScreen RunGameOver(void){
 
     while (!WindowShouldClose()) {
 
+        UpdateMusicStream(gameover_musica);
+
         pode_apertar += GetFrameTime();
         if (IsKeyPressed(KEY_RIGHT)) selecao = !selecao;
         if (IsKeyPressed(KEY_LEFT)) selecao = !selecao;
 
         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
             pode_apertar = 0.0;
+            UnloadMusicStream(gameover_musica);
+            CloseAudioDevice();
             UnloadTexture(gameover);
             return (selecao == 0) ? SCREEN_GAME : SCREEN_MENU;
         }
