@@ -17,11 +17,6 @@ GameScreen RunMenu(void) {
         pode_apertar += GetFrameTime();
         if (IsKeyPressed(KEY_UP)) selecao = !selecao;
         if (IsKeyPressed(KEY_DOWN)) selecao = !selecao;
-        
-        if (IsKeyPressed(KEY_F11) && pode_apertar >= delay) {
-            ToggleFullscreen();
-            pode_apertar = 0.0;
-        }
 
         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay) {
             pode_apertar = 0.0;
