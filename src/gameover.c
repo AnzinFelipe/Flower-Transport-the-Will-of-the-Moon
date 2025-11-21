@@ -30,9 +30,9 @@ GameScreen RunGameOver(void){
 
         for (int i = 0; i < 2; i++) {
             if (i == selecao) {
-                DrawText(opcao[i], 250 + i * 550, 300, 40, (Color){255, 0, 144, 255});
+                DrawText(opcao[i], 250 + i * 700, 300, 40, (Color){255, 0, 144, 255});
             } else {
-                DrawText(opcao[i], 250 + i * 550, 300, 35, WHITE);
+                DrawText(opcao[i], 250 + i * 700, 300, 35, WHITE);
             }
         }
 
