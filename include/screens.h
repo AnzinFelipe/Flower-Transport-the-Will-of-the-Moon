@@ -15,11 +15,13 @@ typedef enum GameScreen {
     SCREEN_GAMEOVER,
     SCREEN_CUTSCENE,
     SCREEN_WIN,
+    SCREEN_CUTSCENE2
 } GameScreen;
 
 GameScreen RunMenu(void);
 GameScreen RunCutscene(void);
 GameScreen RunGameOver(void);
 GameScreen RunGameWin(void);
+GameScreen RunCutscene2(void);
 
 #endif

@@ -176,10 +176,7 @@ int main(void) {
                             derrotado = 1;
                             currentScreen = SCREEN_GAMEOVER;
                         }
-                        if (currentScreen == SCREEN_GAME && jogo_iniciado->boss->vida <= 0) {
-                            liberar_jogo(jogo_iniciado);
-                            currentScreen = SCREEN_WIN;
-                        }
+                        
                     }
                 } else {
                     // Vez do player
@@ -495,10 +492,10 @@ int main(void) {
                         jogo_iniciado->escolhido = 0;
                         jogo_iniciado->verificar_ataque = 0;
                         jogo_iniciado->animacao_efeito = 1;
-                        
+
                         if (currentScreen == SCREEN_GAME && jogo_iniciado->boss->vida <= 0) {
                             liberar_jogo(jogo_iniciado);
-                            currentScreen = SCREEN_WIN;
+                            currentScreen = SCREEN_CUTSCENE2;
                         }
                     }
                     if (jogo_iniciado->animacao_efeito == 1) {
@@ -558,7 +555,14 @@ int main(void) {
             case SCREEN_GAMEOVER:
                 currentScreen = RunGameOver();
                 break;
-
+            
+            case SCREEN_CUTSCENE2:
+                currentScreen = RunCutscene2();
+                if (currentScreen == SCREEN_WIN){
+                    
+                }
+                break;
+                    
             case SCREEN_WIN:
                 currentScreen = RunGameWin();
     
