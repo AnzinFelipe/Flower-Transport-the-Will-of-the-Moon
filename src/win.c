@@ -34,18 +34,18 @@ GameScreen RunGameWin(void)
         ClearBackground(BLACK);
         DrawTexture(gamewin, 0, 0, WHITE);
 
-        DrawText("Vitória!", 650, 150, 80, GOLD);
-        DrawText("Parabéns! Você venceu o jogo.", 500, 250, 40, WHITE);
+        DrawText("Vitória!", 650, 50, 80, (Color){152, 35, 35, 255});
+        DrawText("Parabéns! Você venceu o jogo.", 500, 150, 40, WHITE);
 
         for (int i = 0; i < 2; i++)
         {
             if (i == selecao)
             {
-                DrawText(opcao[i], 250 + i * 700, 500, 40, YELLOW);
+                DrawText(opcao[i], 250 + i * 700, 300, 40, (Color){152, 35, 35, 255});
             }
             else
             {
-                DrawText(opcao[i], 250 + i * 700, 500, 35, WHITE);
+                DrawText(opcao[i], 250 + i * 700, 300, 35, WHITE);
             }
         }
         
