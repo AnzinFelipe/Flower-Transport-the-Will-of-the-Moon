@@ -176,6 +176,10 @@ int main(void) {
                             derrotado = 1;
                             currentScreen = SCREEN_GAMEOVER;
                         }
+                        if (currentScreen == SCREEN_GAME && jogo_iniciado->boss->vida <= 0) {
+                            liberar_jogo(jogo_iniciado);
+                            currentScreen = SCREEN_WIN;
+                        }
                     }
                 } else {
                     // Vez do player
@@ -187,6 +191,7 @@ int main(void) {
                     //Escolhas primarias de cada personagem
                     if (jogo_iniciado->escolhas == 1 && jogo_iniciado->personagem_num == 0) {
                         //Personagem 0
+                        
                         pegar_personagem(jogo_iniciado->personagem_num, &jogo_iniciado->personagem_atual, jogo_iniciado->personagem_head);
                         
                         if(jogo_iniciado->random_p == 0) {
@@ -490,6 +495,11 @@ int main(void) {
                         jogo_iniciado->escolhido = 0;
                         jogo_iniciado->verificar_ataque = 0;
                         jogo_iniciado->animacao_efeito = 1;
+                        
+                        if (currentScreen == SCREEN_GAME && jogo_iniciado->boss->vida <= 0) {
+                            liberar_jogo(jogo_iniciado);
+                            currentScreen = SCREEN_WIN;
+                        }
                     }
                     if (jogo_iniciado->animacao_efeito == 1) {
                         if (jogo_iniciado->acertou_ataque == 1) {
@@ -548,6 +558,15 @@ int main(void) {
             case SCREEN_GAMEOVER:
                 currentScreen = RunGameOver();
                 break;
+
+            case SCREEN_WIN:
+                currentScreen = RunGameWin();
+    
+                if (currentScreen == SCREEN_GAME) {
+                    novo_jogo(jogo_iniciado, largura, altura);
+                    derrotado = 0;
+                }
+    break;
         }
     }
 
@@ -555,7 +574,7 @@ int main(void) {
         liberar_jogo(jogo_iniciado);
         free(jogo_iniciado);
     }
-
+    
     CloseWindow();
 
     return 0;
