@@ -488,24 +488,35 @@ int main(void) {
                         jogo_iniciado->projetil_flor_diurna = 0;
                         jogo_iniciado->projetil_flor_noturna = 0;
                         jogo_iniciado->escolhido = 0;
-                        jogo_iniciado->acertou_ataque = 0;
                         jogo_iniciado->verificar_ataque = 0;
-                        if (jogo_iniciado->personagem_num == 3) {
-                            jogo_iniciado->ataque_boss_tempo = 0.0;
-                            jogo_iniciado->vez_inimigo = 1;
-                        } else {
-                            if (jogo_iniciado->personagem_num == 2 && jogo_iniciado->p3_morto == 1) {
-                                jogo_iniciado->ataque_boss_tempo = 0.0;
-                                jogo_iniciado->vez_inimigo = 1;
-                            } else if (jogo_iniciado->personagem_num == 1 && jogo_iniciado->p2_morto == 1 && jogo_iniciado->p3_morto == 1) {
-                                jogo_iniciado->ataque_boss_tempo = 0.0;
-                                jogo_iniciado->vez_inimigo = 1;
-                            } else if (jogo_iniciado->personagem_num == 0 && jogo_iniciado->p1_morto == 1 && jogo_iniciado->p2_morto == 1 && jogo_iniciado->p3_morto == 1) {
+                        jogo_iniciado->animacao_efeito = 1;
+                    }
+                    if (jogo_iniciado->animacao_efeito == 1) {
+                        if (jogo_iniciado->acertou_ataque == 1) {
+                            jogo_iniciado->efeito_animado += GetFrameTime();
+                            animacao_efeito(jogo_iniciado->efeitos, jogo_iniciado->elemento_atual, &jogo_iniciado->efeito_terminou, &jogo_iniciado->efeito_animado, jogo_iniciado->efeito_delay, &jogo_iniciado->largura_frame, &jogo_iniciado->cont_frames);
+                        }
+                        if (jogo_iniciado->efeito_terminou == 1 || jogo_iniciado->acertou_ataque == 0) {
+                            jogo_iniciado->acertou_ataque = 0;
+                            jogo_iniciado->efeito_terminou = 0;
+                            jogo_iniciado->animacao_efeito = 0;
+                            if (jogo_iniciado->personagem_num == 3) {
                                 jogo_iniciado->ataque_boss_tempo = 0.0;
                                 jogo_iniciado->vez_inimigo = 1;
                             } else {
-                                jogo_iniciado->escolhas = 1;
-                                jogo_iniciado->personagem_num++;
+                                if (jogo_iniciado->personagem_num == 2 && jogo_iniciado->p3_morto == 1) {
+                                    jogo_iniciado->ataque_boss_tempo = 0.0;
+                                    jogo_iniciado->vez_inimigo = 1;
+                                } else if (jogo_iniciado->personagem_num == 1 && jogo_iniciado->p2_morto == 1 && jogo_iniciado->p3_morto == 1) {
+                                    jogo_iniciado->ataque_boss_tempo = 0.0;
+                                    jogo_iniciado->vez_inimigo = 1;
+                                } else if (jogo_iniciado->personagem_num == 0 && jogo_iniciado->p1_morto == 1 && jogo_iniciado->p2_morto == 1 && jogo_iniciado->p3_morto == 1) {
+                                    jogo_iniciado->ataque_boss_tempo = 0.0;
+                                    jogo_iniciado->vez_inimigo = 1;
+                                } else {
+                                    jogo_iniciado->escolhas = 1;
+                                    jogo_iniciado->personagem_num++;
+                                }
                             }
                         }
                     }

@@ -7,6 +7,7 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     s->flor_dia_head1 = NULL; s->flor_dia_head2 = NULL;
     s->flor_noite_head1 = NULL; s->flor_noite_head3 = NULL;
     s->personagem_atual = NULL; s->personagem_head = NULL;
+    s->efeitos = NULL;
     s->boss = NULL;
     s->elemento_atual = NULL;
 
@@ -206,6 +207,16 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     GenTextureMipmaps(&s->proj_veneno);
     SetTextureFilter(s->proj_veneno, TEXTURE_FILTER_TRILINEAR);
 
+    s->efeito_fogo = LoadTexture("assets/images/efeitos/fogo.png");
+    GenTextureMipmaps(&s->efeito_fogo);
+    SetTextureFilter(s->efeito_fogo, TEXTURE_FILTER_POINT);
+    s->efeito_corte = LoadTexture("assets/images/efeitos/corte.png");
+    GenTextureMipmaps(&s->efeito_corte);
+    SetTextureFilter(s->efeito_corte, TEXTURE_FILTER_POINT);
+    s->efeito_gelo = LoadTexture("assets/images/efeitos/gelo.png");
+    GenTextureMipmaps(&s->efeito_gelo);
+    SetTextureFilter(s->efeito_gelo, TEXTURE_FILTER_POINT);
+
     s->escolhas = 1; s->escolha_flores_diurnas = 0; s->escolha_flores_noturnas = 0; s->escolha_ataques = 0; s->defender = 0;
     s->escolhido = 0; s->inicio_escolhas_secundarios = 0; s->personagem_num = 0; s->vez_inimigo = 0; s->horario = 0;
     s->p0_morto = 0, s->p1_morto = 0; s->p2_morto = 0; s->p3_morto = 0;
@@ -217,10 +228,12 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     s->velocidade_atual = 0.0;
     s->energia_sobra = 0;
     s->comeco = 1, s->random_p = 0;
+    s->animacao_efeito = 0, s->efeito_terminou = 0, s->cont_frames = 0, s->largura_frame = 0;
     s->pode_apertar = 0.0; s->delay = 0.1;
     s->ataque_boss_tempo = 0.0; s->delay_ataque_boss = 2;
     s->boss_animado = 0.0; s->delay_boss_animado = 0.4;
     s->olho_animado = 0.0; s->olho_delay = 0.2;
+    s->efeito_animado = 0.0; s->efeito_delay = 0.1;
     s->vida_cor = (Color){120, 18, 18, 255};
     s->energia_cor = (Color){18, 120, 80, 255};
     s->colisao_teto = (Rectangle){0, 0, 1600, 1};
@@ -277,6 +290,10 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     adicionar_personagem(&s->personagem_head, "Edoras", 80, 80, s->ataque_head3, NULL, s->flor_noite_head3);
     adicionar_personagem(&s->personagem_head, "Lumennyl", 100, 0, s->ataque_head4, NULL, NULL);
 
+    adicionar_efeito(&s->efeitos, "Fogo", s->efeito_fogo, 20, 50, 95);
+    adicionar_efeito(&s->efeitos, "Corte", s->efeito_corte, 8, 44, 42);
+    adicionar_efeito(&s->efeitos, "Gelo", s->efeito_gelo, 28, 48, 48);
+
     adicionar_vantagens_desvantagens_personagem(&s->personagem_head, 0);
     adicionar_vantagens_desvantagens_personagem(&s->personagem_head, 1);
     adicionar_vantagens_desvantagens_personagem(&s->personagem_head, 2);
@@ -296,6 +313,7 @@ void liberar_jogo(VariaveisInicioJogo *s){
     liberar_flor_noite(s->flor_noite_head1);
     liberar_flor_noite(s->flor_noite_head3);
     liberar_personagem(s->personagem_head);
+    liberar_efeito(s->efeitos);
     free(s->elemento_atual);
     free(s->boss);
 
@@ -348,6 +366,9 @@ void liberar_jogo(VariaveisInicioJogo *s){
     UnloadTexture(s->proj_perfuracao);
     UnloadTexture(s->proj_solar);
     UnloadTexture(s->proj_veneno);
+    UnloadTexture(s->efeito_fogo);
+    UnloadTexture(s->efeito_corte);
+    UnloadTexture(s->efeito_gelo);
     UnloadTexture(s->relogio_dia);
     UnloadTexture(s->relogio_noite);
     UnloadTexture(s->borda);
