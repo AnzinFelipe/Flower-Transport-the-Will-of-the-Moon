@@ -4,12 +4,19 @@
 
 GameScreen RunGameWin(void)
 {
+    if (!IsAudioDeviceReady()) {
+        InitAudioDevice();
+    }
+    Music menu = LoadMusicStream("assets/music/Menu.mp3");
+    PlayMusicStream(menu);
+
     const char opcao[2][16] = {"JOGAR NOVAMENTE", "MENU PRINCIPAL"};
     int selecao = 0;
     
     Texture2D gamewin = LoadTexture("assets/images/Gamewin.png");
     SetTextureFilter(gamewin, TEXTURE_FILTER_TRILINEAR);
     
+
     float pode_apertar = 0.0, delay = 0.1;
 
     int largura = 1600, altura = 900;
@@ -18,6 +25,8 @@ GameScreen RunGameWin(void)
 
     while (!WindowShouldClose())
     {
+        UpdateMusicStream(menu);
+
         pode_apertar += GetFrameTime();
         if (IsKeyPressed(KEY_RIGHT)) selecao = !selecao;
         if (IsKeyPressed(KEY_LEFT)) selecao = !selecao;
@@ -25,6 +34,8 @@ GameScreen RunGameWin(void)
         if (IsKeyPressed(KEY_Z) && pode_apertar >= delay)
         {
             pode_apertar = 0.0;
+            UnloadMusicStream(menu);
+            CloseAudioDevice();
             UnloadTexture(gamewin);
             return (selecao == 0) ? SCREEN_GAME : SCREEN_MENU;
         }

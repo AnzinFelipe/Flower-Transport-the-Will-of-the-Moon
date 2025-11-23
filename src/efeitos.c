@@ -49,7 +49,7 @@ void animacao_efeito(struct Efeito *head, char * elemento, int *terminou, float 
     }
     
     if (*efeito_animado > delay) {
-        *largura_frame += efeito->largura * *cont;
+        *largura_frame = efeito->largura * *cont;
         (*cont)++;
         *efeito_animado = 0;
     }
