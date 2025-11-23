@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "screens.h"
+#include <math.h>
 
 GameScreen RunGameWin(void)
 {
@@ -10,6 +11,10 @@ GameScreen RunGameWin(void)
     SetTextureFilter(gamewin, TEXTURE_FILTER_TRILINEAR);
     
     float pode_apertar = 0.0, delay = 0.1;
+
+    int largura = 1600, altura = 900;
+    RenderTexture2D janela = LoadRenderTexture(largura, altura);
+    SetTextureFilter(janela.texture, TEXTURE_FILTER_TRILINEAR);
 
     while (!WindowShouldClose())
     {
@@ -24,13 +29,13 @@ GameScreen RunGameWin(void)
             return (selecao == 0) ? SCREEN_GAME : SCREEN_MENU;
         }
 
-        BeginDrawing();
-        
-        ClearBackground(GREEN);
+        BeginTextureMode(janela);
+
+        ClearBackground(BLACK);
         DrawTexture(gamewin, 0, 0, WHITE);
 
-        DrawText("Vitória!", 600, 150, 80, GOLD);
-        DrawText("Parabéns! Você venceu o jogo.", 450, 250, 40, WHITE);
+        DrawText("Vitória!", 650, 150, 80, GOLD);
+        DrawText("Parabéns! Você venceu o jogo.", 500, 250, 40, WHITE);
 
         for (int i = 0; i < 2; i++)
         {
@@ -43,6 +48,26 @@ GameScreen RunGameWin(void)
                 DrawText(opcao[i], 250 + i * 700, 500, 35, WHITE);
             }
         }
+        
+        EndTextureMode();
+
+        BeginDrawing();
+        
+        int largura_nova = GetScreenWidth();
+        int altura_nova = GetScreenHeight();
+
+        float escala = fminf((float)largura_nova/largura, (float)altura_nova/altura);
+        float largura_escala = largura * escala;
+        float altura_escala = altura * escala;
+        float offsetX = (largura_nova - largura_escala) / 2.0f;
+        float offsetY = (altura_nova - altura_escala) / 2.0f;
+
+        DrawTexturePro(janela.texture,
+            (Rectangle){ 0, 0, largura, -altura },
+            (Rectangle){ offsetX, offsetY, largura_escala, altura_escala },
+            (Vector2){ 0, 0 },
+            0.0,
+            WHITE);
 
         EndDrawing();
     }
