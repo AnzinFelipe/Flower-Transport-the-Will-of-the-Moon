@@ -81,6 +81,7 @@ GameScreen RunCutscene2(void)
                 LiberarImagens2(listaImagens);
                 UnloadMusicStream(inicio);
                 CloseAudioDevice();
+                UnloadFont(fonte);
                 BeginDrawing();
                 ClearBackground(BLACK);
                 EndDrawing();

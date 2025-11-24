@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "screens.h"
+#include <stdlib.h>
 #include <math.h>
 
 GameScreen RunGameWin(void)
@@ -9,6 +10,7 @@ GameScreen RunGameWin(void)
     }
     Music menu = LoadMusicStream("assets/music/Menu.mp3");
     PlayMusicStream(menu);
+    Font fonte = LoadFontEx("assets/fonts/EmilysCandy-Regular.ttf", 40, NULL, 252);
 
     const char opcao[2][16] = {"JOGAR NOVAMENTE", "MENU PRINCIPAL"};
     int selecao = 0;
@@ -36,6 +38,7 @@ GameScreen RunGameWin(void)
             pode_apertar = 0.0;
             UnloadMusicStream(menu);
             CloseAudioDevice();
+            UnloadFont(fonte);
             UnloadTexture(gamewin);
             return (selecao == 0) ? SCREEN_GAME : SCREEN_MENU;
         }
@@ -45,18 +48,18 @@ GameScreen RunGameWin(void)
         ClearBackground(BLACK);
         DrawTexture(gamewin, 0, 0, WHITE);
 
-        DrawText("Vitória!", 650, 50, 80, (Color){152, 35, 35, 255});
-        DrawText("Parabéns! Você venceu o jogo.", 500, 150, 40, WHITE);
+        DrawTextEx(fonte, "Vitória!", (Vector2){700, 50}, 80, 2, (Color){152, 35, 35, 255});
+        DrawTextEx(fonte, "Parabéns! Você venceu o jogo.", (Vector2){575, 150}, 40, 2, WHITE);
 
         for (int i = 0; i < 2; i++)
         {
             if (i == selecao)
             {
-                DrawText(opcao[i], 250 + i * 700, 300, 40, (Color){152, 35, 35, 255});
+                DrawTextEx(fonte, opcao[i], (Vector2){300 + i * 700, 300}, 40, 2, (Color){152, 35, 35, 255});
             }
             else
             {
-                DrawText(opcao[i], 250 + i * 700, 300, 35, WHITE);
+                DrawTextEx(fonte, opcao[i], (Vector2){300 + i * 700, 300}, 35, 2, WHITE);
             }
         }
         

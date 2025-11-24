@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "screens.h"
+#include <stdlib.h>
 #include <math.h>
 
 GameScreen RunGameOver(void){
@@ -9,6 +10,7 @@ GameScreen RunGameOver(void){
     Music gameover_musica = LoadMusicStream("assets/music/Gameover.mp3");
     PlayMusicStream(gameover_musica);
     const char opcao[2][16] = {"TENTAR DE NOVO!", "SUCUMBIR..."};
+    Font fonte = LoadFontEx("assets/fonts/EmilysCandy-Regular.ttf", 40, NULL, 252);
     int selecao = 0;
     Texture2D gameover = LoadTexture("assets/images/Gameover.png");
     GenTextureMipmaps(&gameover);
@@ -30,6 +32,7 @@ GameScreen RunGameOver(void){
             pode_apertar = 0.0;
             UnloadMusicStream(gameover_musica);
             CloseAudioDevice();
+            UnloadFont(fonte);
             UnloadTexture(gameover);
             return (selecao == 0) ? SCREEN_GAME : SCREEN_MENU;
         }
@@ -39,14 +42,14 @@ GameScreen RunGameOver(void){
         ClearBackground(PURPLE);
         DrawTextureEx(gameover, (Vector2){0,0}, 0.0, 1, WHITE);
 
-        DrawText("Todos foram nocauteados.", 450, 150, 50, RED);
-        DrawText("Mas, você ainda pode fazer uma escolha.", 375, 220, 40, GRAY);
+        DrawTextEx(fonte, "Todos foram nocauteados.", (Vector2){550, 150}, 50, 2, RED);
+        DrawTextEx(fonte, "Mas, você ainda pode fazer uma escolha.", (Vector2){475, 220}, 40, 2, GRAY);
 
         for (int i = 0; i < 2; i++) {
             if (i == selecao) {
-                DrawText(opcao[i], 250 + i * 700, 300, 40, (Color){255, 0, 144, 255});
+                DrawTextEx(fonte, opcao[i], (Vector2){300 + i * 700, 300}, 40, 2, (Color){255, 0, 144, 255});
             } else {
-                DrawText(opcao[i], 250 + i * 700, 300, 35, WHITE);
+                DrawTextEx(fonte, opcao[i], (Vector2){300 + i * 700, 300}, 35, 2, WHITE);
             }
         }
 
