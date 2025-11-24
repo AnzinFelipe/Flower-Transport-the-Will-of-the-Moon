@@ -398,9 +398,17 @@ void liberar_jogo(VariaveisInicioJogo *s){
     UnloadTexture(s->proj_perfuracao);
     UnloadTexture(s->proj_solar);
     UnloadTexture(s->proj_veneno);
-    UnloadTexture(s->efeito_fogo);
+    UnloadTexture(s->efeito_agua);
+    UnloadTexture(s->efeito_ar);
     UnloadTexture(s->efeito_corte);
+    UnloadTexture(s->efeito_eletricidade);
+    UnloadTexture(s->efeito_fogo);
     UnloadTexture(s->efeito_gelo);
+    UnloadTexture(s->efeito_impacto);
+    UnloadTexture(s->efeito_lunar);
+    UnloadTexture(s->efeito_perfuracao);
+    UnloadTexture(s->efeito_solar);
+    UnloadTexture(s->efeito_veneno);
     UnloadTexture(s->relogio_dia);
     UnloadTexture(s->relogio_noite);
     UnloadTexture(s->borda);

@@ -55,7 +55,7 @@ void animacao_efeito(struct Efeito *head, char * elemento, int *terminou, float 
     }
     Rectangle frame = { *largura_frame, 0, efeito->largura, efeito->altura };
     Rectangle escala = { 685, 100, efeito->largura * 5, efeito->altura * 5 };
-    DrawTextureRec(efeito->imagem, frame, (Vector2){0, 0}, BLACK);
+    //DrawTextureRec(efeito->imagem, frame, (Vector2){0, 0}, BLACK);
     DrawTexturePro(efeito->imagem, frame, escala, (Vector2){0, 0}, 0, WHITE);
 
     if (*cont == efeito->max_frames) {

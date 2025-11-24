@@ -54,7 +54,6 @@ GameScreen RunCutscene2(void)
     PlayMusicStream(inicio);
     Images* listaImagens = CriarCutsceneImages2();
     Images* imagemAtual = listaImagens;
-    Font fonte = LoadFontEx("assets/fonts/EmilysCandy-Regular.ttf", 40, NULL, 252);
     int cont = 1;
     float temporizador = 0.0;
     int largura = 1600, altura = 900;
@@ -81,7 +80,6 @@ GameScreen RunCutscene2(void)
                 LiberarImagens2(listaImagens);
                 UnloadMusicStream(inicio);
                 CloseAudioDevice();
-                UnloadFont(fonte);
                 BeginDrawing();
                 ClearBackground(BLACK);
                 EndDrawing();
