@@ -24,7 +24,7 @@ typedef struct VariaveisInicioJogo{
     Texture2D boss_acertar, boss_coracao, boss_ataque_dia, boss_ataque_noite;
     Texture2D olho1, olho2, olho3;
     Texture2D proj_agua, proj_ar, proj_corte, proj_eletricidade, proj_fogo, proj_gelo, proj_impacto, proj_lunar, proj_perfuracao, proj_solar, proj_veneno;
-    Texture2D efeito_fogo, efeito_corte, efeito_gelo;
+    Texture2D efeito_agua, efeito_ar, efeito_corte, efeito_eletricidade, efeito_fogo, efeito_gelo, efeito_impacto, efeito_lunar, efeito_perfuracao, efeito_solar, efeito_veneno;
     int escolhas, escolha_flores_diurnas, escolha_flores_noturnas, escolha_ataques, defender;
     int escolhido, inicio_escolhas_secundarios, personagem_num, vez_inimigo, horario, energia_sobra;
     int momento_atacar, verificar_ataque, ataque_apertado, acertou_ataque;

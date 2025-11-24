@@ -207,15 +207,39 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     GenTextureMipmaps(&s->proj_veneno);
     SetTextureFilter(s->proj_veneno, TEXTURE_FILTER_TRILINEAR);
 
-    s->efeito_fogo = LoadTexture("assets/images/efeitos/fogo.png");
-    GenTextureMipmaps(&s->efeito_fogo);
-    SetTextureFilter(s->efeito_fogo, TEXTURE_FILTER_POINT);
+    s->efeito_agua = LoadTexture("assets/images/efeitos/agua.png");
+    GenTextureMipmaps(&s->efeito_agua);
+    SetTextureFilter(s->efeito_agua, TEXTURE_FILTER_POINT);
+    s->efeito_ar = LoadTexture("assets/images/efeitos/ar.png");
+    GenTextureMipmaps(&s->efeito_ar);
+    SetTextureFilter(s->efeito_ar, TEXTURE_FILTER_POINT);
     s->efeito_corte = LoadTexture("assets/images/efeitos/corte.png");
     GenTextureMipmaps(&s->efeito_corte);
     SetTextureFilter(s->efeito_corte, TEXTURE_FILTER_POINT);
+    s->efeito_eletricidade = LoadTexture("assets/images/efeitos/eletricidade.png");
+    GenTextureMipmaps(&s->efeito_eletricidade);
+    SetTextureFilter(s->efeito_eletricidade, TEXTURE_FILTER_POINT);
+    s->efeito_fogo = LoadTexture("assets/images/efeitos/fogo.png");
+    GenTextureMipmaps(&s->efeito_fogo);
+    SetTextureFilter(s->efeito_fogo, TEXTURE_FILTER_POINT);
     s->efeito_gelo = LoadTexture("assets/images/efeitos/gelo.png");
     GenTextureMipmaps(&s->efeito_gelo);
     SetTextureFilter(s->efeito_gelo, TEXTURE_FILTER_POINT);
+    s->efeito_impacto = LoadTexture("assets/images/efeitos/impacto.png");
+    GenTextureMipmaps(&s->efeito_impacto);
+    SetTextureFilter(s->efeito_impacto, TEXTURE_FILTER_POINT);
+    s->efeito_lunar = LoadTexture("assets/images/efeitos/lunar.png");
+    GenTextureMipmaps(&s->efeito_lunar);
+    SetTextureFilter(s->efeito_lunar, TEXTURE_FILTER_POINT);
+    s->efeito_perfuracao = LoadTexture("assets/images/efeitos/perfuracao.png");
+    GenTextureMipmaps(&s->efeito_perfuracao);
+    SetTextureFilter(s->efeito_perfuracao, TEXTURE_FILTER_POINT);
+    s->efeito_solar = LoadTexture("assets/images/efeitos/solar.png");
+    GenTextureMipmaps(&s->efeito_solar);
+    SetTextureFilter(s->efeito_solar, TEXTURE_FILTER_POINT);
+    s->efeito_veneno = LoadTexture("assets/images/efeitos/veneno.png");
+    GenTextureMipmaps(&s->efeito_veneno);
+    SetTextureFilter(s->efeito_veneno, TEXTURE_FILTER_POINT);
 
     s->escolhas = 1; s->escolha_flores_diurnas = 0; s->escolha_flores_noturnas = 0; s->escolha_ataques = 0; s->defender = 0;
     s->escolhido = 0; s->inicio_escolhas_secundarios = 0; s->personagem_num = 0; s->vez_inimigo = 0; s->horario = 0;
@@ -290,9 +314,17 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     adicionar_personagem(&s->personagem_head, "Edoras", 80, 80, s->ataque_head3, NULL, s->flor_noite_head3);
     adicionar_personagem(&s->personagem_head, "Lumennyl", 100, 0, s->ataque_head4, NULL, NULL);
 
-    adicionar_efeito(&s->efeitos, "Fogo", s->efeito_fogo, 20, 50, 95);
+    adicionar_efeito(&s->efeitos, "Água", s->efeito_agua, 15, 48, 47);
+    adicionar_efeito(&s->efeitos, "Ar", s->efeito_ar, 9, 45, 43);
     adicionar_efeito(&s->efeitos, "Corte", s->efeito_corte, 8, 44, 42);
+    adicionar_efeito(&s->efeitos, "Eletricidade", s->efeito_eletricidade, 13, 46, 47);
+    adicionar_efeito(&s->efeitos, "Fogo", s->efeito_fogo, 20, 50, 95);
     adicionar_efeito(&s->efeitos, "Gelo", s->efeito_gelo, 28, 48, 48);
+    adicionar_efeito(&s->efeitos, "Impacto", s->efeito_impacto, 9, 54, 55);
+    adicionar_efeito(&s->efeitos, "Lunar", s->efeito_lunar, 31, 47, 43);
+    adicionar_efeito(&s->efeitos, "Perfuração", s->efeito_perfuracao, 8, 25, 37);
+    adicionar_efeito(&s->efeitos, "Solar", s->efeito_solar, 17, 45, 46);
+    adicionar_efeito(&s->efeitos, "Veneno", s->efeito_veneno, 24, 46, 44);
 
     adicionar_vantagens_desvantagens_personagem(&s->personagem_head, 0);
     adicionar_vantagens_desvantagens_personagem(&s->personagem_head, 1);
