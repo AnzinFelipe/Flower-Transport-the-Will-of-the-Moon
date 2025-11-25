@@ -15,8 +15,9 @@ O jogador pode atacar, usar flores diurnas ou noturnas dependendo do personagem 
 Ao selecionar o que deseja fazer, o jogador precisa acertar o coração do chefe para poder efetivar seu ataque
 
 Cada ataque possui seu dano, seu elemento e sua velocidade, então o jogador precisa planejar com cuidado seus passos para poder derrotar o grande inimigo e ganhar sua pontuação final
- ```bash 
 ### Instalação
+ ```bash 
+
 
 # Windows
 
