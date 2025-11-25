@@ -10,6 +10,7 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     s->efeitos = NULL;
     s->boss = NULL;
     s->elemento_atual = NULL;
+    s->ranking_head = NULL;
 
     s->janela = LoadRenderTexture(largura, altura);
     SetTextureFilter(s->janela.texture, TEXTURE_FILTER_TRILINEAR);
@@ -261,6 +262,7 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     s->vida_cor = (Color){120, 18, 18, 255};
     s->energia_cor = (Color){18, 120, 80, 255};
     s->colisao_teto = (Rectangle){0, 0, 1600, 1};
+    s->pontuacao_inicio = 10000;
 
     adicionar_ataque(&s->ataque_head2, "Soco", 20, "Impacto", 5, 1.5, "");
     adicionar_ataque(&s->ataque_head2, "Chute", 15, "Impacto", 5, 1.0, "");

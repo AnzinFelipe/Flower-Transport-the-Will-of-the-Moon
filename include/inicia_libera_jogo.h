@@ -8,6 +8,7 @@
 #include "personagem.h"
 #include "boss.h"
 #include "efeitos.h"
+#include "ranking.h"
 
 typedef struct VariaveisInicioJogo{
     RenderTexture2D janela;
@@ -33,6 +34,7 @@ typedef struct VariaveisInicioJogo{
     int ir_coracao, voltar_coracao;
     int comeco, random_p;
     int animacao_efeito, efeito_terminou, cont_frames, largura_frame;
+    int pontuacao_inicio;
     float velocidade_atual;
     float largura_coracao, altura_proj;
     Rectangle colisao_proj_horizontal, colisao_proj_vertical, colisao_teto;
@@ -51,6 +53,7 @@ typedef struct VariaveisInicioJogo{
     Personagem *personagem_head;
     struct Efeito *efeitos;
     Boss *boss;
+    Ranks *ranking_head;
 } VariaveisInicioJogo;
 
 void novo_jogo(VariaveisInicioJogo *s, int largura, int altura);
