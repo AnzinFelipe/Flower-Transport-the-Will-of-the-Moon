@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "ranking.h"
+#include <stdio.h>
 
 void nova_pontuacao_ranking(Ranks **head, int nova_pontuacao){
     int total_podio = 5;
