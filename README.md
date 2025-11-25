@@ -38,3 +38,25 @@ Crie uma condicional no arquivo MAKEFILE para reconhecer que o sistema operacion
 
 Va para o bash dentro da pasta clonada no github e cole o comando export PATH="/c/raylib/w64devkit/bin:$PATH" e rode make run no terminal
 
+# Linux
+
+Comece entrando no terminal de comandos do Linux e rode esses comandos em ordem
+
+sudo apt install build-essential git
+sudo apt update
+sudo apt install libasound2-dev mesa-common-dev libx11-dev libxrandr-dev libxi-dev xorg-dev libgl1-mesa-dev libglu1-mesa-dev
+
+Para instalar a raylib e configurá-la:
+
+git clone raylib
+cd raylib/src
+ make PLATFORM=PLATFORM_DESKTOP 
+sudo make install 
+
+Após isso, clone o projeto:
+
+git clone https://github.com/AnzinFelipe/Flower-Transport-the-Will-of-the-Moon.git
+cd Flower-Transport-the-Will-of-the-Moon
+code .
+
+Abra um terminal e rode make run
