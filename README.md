@@ -15,6 +15,21 @@ O jogador pode atacar, usar flores diurnas ou noturnas dependendo do personagem 
 Ao selecionar o que deseja fazer, o jogador precisa acertar o coração do chefe para poder efetivar seu ataque
 
 Cada ataque possui seu dano, seu elemento e sua velocidade, então o jogador precisa planejar com cuidado seus passos para poder derrotar o grande inimigo e ganhar sua pontuação final
+
+# Comandos
+
+Z = Confirmar escolha
+
+X =  Retornar para escolha anterior (depende de onde você está no jogo)
+
+UP_ARROW = Move para opção superior
+
+DOWN_ARROW = Move para opção inferior
+
+RIGHT_ARROW = Move para opção na direita
+
+LEFT_ARROW = Move para opção na esquerda
+
 ### Instalação
    ```bash 
    
