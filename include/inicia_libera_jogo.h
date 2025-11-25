@@ -53,7 +53,6 @@ typedef struct VariaveisInicioJogo{
     Personagem *personagem_head;
     struct Efeito *efeitos;
     Boss *boss;
-    Ranks *ranking_head;
 } VariaveisInicioJogo;
 
 void novo_jogo(VariaveisInicioJogo *s, int largura, int altura);

@@ -10,7 +10,6 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     s->efeitos = NULL;
     s->boss = NULL;
     s->elemento_atual = NULL;
-    s->ranking_head = NULL;
 
     s->janela = LoadRenderTexture(largura, altura);
     SetTextureFilter(s->janela.texture, TEXTURE_FILTER_TRILINEAR);
