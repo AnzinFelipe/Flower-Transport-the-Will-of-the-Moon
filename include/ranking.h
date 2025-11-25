@@ -8,5 +8,5 @@ typedef struct Ranks {
     int total_pontos;
 } Ranks;
 
-void nova_pontuacao_ranking(int nova_pontuacao);
+int nova_pontuacao_ranking(int nova_pontuacao);
 #endif

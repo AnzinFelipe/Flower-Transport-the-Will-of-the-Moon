@@ -2,7 +2,7 @@
 #include "ranking.h"
 #include <stdio.h>
 
-void nova_pontuacao_ranking(int nova_pontuacao){
+int nova_pontuacao_ranking(int nova_pontuacao){
     int total_podio = 5;
     Ranks podio[total_podio];
     FILE *arquivo = fopen("ranking.txt", "rb+");
@@ -19,20 +19,30 @@ void nova_pontuacao_ranking(int nova_pontuacao){
                 podio[i].total_pontos = -1;
             }
             
-            fwrite(&podio[i].posicao, sizeof(int), 1, arquivo);
-            fwrite(&podio[i].total_pontos, sizeof(int), 1, arquivo);
+            fwrite(&podio, sizeof(Ranks), total_podio, arquivo);
         }
 
         fclose(arquivo);
-        return;
+        return nova_pontuacao;
 
     }else{
-        for (int i = 0; i < total_podio; i++)
-        {
-            fread(&podio[i].posicao, sizeof(int), 1, arquivo);
-            fread(&podio[i].total_pontos, sizeof(int), 1, arquivo);
+        fread(&podio, sizeof(int), total_podio, arquivo);
+
+        for(int i = 0; i < total_podio; i++){
+            if(nova_pontuacao > podio[i].total_pontos){
+                for(int j = total_podio - 1; j > i; j--){
+                    podio[j].total_pontos = podio[j-1].total_pontos;
+                }
+                podio[i].total_pontos = nova_pontuacao;
+                break;
+            }
         }
 
         fclose(arquivo);
+
+        arquivo = fopen("ranking.txt", "wb+");
+        fwrite(&podio, sizeof(Ranks), total_podio, arquivo);
+        fclose(arquivo);
+        return nova_pontuacao;
     }
 }
