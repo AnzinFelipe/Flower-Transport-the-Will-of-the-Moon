@@ -33,8 +33,11 @@ LEFT_ARROW = Move para opção na esquerda
 
 [🔗 Ver Slides no Canva](https://www.canva.com/design/DAG5pcLgTYc/IQjdF1j9ov0Fjrz7PFK0YQ/edit?ui=e30)
 
-# Screencast
+## Screencast
 [📸 Veja vídeo do jogo rodando no Windows](https://www.youtube.com/watch?v=3IJmwr3IXx4&feature=youtu.be)
+
+## Link do jogo postado no Itch.io
+[🎮 Baixe nosso jogo!](https://mechanzin.itch.io/flower-transport-the-will-of-the-moon)
 ### Instalação
    ```bash 
    
