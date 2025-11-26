@@ -6,7 +6,7 @@ GameScreen RunMenu(void) {
     if (!IsAudioDeviceReady()) {
         InitAudioDevice();
     }
-    Music menu = LoadMusicStream("assets/music/Menu.mp3");
+    Music menu = LoadMusicStream("assets/music/Menu.ogg");
     PlayMusicStream(menu);
     const char opcao[2][15] = {"INICIAR JOGO", "SAIR"};
     Texture2D menu1 = LoadTexture("assets/images/Menu1.png");

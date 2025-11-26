@@ -19,7 +19,7 @@ GameScreen RunGameWin(int *pontuacao)
     if (!IsAudioDeviceReady()) {
         InitAudioDevice();
     }
-    Music menu = LoadMusicStream("assets/music/Menu.mp3");
+    Music menu = LoadMusicStream("assets/music/Menu.ogg");
     PlayMusicStream(menu);
     Font fonte = LoadFontEx("assets/fonts/EmilysCandy-Regular.ttf", 40, NULL, 252);
 
