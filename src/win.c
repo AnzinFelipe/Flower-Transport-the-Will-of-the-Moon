@@ -2,9 +2,20 @@
 #include "screens.h"
 #include <stdlib.h>
 #include <math.h>
+#include <stdio.h>
+#include "ranking.h"
 
-GameScreen RunGameWin(void)
+GameScreen RunGameWin(int *pontuacao)
 {
+    char pontuacao_str[50];
+    Ranks podio[5];
+    FILE *arquivo = fopen("ranking.txt", "rb+");
+    
+    sprintf(pontuacao_str, "Sua pontuação final foi: %d", *pontuacao);
+    
+    fread(&podio, sizeof(Ranks), 5, arquivo);
+    fclose(arquivo);
+
     if (!IsAudioDeviceReady()) {
         InitAudioDevice();
     }
@@ -50,6 +61,7 @@ GameScreen RunGameWin(void)
 
         DrawTextEx(fonte, "Vitória!", (Vector2){700, 50}, 80, 2, (Color){152, 35, 35, 255});
         DrawTextEx(fonte, "Parabéns! Você venceu o jogo.", (Vector2){575, 150}, 40, 2, WHITE);
+        DrawTextEx(fonte, pontuacao_str, (Vector2){575, 220}, 40, 2, WHITE);
 
         for (int i = 0; i < 2; i++)
         {
@@ -61,6 +73,21 @@ GameScreen RunGameWin(void)
             {
                 DrawTextEx(fonte, opcao[i], (Vector2){300 + i * 700, 300}, 35, 2, WHITE);
             }
+        }
+
+        DrawTextEx(fonte, "5 MAIORES PONTUAÇÕES", (Vector2){10, 400}, 35, 2, WHITE);
+        
+        for (int i = 0; i < 5; i++)
+        {
+            char buffer[64];
+
+            if (podio[i].total_pontos == -1){
+                sprintf(buffer, "%d. ---", podio[i].posicao);
+            }else{
+                sprintf(buffer, "%d. %d pontos", podio[i].posicao, podio[i].total_pontos);
+            }
+
+            DrawTextEx(fonte, buffer, (Vector2){60, 450 + i * 50}, 30, 2, WHITE);
         }
         
         EndTextureMode();

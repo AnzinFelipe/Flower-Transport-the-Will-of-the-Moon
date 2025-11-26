@@ -21,7 +21,7 @@ typedef enum GameScreen {
 GameScreen RunMenu(void);
 GameScreen RunCutscene(void);
 GameScreen RunGameOver(void);
-GameScreen RunGameWin(void);
+GameScreen RunGameWin(int *pontuacao);
 GameScreen RunCutscene2(void);
 
 #endif

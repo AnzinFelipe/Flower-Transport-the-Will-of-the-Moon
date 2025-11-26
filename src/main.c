@@ -8,6 +8,8 @@
 #include "inicia_libera_jogo.h"
 #include <stdlib.h>
 #include <math.h>
+#include <stdio.h>
+#include "ranking.h"
 
 
 int main(void) {
@@ -158,8 +160,9 @@ int main(void) {
                 //Vez do inimigo ou vez do jogador
                 if (jogo_iniciado->vez_inimigo == 1) {
                     if (jogo_iniciado->ataque_boss_tempo >= jogo_iniciado->delay_ataque_boss) {
-                        ataque_boss(jogo_iniciado->boss, &jogo_iniciado->personagem_head, jogo_iniciado->random_p, &jogo_iniciado->p0_morto, &jogo_iniciado->p1_morto, &jogo_iniciado->p2_morto, &jogo_iniciado->p3_morto);
+                        ataque_boss(jogo_iniciado->boss, &jogo_iniciado->personagem_head, jogo_iniciado->random_p, &jogo_iniciado->p0_morto, &jogo_iniciado->p1_morto, &jogo_iniciado->p2_morto, &jogo_iniciado->p3_morto, &jogo_iniciado->sobreviventes);
                         jogo_iniciado->vez_inimigo = 0;
+                        jogo_iniciado->pontuacao_inicio -= 200;
                         jogo_iniciado->personagem_num = 0;
                         jogo_iniciado->escolhas = 1;
                         jogo_iniciado->pode_apertar = 0.0;
@@ -494,7 +497,8 @@ int main(void) {
                         jogo_iniciado->animacao_efeito = 1;
 
                         if (currentScreen == SCREEN_GAME && jogo_iniciado->boss->vida <= 0) {
-                            liberar_jogo(jogo_iniciado);
+                            jogo_iniciado->pontuacao_inicio += 500 * jogo_iniciado->sobreviventes;
+                            nova_pontuacao_ranking(&jogo_iniciado->pontuacao_inicio);
                             currentScreen = SCREEN_CUTSCENE2;
                         }
                     }
@@ -564,9 +568,10 @@ int main(void) {
                 break;
                     
             case SCREEN_WIN:
-                currentScreen = RunGameWin();
+                currentScreen = RunGameWin(&jogo_iniciado->pontuacao_inicio);
     
                 if (currentScreen == SCREEN_GAME) {
+                    liberar_jogo(jogo_iniciado);
                     novo_jogo(jogo_iniciado, largura, altura);
                     derrotado = 0;
                 }

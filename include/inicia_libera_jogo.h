@@ -35,6 +35,7 @@ typedef struct VariaveisInicioJogo{
     int comeco, random_p;
     int animacao_efeito, efeito_terminou, cont_frames, largura_frame;
     int pontuacao_inicio;
+    int sobreviventes;
     float velocidade_atual;
     float largura_coracao, altura_proj;
     Rectangle colisao_proj_horizontal, colisao_proj_vertical, colisao_teto;

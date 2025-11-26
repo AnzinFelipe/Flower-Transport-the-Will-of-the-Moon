@@ -77,7 +77,7 @@ void pegar_personagem_aleatorio(Personagem *personagem, int *random_p) {
     }
 }
 
-void ataque_boss(Boss *boss, Personagem **personagem, int random_p, int *p0_morto, int *p1_morto, int *p2_morto, int *p3_morto) {
+void ataque_boss(Boss *boss, Personagem **personagem, int random_p, int *p0_morto, int *p1_morto, int *p2_morto, int *p3_morto, int *sobreviventes) {
     int i, j, dano = 0;
     float mult = 1;
     int ataque_num = GetRandomValue(0, 3);
@@ -126,7 +126,7 @@ void ataque_boss(Boss *boss, Personagem **personagem, int random_p, int *p0_mort
         }
     }
 
-    subtrair_vida_personagem(personagem, random_p, dano, mult, p0_morto, p1_morto, p2_morto, p3_morto);
+    subtrair_vida_personagem(personagem, random_p, dano, mult, p0_morto, p1_morto, p2_morto, p3_morto, sobreviventes);
     printf("Boss usou %s no personagem %s causando %d de dano com multiplicador %.2f\n", a->nome, p->nome, dano, mult);
     printf("vida do personagem %s: %d\n", p->nome, p->vida);
 }

@@ -197,7 +197,7 @@ void desenhar_energia_personagens(Personagem *personagem, int num, Color energia
     }
 }
 
-void subtrair_vida_personagem(Personagem **personagem, int personagem_num, int dano, float mult, int *p0_morto, int *p1_morto, int *p2_morto, int *p3_morto) {
+void subtrair_vida_personagem(Personagem **personagem, int personagem_num, int dano, float mult, int *p0_morto, int *p1_morto, int *p2_morto, int *p3_morto, int *sobreviventes) {
     Personagem *p = *personagem;
     for (int i = 0; i < personagem_num; i++) {
         p = p->prox;
@@ -210,14 +210,18 @@ void subtrair_vida_personagem(Personagem **personagem, int personagem_num, int d
     if (personagem_num == 0 && p->vida == 0) {
         *p0_morto = 1;
         p->energia = 0;
+        *sobreviventes -= 1;
     } else if (personagem_num == 1 && p->vida == 0) {
         *p1_morto = 1;
         p->energia = 0;
+        *sobreviventes -= 1;
     } else if (personagem_num == 2 && p->vida == 0) {
         *p2_morto = 1;
         p->energia = 0;
+        *sobreviventes -= 1;
     } else if (personagem_num == 3 && p->vida == 0) {
         *p3_morto = 1;
+        *sobreviventes -= 1;
     }
 }
 

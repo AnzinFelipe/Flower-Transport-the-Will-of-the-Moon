@@ -262,6 +262,7 @@ void novo_jogo(VariaveisInicioJogo *s, int largura, int altura){
     s->energia_cor = (Color){18, 120, 80, 255};
     s->colisao_teto = (Rectangle){0, 0, 1600, 1};
     s->pontuacao_inicio = 10000;
+    s->sobreviventes = 4;
 
     adicionar_ataque(&s->ataque_head2, "Soco", 20, "Impacto", 5, 1.5, "");
     adicionar_ataque(&s->ataque_head2, "Chute", 15, "Impacto", 5, 1.0, "");

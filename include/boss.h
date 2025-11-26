@@ -29,6 +29,6 @@ void subtrair_vida_boss(Boss **boss, int dano, float mult);
 
 void pegar_personagem_aleatorio(Personagem *personagem, int *random_p);
 
-void ataque_boss(Boss *boss, Personagem **personagem, int random_p, int *p0_morto, int *p1_morto, int *p2_morto, int *p3_morto);
+void ataque_boss(Boss *boss, Personagem **personagem, int random_p, int *p0_morto, int *p1_morto, int *p2_morto, int *p3_morto, int *sobreviventes);
 
 #endif
